@@ -9,23 +9,23 @@
     :root{
       --bg0:#070707;
       --bg1:#0b0b0b;
-      --card:#121212cc;
-      --stroke:#ffffff14;
+      --card: rgba(18,18,18,.78);
+      --stroke: rgba(255,255,255,.10);
       --text:#f4f4f4;
       --muted:#bdbdbd;
       --accent:#ffb100;
       --accent2:#ff7a00;
-      --ok:#3ddc84;
       --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 980px;
+      --r1:18px;
+      --r2:26px;
+      --max:980px;
+      --danger:#ff6a6a;
     }
 
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:
         radial-gradient(900px 450px at 20% 0%, rgba(255,177,0,.20), transparent 60%),
@@ -33,849 +33,718 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       min-height:100vh;
     }
-
     a{ color:inherit; text-decoration:none; }
-
-    .wrap{ max-width:var(--max); margin:0 auto; padding:18px 14px 110px; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:16px 14px 90px; }
 
     .topbar{
-      display:flex;
-      gap:14px;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:14px 14px;
       border:1px solid var(--stroke);
-      background: linear-gradient(135deg, rgba(18,18,18,.9), rgba(10,10,10,.7));
-      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(18,18,18,.88), rgba(10,10,10,.72));
+      border-radius: var(--r2);
       box-shadow: var(--shadow);
-      position:sticky;
-      top:10px;
-      z-index:5;
+      position: sticky; top: 10px; z-index: 10;
       backdrop-filter: blur(10px);
     }
-
-    .brand{
-      display:flex; gap:12px; align-items:center; min-width:0;
-    }
+    .brand{ display:flex; align-items:center; gap:12px; min-width:0; }
     .logo{
-      width:44px; height:44px;
-      border-radius:14px;
-      background: radial-gradient(circle at 30% 30%, #ffd36a, #ff8a00 55%, #b43a00 100%);
+      width:46px; height:46px; border-radius: 16px;
+      overflow:hidden;
+      background: radial-gradient(circle at 30% 30%, #ffd36a, #ffb100 55%, #b43a00 100%);
       box-shadow: 0 10px 30px rgba(255,140,0,.25);
       flex:0 0 auto;
+      display:grid; place-items:center;
     }
-    .brand h1{
-      font-size:18px; margin:0;
-      line-height:1.1;
-    }
-    .brand p{
-      margin:2px 0 0;
-      color:var(--muted);
-      font-size:12.5px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 46vw;
-    }
-
-    .cta{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex:0 0 auto;
-    }
+    .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .title{ min-width:0; }
+    .title h1{ margin:0; font-size:18px; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .title p{ margin:2px 0 0; color:var(--muted); font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     .btn{
       border:none;
-      border-radius: 18px;
-      padding:12px 14px;
-      font-weight:700;
+      border-radius: 999px;
+      padding: 12px 14px;
+      font-weight: 900;
       cursor:pointer;
-      transition: transform .08s ease, filter .2s ease, opacity .2s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
+      color:#111;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 16px 40px rgba(255,140,0,.25);
       user-select:none;
-      white-space:nowrap;
     }
-    .btn:active{ transform: scale(.98); }
-    .btn.primary{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color:#181818;
-      box-shadow: 0 12px 34px rgba(255,161,0,.25);
-    }
+    .btn:active{ transform: translateY(1px); }
     .btn.ghost{
       background: rgba(255,255,255,.06);
       color: var(--text);
       border:1px solid var(--stroke);
+      box-shadow: none;
     }
 
     .hero{
-      margin-top:16px;
-      padding:22px 16px;
-      border-radius: var(--radius2);
-      border:1px solid var(--stroke);
-      background:
-        radial-gradient(600px 240px at 0% 0%, rgba(255,177,0,.16), transparent 60%),
-        radial-gradient(600px 240px at 100% 0%, rgba(255,122,0,.14), transparent 60%),
-        rgba(12,12,12,.65);
-      box-shadow: var(--shadow);
+      margin-top:14px;
+      padding:18px 12px 8px;
+      text-align:center;
     }
     .hero h2{
-      margin:0 0 8px;
-      font-size:28px;
-      letter-spacing:-.5px;
+      margin: 16px 0 8px;
+      font-size: 34px;
+      letter-spacing: -.6px;
     }
     .hero p{
       margin:0;
       color: var(--muted);
-      font-size:14.5px;
+      font-size: 16px;
       line-height:1.45;
     }
 
-    .grid{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:14px;
+    .sectionTitle{
+      margin: 28px 4px 10px;
+      font-size: 26px;
+      letter-spacing: -.3px;
     }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-      .brand p{ max-width: 52vw; }
+    .sectionHint{
+      margin:0 4px 12px;
+      color:var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
     }
-
     .card{
       border:1px solid var(--stroke);
-      background: rgba(14,14,14,.72);
-      border-radius: var(--radius2);
+      border-radius: var(--r2);
+      background: linear-gradient(180deg, rgba(18,18,18,.86), rgba(10,10,10,.70));
       box-shadow: var(--shadow);
-      overflow:hidden;
+      padding: 14px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media(min-width: 860px){
+      .grid{ grid-template-columns: 1fr 1fr; }
     }
 
-    .card .head{
-      padding:16px 16px 10px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:10px;
-      background:
-        radial-gradient(600px 220px at 20% 0%, rgba(255,177,0,.12), transparent 60%),
-        rgba(10,10,10,.55);
-      border-bottom:1px solid var(--stroke);
-    }
-    .card .head h3{
-      margin:0;
-      font-size:20px;
-    }
-    .card .head small{
-      color:var(--muted);
-      font-weight:600;
-    }
-
-    .section{
-      padding:14px 16px 16px;
-    }
-
-    .notice{
-      display:flex; gap:10px; align-items:center;
-      padding:12px 12px;
-      border-radius: 16px;
+    .item{
       border:1px solid var(--stroke);
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
-      font-size:13px;
-      margin-bottom:12px;
-    }
-    .notice b{ color: var(--text); }
-
-    .menuItem{
-      padding:14px 12px;
-      border:1px solid var(--stroke);
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
+      border-radius: var(--r2);
+      background: rgba(18,18,18,.58);
+      padding: 14px;
       display:flex;
+      gap:12px;
+      align-items:flex-start;
       justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      margin-bottom:10px;
     }
-    .menuInfo{
-      min-width:0;
-    }
-    .menuInfo .title{
-      font-size:16px;
-      margin:0;
-      font-weight:800;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .menuInfo .desc{
-      margin:6px 0 0;
-      color: var(--muted);
-      font-size:13px;
-      line-height:1.25;
-    }
+    .item h4{ margin:0; font-size:18px; }
+    .item p{ margin:6px 0 0; color:var(--muted); font-size:13.5px; line-height:1.25; }
     .price{
-      font-size:16px;
-      font-weight:900;
+      font-weight: 1000;
       color: var(--accent);
-      letter-spacing:.2px;
-      margin-top:6px;
+      font-size: 18px;
+      white-space:nowrap;
+      margin-left: 10px;
     }
 
     .qtyBox{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:8px;
-      flex:0 0 auto;
+      display:flex; align-items:center; gap:10px;
+      margin-top:10px;
     }
-    .stepper{
-      display:flex;
-      align-items:center;
-      gap:8px;
+    .qtyBtn{
+      width:38px; height:38px;
+      border-radius: 12px;
       border:1px solid var(--stroke);
-      background: rgba(0,0,0,.22);
-      border-radius: 999px;
-      padding:6px 8px;
-    }
-    .stepper button{
-      width:34px; height:34px;
-      border-radius: 999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
+      background: rgba(0,0,0,.25);
       color: var(--text);
-      font-size:18px;
-      font-weight:900;
+      font-weight: 1000;
       cursor:pointer;
     }
-    .stepper span{
-      width:28px;
-      text-align:center;
-      font-weight:900;
-      font-size:14px;
-    }
+    .qtyVal{ min-width: 28px; text-align:center; font-weight: 1000; }
 
-    .pill{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:8px 10px;
-      border-radius: 999px;
-      background: rgba(255,177,0,.10);
-      border: 1px solid rgba(255,177,0,.22);
-      color: var(--text);
-      font-size:12.5px;
-      font-weight:800;
-      margin: 10px 0 0;
-    }
+    .divider{ height:1px; background: var(--stroke); margin:14px 0; }
 
     .formGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap:10px;
     }
-    @media (max-width: 560px){
-      .formGrid{ grid-template-columns: 1fr; }
+    @media(min-width: 860px){
+      .formGrid{ grid-template-columns: 1fr 1fr; }
     }
-    label{
-      display:block;
-      font-size:12.5px;
-      color: var(--muted);
-      margin:0 0 6px;
-      font-weight:700;
-    }
+    label{ font-size:12px; color:var(--muted); display:block; margin:8px 0 6px; font-weight:800; }
     input, select, textarea{
       width:100%;
-      padding:12px 12px;
+      padding: 12px 12px;
       border-radius: 14px;
       border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
+      background: rgba(0,0,0,.25);
       color: var(--text);
       outline:none;
-      font-size:14px;
     }
-    textarea{ min-height: 90px; resize: vertical; }
+    textarea{ min-height: 92px; resize: vertical; }
 
-    .row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      margin-top:12px;
+    .totalsRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center; justify-content:flex-end;
+      margin-top: 12px;
     }
-
-    .totals{
+    .totalBox{
       border:1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
-      padding:12px;
-      margin-top:12px;
+      background: rgba(18,18,18,.55);
+      border-radius: 16px;
+      padding: 10px 12px;
+      min-width: 170px;
+      text-align:right;
     }
-    .totalsLine{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      color: var(--muted);
-      font-weight:700;
-      font-size:13px;
-      margin:6px 0;
-    }
-    .totalsLine strong{
-      color: var(--text);
-      font-size:14px;
-    }
-    .totalsLine.final strong{
-      color: var(--accent);
-      font-size:16px;
-      letter-spacing:.2px;
+    .totalBox small{ display:block; color:var(--muted); }
+    .totalBox b{ font-size:18px; color: var(--accent); }
+
+    .flags{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+    .flag{
+      border:1px solid var(--stroke);
+      background: rgba(18,18,18,.55);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 1000;
+      font-size: 12px;
+      letter-spacing:.5px;
     }
 
-    .smallHint{
-      margin-top:10px;
-      font-size:12.5px;
+    .helper{
+      margin: 8px 2px 0;
       color: var(--muted);
+      font-size: 12.5px;
       line-height:1.35;
     }
 
-    .floating{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 50;
-      border-radius: 999px;
-      padding:14px 16px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #171717;
+    .dangerText{
+      color: var(--danger);
       font-weight: 900;
-      border:none;
-      box-shadow: 0 14px 40px rgba(255,153,0,.28);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      gap:10px;
+      margin-top: 10px;
+      display:none;
+      white-space: pre-line;
     }
 
-    .divider{
-      height:1px;
-      background: var(--stroke);
-      margin:14px 0;
-    }
-
-    .commentBox{
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
-      padding:12px;
-      margin-top:12px;
-    }
     .commentItem{
-      padding:10px 10px;
-      border-radius: 14px;
       border:1px solid var(--stroke);
-      background: rgba(0,0,0,.18);
+      background: rgba(18,18,18,.40);
+      border-radius: 16px;
+      padding: 12px;
       margin-top:10px;
     }
-    .commentItem .meta{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      color: var(--muted);
-      font-size:12px;
-      font-weight:800;
+    .commentMeta{
+      display:flex; justify-content:space-between; gap:10px;
+      color:var(--muted); font-size:12px; font-weight:900;
       margin-bottom:6px;
+    }
+
+    footer{
+      margin-top: 18px;
+      border-top:1px solid var(--stroke);
+      padding: 18px 8px 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      text-align:center;
+    }
+    .footerLinks{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 8px;
+    }
+    .footerLinks a{
+      color: var(--text);
+      font-weight: 900;
+    }
+    .footerLinks a:hover{ text-decoration: underline; }
+
+    .floating{
+      position:fixed; right:14px; bottom:14px; z-index:20;
+      border:none;
+      padding: 14px 16px;
+      border-radius: 999px;
+      font-weight: 1000;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #111;
+      cursor:pointer;
+      box-shadow: 0 18px 50px rgba(255,140,0,.30);
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <!-- TOPBAR -->
     <div class="topbar">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div style="min-width:0">
+        <div class="logo" title="Logo">
+          <img src="logo.png" alt="Logo Espetinho Sousa" onerror="this.remove()" />
+        </div>
+        <div class="title">
           <h1>Espetinho Sousa</h1>
-          <p>🔥 Fogo, sabor e capricho • Pedido rápido no WhatsApp</p>
+          <p>Fogo, sabor e capricho • Delivery</p>
         </div>
       </div>
-      <div class="cta">
-        <button class="btn ghost" onclick="scrollToId('pedido')">Ver pedido</button>
-        <button class="btn primary" onclick="openWhatsApp(true)">Pedir no WhatsApp</button>
-      </div>
+      <button class="btn ghost" onclick="scrollToId('finalizar')">Finalizar</button>
     </div>
 
-    <!-- HERO -->
     <div class="hero">
       <h2>Os melhores espetinhos da cidade!</h2>
-      <p>Feito na brasa, sabor de verdade 😋 <br/>Monte seu pedido abaixo e finalize pelo WhatsApp com 1 clique.</p>
-      <div class="pill">✅ Pedido organizado e confirmação na hora</div>
+      <p>Feito na brasa, sabor de verdade. Monte seu pedido e pague pelo site.</p>
     </div>
 
-    <div class="grid">
-      <!-- MENU -->
-      <div class="card" id="cardapio">
-        <div class="head">
-          <div>
-            <h3>Cardápio</h3>
-            <small>Escolha seus itens e ajuste a quantidade</small>
-          </div>
-          <small style="color:var(--muted)">💳 Pix / Dinheiro</small>
+    <h3 class="sectionTitle" id="espetos">Espetos</h3>
+    <p class="sectionHint">Escolha seus espetos e ajuste a quantidade.</p>
+    <div class="card">
+      <div class="grid" id="menuList"></div>
+    </div>
+
+    <h3 class="sectionTitle" id="combos">Combos</h3>
+    <p class="sectionHint">Nos combos, informe na observação qual espeto deseja quando aplicável.</p>
+    <div class="card">
+      <div class="grid" id="comboList"></div>
+      <p class="helper"><b>Exemplo:</b> “Combo Prata: quero espeto de carne”.</p>
+    </div>
+
+    <h3 class="sectionTitle" id="acompanhamentos">Acompanhamentos</h3>
+    <p class="sectionHint">Adicione acompanhamentos ao seu pedido.</p>
+    <div class="card">
+      <div class="grid" id="addonsList"></div>
+    </div>
+
+    <h3 class="sectionTitle" id="bebidas">Bebidas</h3>
+    <p class="sectionHint">Refrigerantes 350ml e sucos naturais.</p>
+    <div class="card">
+      <div class="grid" id="drinksList"></div>
+    </div>
+
+    <!-- DELIVERY (por distância) -->
+    <h3 class="sectionTitle" id="delivery">Delivery</h3>
+    <p class="sectionHint">O frete é calculado automaticamente conforme a distância.</p>
+    <div class="card">
+      <div class="formGrid">
+        <div>
+          <label for="bairro">Distância / taxa de entrega (obrigatório)</label>
+          <select id="bairro" onchange="updateTotals()">
+            <option value="">Selecione...</option>
+            <option value="5">Até 2 km — R$ 5,00</option>
+            <option value="7">De 2 a 4 km — R$ 7,00</option>
+            <option value="10">De 4 a 6 km — R$ 10,00</option>
+            <option value="12">Acima de 6 km — R$ 12,00</option>
+          </select>
+          <p class="helper">Escolha a distância aproximada da entrega. O valor será somado automaticamente ao total.</p>
         </div>
 
-        <div class="section">
-          <div class="notice">
-            <span style="font-size:18px">👉</span>
-            <div>
-              Toque em <b>+</b> e <b>-</b> para ajustar a quantidade. Depois preencha os dados obrigatórios e clique em <b>Pedir no WhatsApp</b>.
-            </div>
+        <div>
+          <label>Taxa de entrega</label>
+          <div class="totalBox" style="text-align:left">
+            <small>Taxa atual</small>
+            <b id="taxaEntrega">R$ 0,00</b>
           </div>
-
-          <div id="menuList"></div>
-
-          <div class="divider"></div>
-
-          <h3 style="margin:0 0 10px; font-size:18px;">Acompanhamentos (adicione ao pedido)</h3>
-          <div id="addonsList"></div>
-
-          <p class="smallHint">
-            * Você pode me dizer depois quais acompanhamentos quer (ex: farofa, vinagrete, pão de alho, refrigerante etc.) que eu já deixo bonitinho com nomes e preços.
-          </p>
-        </div>
-      </div>
-
-      <!-- CHECKOUT / PEDIDO -->
-      <div class="card" id="pedido">
-        <div class="head">
-          <div>
-            <h3>Seu pedido</h3>
-            <small>Informações obrigatórias + observações</small>
-          </div>
-          <small style="color:var(--ok); font-weight:900;">● Pronto pra enviar</small>
-        </div>
-
-        <div class="section">
-          <div class="formGrid">
-            <div>
-              <label>Nome *</label>
-              <input id="nome" placeholder="Ex: Ingrid" />
-            </div>
-
-            <div>
-              <label>Seu WhatsApp (com DDD) *</label>
-              <input id="telefone" inputmode="tel" placeholder="Ex: 11999999999" />
-            </div>
-
-            <div>
-              <label>Tipo do pedido *</label>
-              <select id="tipoPedido">
-                <option value="">Selecione</option>
-                <option value="Entrega">Entrega</option>
-                <option value="Retirada">Retirada</option>
-              </select>
-            </div>
-
-            <div>
-              <label>Forma de pagamento *</label>
-              <select id="pagamento">
-                <option value="">Selecione</option>
-                <option value="Pix">Pix</option>
-                <option value="Dinheiro">Dinheiro</option>
-                <option value="Cartão (se tiver)">Cartão (se tiver)</option>
-              </select>
-            </div>
-
-            <div>
-              <label>Endereço (Rua, Nº) *</label>
-              <input id="endereco" placeholder="Ex: Rua X, 123" />
-            </div>
-
-            <div>
-              <label>Bairro *</label>
-              <input id="bairro" placeholder="Ex: Centro" />
-            </div>
-
-            <div>
-              <label>Ponto de referência *</label>
-              <input id="referencia" placeholder="Ex: perto da padaria..." />
-            </div>
-
-            <div>
-              <label>Troco? (se dinheiro)</label>
-              <input id="troco" placeholder="Ex: troco para 50" />
-            </div>
-          </div>
-
-          <div style="margin-top:10px">
-            <label>Observações do pedido (comentários do cliente)</label>
-            <textarea id="obsPedido" placeholder="Ex: sem cebola, bem passado, entregar na portaria..."></textarea>
-          </div>
-
-          <div class="totals" aria-live="polite">
-            <div class="totalsLine"><span>Itens</span> <strong id="itensCount">0</strong></div>
-            <div class="totalsLine"><span>Subtotal</span> <strong id="subtotal">R$ 0,00</strong></div>
-            <div class="totalsLine"><span>Entrega</span> <strong id="entrega">A combinar</strong></div>
-            <div class="totalsLine final"><span>Total</span> <strong id="total">R$ 0,00</strong></div>
-          </div>
-
-          <div class="row">
-            <button class="btn ghost" onclick="resetAll()">Limpar</button>
-            <button class="btn primary" onclick="openWhatsApp(true)">Pedir no WhatsApp</button>
-          </div>
-
-          <p class="smallHint">
-            ⚠️ A taxa de entrega pode variar por bairro. Se quiser, eu adapto aqui para calcular automaticamente.
-          </p>
-
-          <div class="divider"></div>
-
-          <!-- Comentários / Avaliações -->
-          <h3 style="margin:0 0 10px; font-size:18px;">Comentários dos clientes ⭐</h3>
-          <div class="commentBox">
-            <div class="formGrid">
-              <div>
-                <label>Seu nome</label>
-                <input id="cNome" placeholder="Ex: João" />
-              </div>
-              <div>
-                <label>Nota (1 a 5)</label>
-                <select id="cNota">
-                  <option value="5">5 - Excelente</option>
-                  <option value="4">4 - Muito bom</option>
-                  <option value="3">3 - Bom</option>
-                  <option value="2">2 - Regular</option>
-                  <option value="1">1 - Ruim</option>
-                </select>
-              </div>
-            </div>
-            <div style="margin-top:10px">
-              <label>Comentário</label>
-              <textarea id="cTexto" placeholder="Conte como foi sua experiência..."></textarea>
-            </div>
-            <div class="row" style="justify-content:flex-end">
-              <button class="btn ghost" onclick="clearComments()">Apagar comentários</button>
-              <button class="btn primary" onclick="addComment()">Enviar comentário</button>
-            </div>
-
-            <div id="commentsList"></div>
-            <p class="smallHint">* Esses comentários ficam salvos neste navegador/celular (não é um banco online).</p>
-          </div>
-
         </div>
       </div>
     </div>
+
+    <h3 class="sectionTitle" id="finalizar">Finalizar Pedido</h3>
+    <p class="sectionHint">Preencha os dados obrigatórios e pague pelo site.</p>
+
+    <div class="card">
+      <div class="formGrid">
+        <div>
+          <label for="nome">Seu nome (obrigatório)</label>
+          <input id="nome" placeholder="Ex: Ingrid" />
+        </div>
+        <div>
+          <label for="telefone">Telefone (obrigatório)</label>
+          <input id="telefone" placeholder="Ex: 11 96836-3952" />
+        </div>
+        <div>
+          <label for="endereco">Endereço (obrigatório)</label>
+          <input id="endereco" placeholder="Rua, número" />
+        </div>
+        <div>
+          <label for="referencia">Referência (obrigatório)</label>
+          <input id="referencia" placeholder="Ex: perto da padaria..." />
+        </div>
+
+        <div>
+          <label for="pagamento">Forma de pagamento (obrigatório)</label>
+          <select id="pagamento">
+            <option value="">Selecione...</option>
+            <option value="pix">PIX</option>
+            <option value="cartao">Débito/Crédito</option>
+          </select>
+          <div class="flags">
+            <span class="flag">VISA</span>
+            <span class="flag">MASTER</span>
+            <span class="flag">ELO</span>
+            <span class="flag">HIPERCARD</span>
+          </div>
+        </div>
+
+        <div>
+          <label for="obsPedido">Observações do pedido (obrigatório)</label>
+          <textarea id="obsPedido" placeholder='Ex.: "Combo Prata: quero espeto de carne".'></textarea>
+          <p class="helper">Use este campo para informar escolhas do combo e preferências (ex.: “farofa sem calabresa”).</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="totalsRow">
+        <div class="totalBox">
+          <small>Subtotal</small>
+          <b id="subtotalTxt">R$ 0,00</b>
+        </div>
+        <div class="totalBox">
+          <small>Entrega</small>
+          <b id="deliveryTxt">R$ 0,00</b>
+        </div>
+        <div class="totalBox">
+          <small>Total</small>
+          <b id="totalTxt">R$ 0,00</b>
+        </div>
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+        <button class="btn ghost" onclick="resetAll()">Limpar</button>
+        <button class="btn ghost" onclick="scrollToId('avaliacoes')">Avaliar</button>
+        <button class="btn" onclick="payWithMercadoPago()">Pagar com Mercado Pago</button>
+      </div>
+
+      <p id="mpError" class="dangerText"></p>
+      <p class="helper">Ao clicar em “Pagar com Mercado Pago”, você será redirecionado para uma página segura de pagamento.</p>
+    </div>
+
+    <h3 class="sectionTitle" id="avaliacoes">Avaliações</h3>
+    <p class="sectionHint">Deixe sua nota e comentário.</p>
+
+    <div class="card">
+      <div class="formGrid">
+        <div>
+          <label for="cNome">Seu nome</label>
+          <input id="cNome" placeholder="Ex: Maria" />
+        </div>
+        <div>
+          <label for="cNota">Nota</label>
+          <select id="cNota">
+            <option value="5">5 - Excelente</option>
+            <option value="4">4 - Muito bom</option>
+            <option value="3">3 - Bom</option>
+            <option value="2">2 - Regular</option>
+            <option value="1">1 - Ruim</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="cTexto">Comentário</label>
+        <textarea id="cTexto" placeholder="Conte como foi sua experiência..."></textarea>
+      </div>
+
+      <div style="margin-top:10px; display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+        <button class="btn ghost" onclick="clearComments()">Apagar</button>
+        <button class="btn" onclick="addComment()">Enviar</button>
+      </div>
+
+      <div class="divider"></div>
+      <div id="commentsList"></div>
+      <p class="helper">* Os comentários ficam salvos neste navegador/celular.</p>
+    </div>
+
+    <footer>
+      <div class="footerLinks">
+        <a href="https://wa.me/5511968363952" target="_blank" rel="noopener">WhatsApp: (11) 96836-3952</a>
+        <a href="https://instagram.com/espetinhos.sousa" target="_blank" rel="noopener">Instagram: @espetinhos.sousa</a>
+      </div>
+      <div style="margin-top:12px">© <span id="year"></span> Espetinho Sousa</div>
+    </footer>
   </div>
 
-  <button class="floating" onclick="openWhatsApp(true)" title="Pedir no WhatsApp">
-    💬 Pedir agora
-  </button>
+  <button class="floating" onclick="scrollToId('finalizar')">Finalizar</button>
 
-<script>
-  // ✅ TROQUE AQUI para o número do seu WhatsApp (somente números):
-  // Exemplo SP: 5511999999999  (55 + DDD + número)
-  const WHATSAPP_NUMBER = "5511968363952";
+  <script>
+    const BACKEND_URL = "https://backend-mercadopago-zyg6.onrender.com";
+    const MP_CREATE_PREF_ENDPOINT = "/create_preference";
+    const money = (v) => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+    const byId = (id) => document.getElementById(id);
 
-  const money = (v) => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+    const espetos = [
+      { id:"carne",    nome:"Brasa Clássico (carne)",    desc:"Espeto de carne.", preco:10.00 },
+      { id:"linguica", nome:"Sabor Intenso (linguiça)",  desc:"Espeto de linguiça.", preco:10.00 },
+      { id:"frango",   nome:"Frango Dourado (frango)",   desc:"Espeto de frango.", preco:10.00 },
+      { id:"misto",    nome:"Explosão de Sabor (misto)", desc:"Misto especial.", preco:12.00 },
+    ];
 
-  // Itens combinados
-  const menu = [
-    { id:"carne",   nome:"🥩 Brasa Clássico", desc:"Espeto de carne", preco:10.00 },
-    { id:"frango",  nome:"🍗 Sabor do Fogo",  desc:"Espeto de frango", preco:10.00 },
-    { id:"linguica",nome:"🌭 Sabor Intenso",  desc:"Espeto de linguiça", preco:10.00 },
-    { id:"misto",   nome:"🔥 Espeto Supremo", desc:"Misto especial", preco:12.00 },
-    { id:"combo",   nome:"🥉 Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne/frango/linguiça)", preco:15.00 },
-  ];
+    const combos = [
+      { id:"combo_bronze", nome:"Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne, frango ou linguiça).", preco:13.00 },
+      { id:"combo_prata",  nome:"Combo Prata Sabor", desc:"Arroz tradicional + vinagrete da casa + 1 espeto (qualquer opção do cardápio).", preco:16.00 },
+      { id:"combo_ouro",   nome:"Combo Ouro na Brasa", desc:"Arroz tradicional + vinagrete da casa + farofa + 1 espeto (qualquer opção do cardápio).", preco:20.00 },
+    ];
 
-  // Acompanhamentos (edite como quiser)
-  const addons = [
-    { id:"farofa", nome:"🥣 Farofa", desc:"Dá aquele toque final", preco:3.00 },
-    { id:"vinagrete", nome:"🥗 Vinagrete", desc:"Refrescante e temperado", preco:3.00 },
-    { id:"refrigerante", nome:"🥤 Refrigerante (lata)", desc:"Geladinho", preco:6.00 },
-  ];
+    const acompanhamentos = [
+      { id:"arroz", nome:"Arroz Tradicional", desc:"Arroz branco soltinho, temperado com alho e sal, preparado com carinho.", preco:7.00 },
+      { id:"vinagrete", nome:"Vinagrete da Casa", desc:"Vinagrete fresca com tomate, cebola e repolho, bem temperado.", preco:7.00 },
+      { id:"farofa", nome:"Farofa Caseira", desc:"Farofa bem douradinha, preparada com calabresa defumada e bacon.", preco:4.00 },
+      { id:"pao_alho", nome:"Pão de Alho", desc:"Cremoso caseiro, feito com pão francês e ingredientes especiais.", preco:8.00 },
+      { id:"maionese", nome:"Maionese Especial", desc:"Maionese verde cremosa, perfeita para acompanhar seu pedido.", preco:5.00 },
+    ];
 
-  // Estado (quantidades)
-  const qty = {};
-  [...menu, ...addons].forEach(i => qty[i.id] = 0);
+    const bebidas = [
+      { id:"coca", nome:"Coca-Cola 350ml", desc:"Lata 350ml.", preco:6.00 },
+      { id:"pepsi", nome:"Pepsi 350ml", desc:"Lata 350ml.", preco:6.00 },
+      { id:"guarana", nome:"Guaraná Antarctica 350ml", desc:"Lata 350ml.", preco:6.00 },
+      { id:"itubaina", nome:"Itubaína 350ml", desc:"Lata 350ml.", preco:6.00 },
 
-  function scrollToId(id){
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.scrollIntoView({ behavior:"smooth", block:"start" });
-  }
+      { id:"suco_300_abacaxi", nome:"Suco natural 300ml (Abacaxi com hortelã)", desc:"Copo 300ml.", preco:9.00 },
+      { id:"suco_300_maracuja", nome:"Suco natural 300ml (Maracujá)", desc:"Copo 300ml.", preco:9.00 },
+      { id:"suco_300_laranja", nome:"Suco natural 300ml (Laranja)", desc:"Copo 300ml.", preco:9.00 },
+      { id:"suco_300_goiaba", nome:"Suco natural 300ml (Goiaba)", desc:"Copo 300ml.", preco:9.00 },
 
-  function renderLists(){
-    const menuList = document.getElementById("menuList");
-    menuList.innerHTML = "";
-    menu.forEach(item => menuList.appendChild(itemRow(item)));
+      { id:"suco_500_abacaxi", nome:"Suco natural 500ml (Abacaxi com hortelã)", desc:"Copo 500ml.", preco:13.00 },
+      { id:"suco_500_maracuja", nome:"Suco natural 500ml (Maracujá)", desc:"Copo 500ml.", preco:13.00 },
+      { id:"suco_500_laranja", nome:"Suco natural 500ml (Laranja)", desc:"Copo 500ml.", preco:13.00 },
+      { id:"suco_500_goiaba", nome:"Suco natural 500ml (Goiaba)", desc:"Copo 500ml.", preco:13.00 },
+    ];
 
-    const addonsList = document.getElementById("addonsList");
-    addonsList.innerHTML = "";
-    addons.forEach(item => addonsList.appendChild(itemRow(item)));
+    const qty = {};
+    [...espetos, ...combos, ...acompanhamentos, ...bebidas].forEach(i => qty[i.id] = 0);
 
-    updateTotals();
-  }
-
-  function itemRow(item){
-    const div = document.createElement("div");
-    div.className = "menuItem";
-
-    const info = document.createElement("div");
-    info.className = "menuInfo";
-    info.innerHTML = `
-      <p class="title">${item.nome}</p>
-      <p class="desc">${item.desc}</p>
-      <div class="price">${money(item.preco)}</div>
-    `;
-
-    const box = document.createElement("div");
-    box.className = "qtyBox";
-    const step = document.createElement("div");
-    step.className = "stepper";
-
-    const minus = document.createElement("button");
-    minus.type = "button";
-    minus.textContent = "−";
-    minus.onclick = () => changeQty(item.id, -1);
-
-    const count = document.createElement("span");
-    count.id = `q_${item.id}`;
-    count.textContent = qty[item.id];
-
-    const plus = document.createElement("button");
-    plus.type = "button";
-    plus.textContent = "+";
-    plus.onclick = () => changeQty(item.id, +1);
-
-    step.appendChild(minus);
-    step.appendChild(count);
-    step.appendChild(plus);
-    box.appendChild(step);
-
-    div.appendChild(info);
-    div.appendChild(box);
-    return div;
-  }
-
-  function changeQty(id, delta){
-    qty[id] = Math.max(0, (qty[id] || 0) + delta);
-    const el = document.getElementById(`q_${id}`);
-    if(el) el.textContent = qty[id];
-    updateTotals();
-  }
-
-  function calcSubtotal(){
-    let s = 0;
-    for(const it of menu) s += (qty[it.id] * it.preco);
-    for(const it of addons) s += (qty[it.id] * it.preco);
-    return s;
-  }
-
-  function countItems(){
-    let c = 0;
-    Object.values(qty).forEach(v => c += v);
-    return c;
-  }
-
-  function updateTotals(){
-    const items = countItems();
-    const subtotal = calcSubtotal();
-    document.getElementById("itensCount").textContent = items;
-    document.getElementById("subtotal").textContent = money(subtotal);
-    // Entrega: a combinar (você pode colocar valor fixo se quiser)
-    document.getElementById("entrega").textContent = "A combinar";
-    document.getElementById("total").textContent = money(subtotal); // sem taxa fixa por enquanto
-  }
-
-  function buildOrderText(){
-    const linhas = [];
-    linhas.push("🍢 *Pedido - Espetinho Sousa*");
-    linhas.push("");
-
-    // itens selecionados
-    const itensEscolhidos = [];
-
-    menu.forEach(it => {
-      if(qty[it.id] > 0){
-        itensEscolhidos.push(`• ${it.nome} x${qty[it.id]} — ${money(it.preco * qty[it.id])}`);
-      }
-    });
-    addons.forEach(it => {
-      if(qty[it.id] > 0){
-        itensEscolhidos.push(`• ${it.nome} x${qty[it.id]} — ${money(it.preco * qty[it.id])}`);
-      }
-    });
-
-    if(itensEscolhidos.length === 0){
-      return { ok:false, msg:"Escolha pelo menos 1 item do cardápio 😉" };
+    function scrollToId(id){
+      const el = byId(id);
+      if(el) el.scrollIntoView({ behavior:"smooth", block:"start" });
     }
 
-    linhas.push("*Itens:*");
-    linhas.push(...itensEscolhidos);
-    linhas.push("");
-    linhas.push(`*Subtotal:* ${money(calcSubtotal())}`);
-    linhas.push(`*Entrega:* a combinar`);
-    linhas.push(`*Total:* ${money(calcSubtotal())}`);
-    linhas.push("");
+    function itemCard(item){
+      const div = document.createElement("div");
+      div.className = "item";
 
-    // dados obrigatórios
-    const nome = document.getElementById("nome").value.trim();
-    const tel = document.getElementById("telefone").value.trim();
-    const tipo = document.getElementById("tipoPedido").value;
-    const pag = document.getElementById("pagamento").value;
-    const end = document.getElementById("endereco").value.trim();
-    const bairro = document.getElementById("bairro").value.trim();
-    const ref = document.getElementById("referencia").value.trim();
-    const troco = document.getElementById("troco").value.trim();
-    const obs = document.getElementById("obsPedido").value.trim();
-
-    // obrigatórios
-    const faltando = [];
-    if(!nome) faltando.push("Nome");
-    if(!tel) faltando.push("WhatsApp");
-    if(!tipo) faltando.push("Tipo do pedido");
-    if(!pag) faltando.push("Forma de pagamento");
-    if(!end) faltando.push("Endereço");
-    if(!bairro) faltando.push("Bairro");
-    if(!ref) faltando.push("Referência");
-
-    if(faltando.length){
-      return { ok:false, msg:"Preencha os campos obrigatórios:\n- " + faltando.join("\n- ") };
-    }
-
-    linhas.push("*Dados do cliente:*");
-    linhas.push(`• Nome: ${nome}`);
-    linhas.push(`• WhatsApp: ${tel}`);
-    linhas.push(`• Tipo: ${tipo}`);
-    linhas.push(`• Pagamento: ${pag}`);
-    linhas.push(`• Endereço: ${end}`);
-    linhas.push(`• Bairro: ${bairro}`);
-    linhas.push(`• Referência: ${ref}`);
-    if(troco) linhas.push(`• Troco: ${troco}`);
-    if(obs) linhas.push("");
-    if(obs) linhas.push(`📝 *Observações:* ${obs}`);
-
-    linhas.push("");
-    linhas.push("✅ Pode confirmar, por favor?");
-
-    return { ok:true, text: linhas.join("\n") };
-  }
-
-  function openWhatsApp(scrollFirst=false){
-    if(scrollFirst) scrollToId("pedido");
-
-    const built = buildOrderText();
-    if(!built.ok){
-      alert(built.msg);
-      return;
-    }
-
-    if(WHATSAPP_NUMBER.includes("SEUDDD")){
-      alert("Falta configurar seu WhatsApp no código!\n\nAbra o index.html e troque WHATSAPP_NUMBER (55 + DDD + número).");
-      return;
-    }
-
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(built.text)}`;
-    window.open(url, "_blank");
-  }
-
-  function resetAll(){
-    for(const k in qty) qty[k]=0;
-    renderLists();
-    ["nome","telefone","endereco","bairro","referencia","troco","obsPedido"].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el) el.value="";
-    });
-    document.getElementById("tipoPedido").value="";
-    document.getElementById("pagamento").value="";
-  }
-
-  // ----------------------
-  // Comentários/Avaliações (salva no próprio navegador)
-  const COMMENTS_KEY = "espetinho_sousa_comments_v1";
-
-  function loadComments(){
-    try{
-      return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]");
-    }catch{
-      return [];
-    }
-  }
-  function saveComments(list){
-    localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
-  }
-  function renderComments(){
-    const list = loadComments();
-    const box = document.getElementById("commentsList");
-    box.innerHTML = "";
-    if(list.length === 0){
+      const left = document.createElement("div");
+      const h = document.createElement("h4");
+      h.textContent = item.nome;
       const p = document.createElement("p");
-      p.className="smallHint";
-      p.style.marginTop="10px";
-      p.textContent="Nenhum comentário ainda. Seja o primeiro 🙂";
-      box.appendChild(p);
-      return;
-    }
-    list.slice().reverse().forEach(c=>{
-      const d = document.createElement("div");
-      d.className="commentItem";
-      const stars = "⭐".repeat(Number(c.nota || 5));
-      d.innerHTML = `
-        <div class="meta">
-          <span>${c.nome || "Cliente"} ${stars}</span>
-          <span>${c.data}</span>
-        </div>
-        <div style="color:var(--text); font-weight:700; font-size:13.5px; line-height:1.35;">
-          ${escapeHtml(c.texto || "")}
-        </div>
-      `;
-      box.appendChild(d);
-    });
-  }
+      p.textContent = item.desc;
 
-  function escapeHtml(str){
-    return str
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;");
-  }
+      const q = document.createElement("div");
+      q.className = "qtyBox";
 
-  function addComment(){
-    const nome = document.getElementById("cNome").value.trim();
-    const nota = document.getElementById("cNota").value;
-    const texto = document.getElementById("cTexto").value.trim();
+      const minus = document.createElement("button");
+      minus.className = "qtyBtn";
+      minus.textContent = "−";
+      minus.onclick = () => { qty[item.id] = Math.max(0, (qty[item.id]||0) - 1); updateTotals(true); };
 
-    if(!texto){
-      alert("Escreva um comentário 🙂");
-      return;
+      const val = document.createElement("div");
+      val.className = "qtyVal";
+      val.id = "q_" + item.id;
+      val.textContent = qty[item.id] || 0;
+
+      const plus = document.createElement("button");
+      plus.className = "qtyBtn";
+      plus.textContent = "+";
+      plus.onclick = () => { qty[item.id] = (qty[item.id]||0) + 1; updateTotals(true); };
+
+      q.append(minus, val, plus);
+      left.append(h, p, q);
+
+      const right = document.createElement("div");
+      const pr = document.createElement("div");
+      pr.className = "price";
+      pr.textContent = money(item.preco);
+      right.append(pr);
+
+      div.append(left, right);
+      return div;
     }
 
-    const list = loadComments();
-    const now = new Date();
-    const data = now.toLocaleDateString("pt-BR") + " " + now.toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"});
+    function renderAll(){
+      byId("menuList").innerHTML = "";
+      byId("comboList").innerHTML = "";
+      byId("addonsList").innerHTML = "";
+      byId("drinksList").innerHTML = "";
 
-    list.push({ nome, nota, texto, data });
-    saveComments(list);
+      espetos.forEach(i => byId("menuList").appendChild(itemCard(i)));
+      combos.forEach(i => byId("comboList").appendChild(itemCard(i)));
+      acompanhamentos.forEach(i => byId("addonsList").appendChild(itemCard(i)));
+      bebidas.forEach(i => byId("drinksList").appendChild(itemCard(i)));
 
-    document.getElementById("cNome").value="";
-    document.getElementById("cNota").value="5";
-    document.getElementById("cTexto").value="";
+      updateTotals(true);
+    }
+
+    function getDeliveryFee(){
+      const v = Number(byId("bairro").value || 0);
+      return isNaN(v) ? 0 : v;
+    }
+
+    function calcSubtotal(){
+      let total = 0;
+      const all = [...espetos, ...combos, ...acompanhamentos, ...bebidas];
+      all.forEach(i => total += (qty[i.id]||0) * i.preco);
+      return total;
+    }
+
+    function updateTotals(updateQtyLabels){
+      if(updateQtyLabels){
+        Object.keys(qty).forEach(id=>{
+          const el = byId("q_" + id);
+          if(el) el.textContent = qty[id] || 0;
+        });
+      }
+      const sub = calcSubtotal();
+      const fee = getDeliveryFee();
+      byId("subtotalTxt").textContent = money(sub);
+      byId("deliveryTxt").textContent = money(fee);
+      byId("totalTxt").textContent = money(sub + fee);
+      byId("taxaEntrega").textContent = money(fee);
+    }
+
+    function hasItems(){
+      return Object.values(qty).some(v => (v||0) > 0);
+    }
+
+    function requiredCheck(){
+      const faltando = [];
+      if(!hasItems()) faltando.push("Selecione ao menos 1 item");
+      if(!byId("bairro").value) faltando.push("Distância / taxa de entrega (delivery)");
+      if(!byId("nome").value.trim()) faltando.push("Nome");
+      if(!byId("telefone").value.trim()) faltando.push("Telefone");
+      if(!byId("endereco").value.trim()) faltando.push("Endereço");
+      if(!byId("referencia").value.trim()) faltando.push("Referência");
+      if(!byId("pagamento").value) faltando.push("Forma de pagamento");
+      if(!byId("obsPedido").value.trim()) faltando.push("Observações do pedido");
+      if(faltando.length) return { ok:false, msg:"Falta preencher:\n- " + faltando.join("\n- ") };
+      return { ok:true };
+    }
+
+    async function payWithMercadoPago(){
+      const errEl = byId("mpError");
+      errEl.style.display = "none";
+
+      const check = requiredCheck();
+      if(!check.ok){ alert(check.msg); return; }
+
+      const items = [];
+      const pushItems = (arr, category) => {
+        arr.forEach(i=>{
+          const q = qty[i.id] || 0;
+          if(q > 0){
+            items.push({
+              title: i.nome,
+              quantity: q,
+              unit_price: i.preco,
+              category_id: category
+            });
+          }
+        });
+      };
+
+      pushItems(espetos, "espetos");
+      pushItems(combos, "combos");
+      pushItems(acompanhamentos, "acompanhamentos");
+      pushItems(bebidas, "bebidas");
+
+      const fee = getDeliveryFee();
+      if(fee > 0){
+        items.push({
+          title: "Taxa de entrega",
+          quantity: 1,
+          unit_price: fee,
+          category_id: "delivery"
+        });
+      }
+
+      const payload = {
+        items,
+        customer: {
+          name: byId("nome").value.trim(),
+          phone: byId("telefone").value.trim(),
+          address: byId("endereco").value.trim(),
+          reference: byId("referencia").value.trim(),
+          region: byId("bairro").selectedOptions[0]?.textContent || ""
+        },
+        payment_method: byId("pagamento").value,
+        notes: byId("obsPedido").value.trim()
+      };
+
+      try{
+        const res = await fetch(BACKEND_URL + MP_CREATE_PREF_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type":"application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json().catch(()=> ({}));
+        if(!res.ok) throw new Error(data?.message || "Erro no servidor ao criar o pagamento.");
+
+        const link = data.init_point || data.sandbox_init_point;
+        if(!link) throw new Error("O backend não retornou o link de pagamento (init_point).");
+
+        window.open(link, "_blank");
+      }catch(e){
+        errEl.textContent = "Não consegui abrir o pagamento agora. " + (e?.message || e);
+        errEl.style.display = "block";
+      }
+    }
+
+    function resetAll(){
+      Object.keys(qty).forEach(k => qty[k] = 0);
+      ["nome","telefone","endereco","referencia","obsPedido"].forEach(id => byId(id).value = "");
+      byId("pagamento").value = "";
+      byId("bairro").value = "";
+      updateTotals(true);
+    }
+
+    const COMMENTS_KEY = "espetinho_sousa_comments_v1";
+    function loadComments(){ try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); } catch{ return []; } }
+    function saveComments(list){ localStorage.setItem(COMMENTS_KEY, JSON.stringify(list)); }
+    function renderComments(){
+      const list = loadComments();
+      const box = byId("commentsList");
+      box.innerHTML = "";
+      if(list.length === 0){
+        const p = document.createElement("p");
+        p.style.color = "var(--muted)";
+        p.style.margin = "0";
+        p.textContent = "Ainda não há avaliações.";
+        box.appendChild(p);
+        return;
+      }
+      list.slice().reverse().forEach(c=>{
+        const d = document.createElement("div");
+        d.className = "commentItem";
+
+        const meta = document.createElement("div");
+        meta.className = "commentMeta";
+        meta.innerHTML = `<span>${(c.nome||"Cliente")} • ${"⭐".repeat(Number(c.nota||5))}</span><span>${c.data||""}</span>`;
+
+        const txt = document.createElement("div");
+        txt.style.fontWeight = "700";
+        txt.style.lineHeight = "1.35";
+        txt.textContent = c.texto || "";
+
+        d.append(meta, txt);
+        box.appendChild(d);
+      });
+    }
+    function addComment(){
+      const nome = byId("cNome").value.trim();
+      const nota = byId("cNota").value;
+      const texto = byId("cTexto").value.trim();
+      if(!texto){ alert("Escreva um comentário antes de enviar."); return; }
+      const list = loadComments();
+      const now = new Date();
+      list.push({ nome, nota, texto, data: now.toLocaleDateString("pt-BR") });
+      saveComments(list);
+      byId("cNome").value = "";
+      byId("cNota").value = "5";
+      byId("cTexto").value = "";
+      renderComments();
+    }
+    function clearComments(){
+      if(confirm("Apagar as avaliações salvas neste celular/navegador?")){
+        localStorage.removeItem(COMMENTS_KEY);
+        renderComments();
+      }
+    }
+
+    byId("year").textContent = new Date().getFullYear();
+    renderAll();
     renderComments();
-    alert("Comentário enviado! ⭐");
-  }
-
-  function clearComments(){
-    const ok = confirm("Deseja apagar os comentários salvos neste celular/navegador?");
-    if(!ok) return;
-    localStorage.removeItem(COMMENTS_KEY);
-    renderComments();
-  }
-
-  // init
-  renderLists();
-  renderComments();
-</script>
+  </script>
 </body>
 </html>
