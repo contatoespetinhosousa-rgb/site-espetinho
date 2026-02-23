@@ -9,19 +9,16 @@
     :root{
       --bg0:#070707;
       --bg1:#0b0b0b;
-      --card: rgba(18,18,18,.78);
       --stroke: rgba(255,255,255,.10);
       --text:#f4f4f4;
       --muted:#bdbdbd;
       --accent:#ffb100;
       --accent2:#ff7a00;
       --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --r1:18px;
       --r2:26px;
       --max:980px;
       --danger:#ff6a6a;
     }
-
     *{ box-sizing:border-box; }
     body{
       margin:0;
@@ -38,7 +35,7 @@
 
     .topbar{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
-      padding:14px 14px;
+      padding:14px;
       border:1px solid var(--stroke);
       background: linear-gradient(180deg, rgba(18,18,18,.88), rgba(10,10,10,.72));
       border-radius: var(--r2);
@@ -79,34 +76,13 @@
       box-shadow: none;
     }
 
-    .hero{
-      margin-top:14px;
-      padding:18px 12px 8px;
-      text-align:center;
-    }
-    .hero h2{
-      margin: 16px 0 8px;
-      font-size: 34px;
-      letter-spacing: -.6px;
-    }
-    .hero p{
-      margin:0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height:1.45;
-    }
+    .hero{ margin-top:14px; padding:18px 12px 8px; text-align:center; }
+    .hero h2{ margin: 16px 0 8px; font-size: 34px; letter-spacing: -.6px; }
+    .hero p{ margin:0; color: var(--muted); font-size: 16px; line-height:1.45; }
 
-    .sectionTitle{
-      margin: 28px 4px 10px;
-      font-size: 26px;
-      letter-spacing: -.3px;
-    }
-    .sectionHint{
-      margin:0 4px 12px;
-      color:var(--muted);
-      font-size: 14px;
-      line-height: 1.35;
-    }
+    .sectionTitle{ margin: 28px 4px 10px; font-size: 26px; letter-spacing: -.3px; }
+    .sectionHint{ margin:0 4px 12px; color:var(--muted); font-size: 14px; line-height: 1.35; }
+
     .card{
       border:1px solid var(--stroke);
       border-radius: var(--r2);
@@ -114,42 +90,23 @@
       box-shadow: var(--shadow);
       padding: 14px;
     }
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
-    @media(min-width: 860px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-    }
+    .grid{ display:grid; grid-template-columns: 1fr; gap:12px; }
+    @media(min-width: 860px){ .grid{ grid-template-columns: 1fr 1fr; } }
 
     .item{
       border:1px solid var(--stroke);
       border-radius: var(--r2);
       background: rgba(18,18,18,.58);
       padding: 14px;
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      justify-content:space-between;
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
     }
     .item h4{ margin:0; font-size:18px; }
     .item p{ margin:6px 0 0; color:var(--muted); font-size:13.5px; line-height:1.25; }
-    .price{
-      font-weight: 1000;
-      color: var(--accent);
-      font-size: 18px;
-      white-space:nowrap;
-      margin-left: 10px;
-    }
+    .price{ font-weight: 1000; color: var(--accent); font-size: 18px; white-space:nowrap; margin-left: 10px; }
 
-    .qtyBox{
-      display:flex; align-items:center; gap:10px;
-      margin-top:10px;
-    }
+    .qtyBox{ display:flex; align-items:center; gap:10px; margin-top:10px; }
     .qtyBtn{
-      width:38px; height:38px;
-      border-radius: 12px;
+      width:38px; height:38px; border-radius: 12px;
       border:1px solid var(--stroke);
       background: rgba(0,0,0,.25);
       color: var(--text);
@@ -160,31 +117,18 @@
 
     .divider{ height:1px; background: var(--stroke); margin:14px 0; }
 
-    .formGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-    }
-    @media(min-width: 860px){
-      .formGrid{ grid-template-columns: 1fr 1fr; }
-    }
+    .formGrid{ display:grid; grid-template-columns: 1fr; gap:10px; }
+    @media(min-width: 860px){ .formGrid{ grid-template-columns: 1fr 1fr; } }
+
     label{ font-size:12px; color:var(--muted); display:block; margin:8px 0 6px; font-weight:800; }
     input, select, textarea{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border:1px solid var(--stroke);
-      background: rgba(0,0,0,.25);
-      color: var(--text);
-      outline:none;
+      width:100%; padding: 12px 12px; border-radius: 14px;
+      border:1px solid var(--stroke); background: rgba(0,0,0,.25);
+      color: var(--text); outline:none;
     }
     textarea{ min-height: 92px; resize: vertical; }
 
-    .totalsRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center; justify-content:flex-end;
-      margin-top: 12px;
-    }
+    .totalsRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end; margin-top: 12px; }
     .totalBox{
       border:1px solid var(--stroke);
       background: rgba(18,18,18,.55);
@@ -207,20 +151,8 @@
       letter-spacing:.5px;
     }
 
-    .helper{
-      margin: 8px 2px 0;
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height:1.35;
-    }
-
-    .dangerText{
-      color: var(--danger);
-      font-weight: 900;
-      margin-top: 10px;
-      display:none;
-      white-space: pre-line;
-    }
+    .helper{ margin: 8px 2px 0; color: var(--muted); font-size: 12.5px; line-height:1.35; }
+    .dangerText{ color: var(--danger); font-weight: 900; margin-top: 10px; display:none; white-space: pre-line; }
 
     .commentItem{
       border:1px solid var(--stroke);
@@ -243,27 +175,16 @@
       font-size: 12.5px;
       text-align:center;
     }
-    .footerLinks{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top: 8px;
-    }
-    .footerLinks a{
-      color: var(--text);
-      font-weight: 900;
-    }
+    .footerLinks{ display:flex; flex-direction:column; gap:10px; margin-top: 8px; }
+    .footerLinks a{ color: var(--text); font-weight: 900; }
     .footerLinks a:hover{ text-decoration: underline; }
 
     .floating{
       position:fixed; right:14px; bottom:14px; z-index:20;
-      border:none;
-      padding: 14px 16px;
-      border-radius: 999px;
+      border:none; padding: 14px 16px; border-radius: 999px;
       font-weight: 1000;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color: #111;
-      cursor:pointer;
+      color: #111; cursor:pointer;
       box-shadow: 0 18px 50px rgba(255,140,0,.30);
     }
   </style>
@@ -285,15 +206,13 @@
     </div>
 
     <div class="hero">
-      <h2>Os melhores espetinhos da cidade!</h2>
+      <h2>O melhor espeto da região!</h2>
       <p>Feito na brasa, sabor de verdade. Monte seu pedido e pague pelo site.</p>
     </div>
 
     <h3 class="sectionTitle" id="espetos">Espetos</h3>
     <p class="sectionHint">Escolha seus espetos e ajuste a quantidade.</p>
-    <div class="card">
-      <div class="grid" id="menuList"></div>
-    </div>
+    <div class="card"><div class="grid" id="menuList"></div></div>
 
     <h3 class="sectionTitle" id="combos">Combos</h3>
     <p class="sectionHint">Nos combos, informe na observação qual espeto deseja quando aplicável.</p>
@@ -304,31 +223,47 @@
 
     <h3 class="sectionTitle" id="acompanhamentos">Acompanhamentos</h3>
     <p class="sectionHint">Adicione acompanhamentos ao seu pedido.</p>
-    <div class="card">
-      <div class="grid" id="addonsList"></div>
-    </div>
+    <div class="card"><div class="grid" id="addonsList"></div></div>
 
     <h3 class="sectionTitle" id="bebidas">Bebidas</h3>
     <p class="sectionHint">Refrigerantes 350ml e sucos naturais.</p>
-    <div class="card">
-      <div class="grid" id="drinksList"></div>
-    </div>
+    <div class="card"><div class="grid" id="drinksList"></div></div>
 
-    <!-- DELIVERY (por distância) -->
+    <!-- DELIVERY por BAIRROS -->
     <h3 class="sectionTitle" id="delivery">Delivery</h3>
-    <p class="sectionHint">O frete é calculado automaticamente conforme a distância.</p>
+    <p class="sectionHint">Escolha seu bairro para calcular o frete automaticamente.</p>
     <div class="card">
       <div class="formGrid">
         <div>
-          <label for="bairro">Distância / taxa de entrega (obrigatório)</label>
+          <label for="bairro">Bairro (obrigatório)</label>
           <select id="bairro" onchange="updateTotals()">
-            <option value="">Selecione...</option>
-            <option value="5">Até 2 km — R$ 5,00</option>
-            <option value="7">De 2 a 4 km — R$ 7,00</option>
-            <option value="10">De 4 a 6 km — R$ 10,00</option>
-            <option value="12">Acima de 6 km — R$ 12,00</option>
+            <option value="">Selecione seu bairro...</option>
+
+            <optgroup label="Frete R$ 5,00">
+              <option value="5">Capão Redondo</option>
+              <option value="5">Jardim Ângela</option>
+              <option value="5">Jardim São Luís</option>
+              <option value="5">Jardim Nakamura</option>
+              <option value="5">Parque Santo Antônio</option>
+            </optgroup>
+
+            <optgroup label="Frete R$ 7,00">
+              <option value="7">Campo Limpo</option>
+              <option value="7">Vila das Belezas</option>
+              <option value="7">Pirajussara</option>
+              <option value="7">Jardim Umarizal</option>
+              <option value="7">Jardim Mitsutani</option>
+            </optgroup>
+
+            <optgroup label="Frete R$ 9,00">
+              <option value="9">Morumbi</option>
+              <option value="9">Vila Andrade</option>
+              <option value="9">Santo Amaro</option>
+              <option value="9">Brooklin</option>
+              <option value="9">Chácara Santo Antônio</option>
+            </optgroup>
           </select>
-          <p class="helper">Escolha a distância aproximada da entrega. O valor será somado automaticamente ao total.</p>
+          <p class="helper">O valor do frete será somado automaticamente ao total.</p>
         </div>
 
         <div>
@@ -381,7 +316,7 @@
         <div>
           <label for="obsPedido">Observações do pedido (obrigatório)</label>
           <textarea id="obsPedido" placeholder='Ex.: "Combo Prata: quero espeto de carne".'></textarea>
-          <p class="helper">Use este campo para informar escolhas do combo e preferências (ex.: “farofa sem calabresa”).</p>
+          <p class="helper">Use este campo para escolhas do combo e preferências (ex.: “farofa sem calabresa”).</p>
         </div>
       </div>
 
@@ -506,46 +441,32 @@
     const qty = {};
     [...espetos, ...combos, ...acompanhamentos, ...bebidas].forEach(i => qty[i.id] = 0);
 
-    function scrollToId(id){
-      const el = byId(id);
-      if(el) el.scrollIntoView({ behavior:"smooth", block:"start" });
-    }
-
     function itemCard(item){
       const div = document.createElement("div");
       div.className = "item";
 
       const left = document.createElement("div");
-      const h = document.createElement("h4");
-      h.textContent = item.nome;
-      const p = document.createElement("p");
-      p.textContent = item.desc;
+      const h = document.createElement("h4"); h.textContent = item.nome;
+      const p = document.createElement("p"); p.textContent = item.desc;
 
-      const q = document.createElement("div");
-      q.className = "qtyBox";
-
+      const q = document.createElement("div"); q.className = "qtyBox";
       const minus = document.createElement("button");
-      minus.className = "qtyBtn";
-      minus.textContent = "−";
-      minus.onclick = () => { qty[item.id] = Math.max(0, (qty[item.id]||0) - 1); updateTotals(true); };
+      minus.className = "qtyBtn"; minus.textContent = "−";
+      minus.onclick = () => { qty[item.id] = Math.max(0, (qty[item.id]||0)-1); updateTotals(true); };
 
       const val = document.createElement("div");
-      val.className = "qtyVal";
-      val.id = "q_" + item.id;
-      val.textContent = qty[item.id] || 0;
+      val.className = "qtyVal"; val.id = "q_" + item.id; val.textContent = qty[item.id] || 0;
 
       const plus = document.createElement("button");
-      plus.className = "qtyBtn";
-      plus.textContent = "+";
-      plus.onclick = () => { qty[item.id] = (qty[item.id]||0) + 1; updateTotals(true); };
+      plus.className = "qtyBtn"; plus.textContent = "+";
+      plus.onclick = () => { qty[item.id] = (qty[item.id]||0)+1; updateTotals(true); };
 
       q.append(minus, val, plus);
       left.append(h, p, q);
 
       const right = document.createElement("div");
       const pr = document.createElement("div");
-      pr.className = "price";
-      pr.textContent = money(item.preco);
+      pr.className = "price"; pr.textContent = money(item.preco);
       right.append(pr);
 
       div.append(left, right);
@@ -600,11 +521,11 @@
     function requiredCheck(){
       const faltando = [];
       if(!hasItems()) faltando.push("Selecione ao menos 1 item");
-      if(!byId("bairro").value) faltando.push("Distância / taxa de entrega (delivery)");
+      if(!byId("bairro").value) faltando.push("Bairro (delivery)");
       if(!byId("nome").value.trim()) faltando.push("Nome");
       if(!byId("telefone").value.trim()) faltando.push("Telefone");
       if(!byId("endereco").value.trim()) faltando.push("Endereço");
-      if(!byId("referencia").value.trim()) faltando.push("Referência");
+      if(!byId("referencia").value.trim()) faltando push("Referência");
       if(!byId("pagamento").value) faltando.push("Forma de pagamento");
       if(!byId("obsPedido").value.trim()) faltando.push("Observações do pedido");
       if(faltando.length) return { ok:false, msg:"Falta preencher:\n- " + faltando.join("\n- ") };
@@ -623,12 +544,7 @@
         arr.forEach(i=>{
           const q = qty[i.id] || 0;
           if(q > 0){
-            items.push({
-              title: i.nome,
-              quantity: q,
-              unit_price: i.preco,
-              category_id: category
-            });
+            items.push({ title:i.nome, quantity:q, unit_price:i.preco, category_id:category });
           }
         });
       };
@@ -640,12 +556,7 @@
 
       const fee = getDeliveryFee();
       if(fee > 0){
-        items.push({
-          title: "Taxa de entrega",
-          quantity: 1,
-          unit_price: fee,
-          category_id: "delivery"
-        });
+        items.push({ title:"Taxa de entrega", quantity:1, unit_price:fee, category_id:"delivery" });
       }
 
       const payload = {
@@ -707,16 +618,13 @@
       list.slice().reverse().forEach(c=>{
         const d = document.createElement("div");
         d.className = "commentItem";
-
         const meta = document.createElement("div");
         meta.className = "commentMeta";
         meta.innerHTML = `<span>${(c.nome||"Cliente")} • ${"⭐".repeat(Number(c.nota||5))}</span><span>${c.data||""}</span>`;
-
         const txt = document.createElement("div");
         txt.style.fontWeight = "700";
         txt.style.lineHeight = "1.35";
         txt.textContent = c.texto || "";
-
         d.append(meta, txt);
         box.appendChild(d);
       });
@@ -740,6 +648,11 @@
         localStorage.removeItem(COMMENTS_KEY);
         renderComments();
       }
+    }
+
+    function scrollToId(id){
+      const el = byId(id);
+      if(el) el.scrollIntoView({ behavior:"smooth", block:"start" });
     }
 
     byId("year").textContent = new Date().getFullYear();
