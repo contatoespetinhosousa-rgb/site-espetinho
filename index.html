@@ -1,95 +1,881 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Espetinho Sousa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Espetinho Sousa</title>
 
-<style>
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#111;
-color:white;
-text-align:center;
-}
+  <style>
+    :root{
+      --bg0:#070707;
+      --bg1:#0b0b0b;
+      --card:#121212cc;
+      --stroke:#ffffff14;
+      --text:#f4f4f4;
+      --muted:#bdbdbd;
+      --accent:#ffb100;
+      --accent2:#ff7a00;
+      --ok:#3ddc84;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 980px;
+    }
 
-header{
-background:#ff3c00;
-padding:25px;
-font-size:28px;
-font-weight:bold;
-}
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 20% 0%, rgba(255,177,0,.20), transparent 60%),
+        radial-gradient(800px 380px at 100% 10%, rgba(255,122,0,.16), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+    }
 
-section{
-padding:30px;
-}
+    a{ color:inherit; text-decoration:none; }
 
-.card{
-background:#1c1c1c;
-margin:15px;
-padding:20px;
-border-radius:12px;
-}
+    .wrap{ max-width:var(--max); margin:0 auto; padding:18px 14px 110px; }
 
-button{
-background:#ff3c00;
-border:none;
-padding:15px 25px;
-color:white;
-font-size:18px;
-border-radius:8px;
-cursor:pointer;
-}
-</style>
+    .topbar{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px;
+      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(18,18,18,.9), rgba(10,10,10,.7));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      position:sticky;
+      top:10px;
+      z-index:5;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex; gap:12px; align-items:center; min-width:0;
+    }
+    .logo{
+      width:44px; height:44px;
+      border-radius:14px;
+      background: radial-gradient(circle at 30% 30%, #ffd36a, #ff8a00 55%, #b43a00 100%);
+      box-shadow: 0 10px 30px rgba(255,140,0,.25);
+      flex:0 0 auto;
+    }
+    .brand h1{
+      font-size:18px; margin:0;
+      line-height:1.1;
+    }
+    .brand p{
+      margin:2px 0 0;
+      color:var(--muted);
+      font-size:12.5px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 46vw;
+    }
+
+    .cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex:0 0 auto;
+    }
+
+    .btn{
+      border:none;
+      border-radius: 18px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .08s ease, filter .2s ease, opacity .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: scale(.98); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#181818;
+      box-shadow: 0 12px 34px rgba(255,161,0,.25);
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border:1px solid var(--stroke);
+    }
+
+    .hero{
+      margin-top:16px;
+      padding:22px 16px;
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(600px 240px at 0% 0%, rgba(255,177,0,.16), transparent 60%),
+        radial-gradient(600px 240px at 100% 0%, rgba(255,122,0,.14), transparent 60%),
+        rgba(12,12,12,.65);
+      box-shadow: var(--shadow);
+    }
+    .hero h2{
+      margin:0 0 8px;
+      font-size:28px;
+      letter-spacing:-.5px;
+    }
+    .hero p{
+      margin:0;
+      color: var(--muted);
+      font-size:14.5px;
+      line-height:1.45;
+    }
+
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .brand p{ max-width: 52vw; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background: rgba(14,14,14,.72);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .card .head{
+      padding:16px 16px 10px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      background:
+        radial-gradient(600px 220px at 20% 0%, rgba(255,177,0,.12), transparent 60%),
+        rgba(10,10,10,.55);
+      border-bottom:1px solid var(--stroke);
+    }
+    .card .head h3{
+      margin:0;
+      font-size:20px;
+    }
+    .card .head small{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .section{
+      padding:14px 16px 16px;
+    }
+
+    .notice{
+      display:flex; gap:10px; align-items:center;
+      padding:12px 12px;
+      border-radius: 16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size:13px;
+      margin-bottom:12px;
+    }
+    .notice b{ color: var(--text); }
+
+    .menuItem{
+      padding:14px 12px;
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .menuInfo{
+      min-width:0;
+    }
+    .menuInfo .title{
+      font-size:16px;
+      margin:0;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .menuInfo .desc{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.25;
+    }
+    .price{
+      font-size:16px;
+      font-weight:900;
+      color: var(--accent);
+      letter-spacing:.2px;
+      margin-top:6px;
+    }
+
+    .qtyBox{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:8px;
+      flex:0 0 auto;
+    }
+    .stepper{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      border-radius: 999px;
+      padding:6px 8px;
+    }
+    .stepper button{
+      width:34px; height:34px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-size:18px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .stepper span{
+      width:28px;
+      text-align:center;
+      font-weight:900;
+      font-size:14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius: 999px;
+      background: rgba(255,177,0,.10);
+      border: 1px solid rgba(255,177,0,.22);
+      color: var(--text);
+      font-size:12.5px;
+      font-weight:800;
+      margin: 10px 0 0;
+    }
+
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 560px){
+      .formGrid{ grid-template-columns: 1fr; }
+    }
+    label{
+      display:block;
+      font-size:12.5px;
+      color: var(--muted);
+      margin:0 0 6px;
+      font-weight:700;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    textarea{ min-height: 90px; resize: vertical; }
+
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:12px;
+    }
+
+    .totals{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:12px;
+      margin-top:12px;
+    }
+    .totalsLine{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color: var(--muted);
+      font-weight:700;
+      font-size:13px;
+      margin:6px 0;
+    }
+    .totalsLine strong{
+      color: var(--text);
+      font-size:14px;
+    }
+    .totalsLine.final strong{
+      color: var(--accent);
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+
+    .smallHint{
+      margin-top:10px;
+      font-size:12.5px;
+      color: var(--muted);
+      line-height:1.35;
+    }
+
+    .floating{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
+      border-radius: 999px;
+      padding:14px 16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #171717;
+      font-weight: 900;
+      border:none;
+      box-shadow: 0 14px 40px rgba(255,153,0,.28);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .divider{
+      height:1px;
+      background: var(--stroke);
+      margin:14px 0;
+    }
+
+    .commentBox{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:12px;
+      margin-top:12px;
+    }
+    .commentItem{
+      padding:10px 10px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.18);
+      margin-top:10px;
+    }
+    .commentItem .meta{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      color: var(--muted);
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:6px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div style="min-width:0">
+          <h1>Espetinho Sousa</h1>
+          <p>🔥 Fogo, sabor e capricho • Pedido rápido no WhatsApp</p>
+        </div>
+      </div>
+      <div class="cta">
+        <button class="btn ghost" onclick="scrollToId('pedido')">Ver pedido</button>
+        <button class="btn primary" onclick="openWhatsApp(true)">Pedir no WhatsApp</button>
+      </div>
+    </div>
 
-<header>🔥 Espetinho Sousa 🔥</header>
+    <!-- HERO -->
+    <div class="hero">
+      <h2>Os melhores espetinhos da cidade!</h2>
+      <p>Feito na brasa, sabor de verdade 😋 <br/>Monte seu pedido abaixo e finalize pelo WhatsApp com 1 clique.</p>
+      <div class="pill">✅ Pedido organizado e confirmação na hora</div>
+    </div>
 
-<section>
-<h2>Os melhores espetinhos da cidade!</h2>
-<p>Feito na brasa, sabor de verdade 😋</p>
-</section>
+    <div class="grid">
+      <!-- MENU -->
+      <div class="card" id="cardapio">
+        <div class="head">
+          <div>
+            <h3>Cardápio</h3>
+            <small>Escolha seus itens e ajuste a quantidade</small>
+          </div>
+          <small style="color:var(--muted)">💳 Pix / Dinheiro</small>
+        </div>
 
-<section>
-<h2>Cardápio</h2>
+        <div class="section">
+          <div class="notice">
+            <span style="font-size:18px">👉</span>
+            <div>
+              Toque em <b>+</b> e <b>-</b> para ajustar a quantidade. Depois preencha os dados obrigatórios e clique em <b>Pedir no WhatsApp</b>.
+            </div>
+          </div>
 
-<div class="card">
-<h3>🥩 Brasa Clássico</h3>
-<p>Espeto de carne</p>
-<b>R$10</b>
-</div>
+          <div id="menuList"></div>
 
-<div class="card">
-<h3>🍗 Sabor do Fogo</h3>
-<p>Espeto de frango</p>
-<b>R$10</b>
-</div>
+          <div class="divider"></div>
 
-<div class="card">
-<h3>🌭 Sabor Intenso</h3>
-<p>Espeto de linguiça</p>
-<b>R$10</b>
-</div>
+          <h3 style="margin:0 0 10px; font-size:18px;">Acompanhamentos (adicione ao pedido)</h3>
+          <div id="addonsList"></div>
 
-<div class="card">
-<h3>🔥 Espeto Supremo</h3>
-<p>Misto especial</p>
-<b>R$12</b>
-</div>
+          <p class="smallHint">
+            * Você pode me dizer depois quais acompanhamentos quer (ex: farofa, vinagrete, pão de alho, refrigerante etc.) que eu já deixo bonitinho com nomes e preços.
+          </p>
+        </div>
+      </div>
 
-</section>
+      <!-- CHECKOUT / PEDIDO -->
+      <div class="card" id="pedido">
+        <div class="head">
+          <div>
+            <h3>Seu pedido</h3>
+            <small>Informações obrigatórias + observações</small>
+          </div>
+          <small style="color:var(--ok); font-weight:900;">● Pronto pra enviar</small>
+        </div>
 
-<section>
-<h2>Combo Bronze Raiz</h2>
-<p>Arroz tradicional + 1 espeto</p>
-<br>
-<a href="https://wa.me/55SEUNUMERO">
-<button>📲 Fazer pedido</button>
-</a>
-</section>
+        <div class="section">
+          <div class="formGrid">
+            <div>
+              <label>Nome *</label>
+              <input id="nome" placeholder="Ex: Ingrid" />
+            </div>
 
+            <div>
+              <label>Seu WhatsApp (com DDD) *</label>
+              <input id="telefone" inputmode="tel" placeholder="Ex: 11999999999" />
+            </div>
+
+            <div>
+              <label>Tipo do pedido *</label>
+              <select id="tipoPedido">
+                <option value="">Selecione</option>
+                <option value="Entrega">Entrega</option>
+                <option value="Retirada">Retirada</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Forma de pagamento *</label>
+              <select id="pagamento">
+                <option value="">Selecione</option>
+                <option value="Pix">Pix</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Cartão (se tiver)">Cartão (se tiver)</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Endereço (Rua, Nº) *</label>
+              <input id="endereco" placeholder="Ex: Rua X, 123" />
+            </div>
+
+            <div>
+              <label>Bairro *</label>
+              <input id="bairro" placeholder="Ex: Centro" />
+            </div>
+
+            <div>
+              <label>Ponto de referência *</label>
+              <input id="referencia" placeholder="Ex: perto da padaria..." />
+            </div>
+
+            <div>
+              <label>Troco? (se dinheiro)</label>
+              <input id="troco" placeholder="Ex: troco para 50" />
+            </div>
+          </div>
+
+          <div style="margin-top:10px">
+            <label>Observações do pedido (comentários do cliente)</label>
+            <textarea id="obsPedido" placeholder="Ex: sem cebola, bem passado, entregar na portaria..."></textarea>
+          </div>
+
+          <div class="totals" aria-live="polite">
+            <div class="totalsLine"><span>Itens</span> <strong id="itensCount">0</strong></div>
+            <div class="totalsLine"><span>Subtotal</span> <strong id="subtotal">R$ 0,00</strong></div>
+            <div class="totalsLine"><span>Entrega</span> <strong id="entrega">A combinar</strong></div>
+            <div class="totalsLine final"><span>Total</span> <strong id="total">R$ 0,00</strong></div>
+          </div>
+
+          <div class="row">
+            <button class="btn ghost" onclick="resetAll()">Limpar</button>
+            <button class="btn primary" onclick="openWhatsApp(true)">Pedir no WhatsApp</button>
+          </div>
+
+          <p class="smallHint">
+            ⚠️ A taxa de entrega pode variar por bairro. Se quiser, eu adapto aqui para calcular automaticamente.
+          </p>
+
+          <div class="divider"></div>
+
+          <!-- Comentários / Avaliações -->
+          <h3 style="margin:0 0 10px; font-size:18px;">Comentários dos clientes ⭐</h3>
+          <div class="commentBox">
+            <div class="formGrid">
+              <div>
+                <label>Seu nome</label>
+                <input id="cNome" placeholder="Ex: João" />
+              </div>
+              <div>
+                <label>Nota (1 a 5)</label>
+                <select id="cNota">
+                  <option value="5">5 - Excelente</option>
+                  <option value="4">4 - Muito bom</option>
+                  <option value="3">3 - Bom</option>
+                  <option value="2">2 - Regular</option>
+                  <option value="1">1 - Ruim</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <label>Comentário</label>
+              <textarea id="cTexto" placeholder="Conte como foi sua experiência..."></textarea>
+            </div>
+            <div class="row" style="justify-content:flex-end">
+              <button class="btn ghost" onclick="clearComments()">Apagar comentários</button>
+              <button class="btn primary" onclick="addComment()">Enviar comentário</button>
+            </div>
+
+            <div id="commentsList"></div>
+            <p class="smallHint">* Esses comentários ficam salvos neste navegador/celular (não é um banco online).</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="floating" onclick="openWhatsApp(true)" title="Pedir no WhatsApp">
+    💬 Pedir agora
+  </button>
+
+<script>
+  // ✅ TROQUE AQUI para o número do seu WhatsApp (somente números):
+  // Exemplo SP: 5511999999999  (55 + DDD + número)
+  const WHATSAPP_NUMBER = "5511968363952";
+
+  const money = (v) => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+
+  // Itens combinados
+  const menu = [
+    { id:"carne",   nome:"🥩 Brasa Clássico", desc:"Espeto de carne", preco:10.00 },
+    { id:"frango",  nome:"🍗 Sabor do Fogo",  desc:"Espeto de frango", preco:10.00 },
+    { id:"linguica",nome:"🌭 Sabor Intenso",  desc:"Espeto de linguiça", preco:10.00 },
+    { id:"misto",   nome:"🔥 Espeto Supremo", desc:"Misto especial", preco:12.00 },
+    { id:"combo",   nome:"🥉 Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne/frango/linguiça)", preco:15.00 },
+  ];
+
+  // Acompanhamentos (edite como quiser)
+  const addons = [
+    { id:"farofa", nome:"🥣 Farofa", desc:"Dá aquele toque final", preco:3.00 },
+    { id:"vinagrete", nome:"🥗 Vinagrete", desc:"Refrescante e temperado", preco:3.00 },
+    { id:"refrigerante", nome:"🥤 Refrigerante (lata)", desc:"Geladinho", preco:6.00 },
+  ];
+
+  // Estado (quantidades)
+  const qty = {};
+  [...menu, ...addons].forEach(i => qty[i.id] = 0);
+
+  function scrollToId(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function renderLists(){
+    const menuList = document.getElementById("menuList");
+    menuList.innerHTML = "";
+    menu.forEach(item => menuList.appendChild(itemRow(item)));
+
+    const addonsList = document.getElementById("addonsList");
+    addonsList.innerHTML = "";
+    addons.forEach(item => addonsList.appendChild(itemRow(item)));
+
+    updateTotals();
+  }
+
+  function itemRow(item){
+    const div = document.createElement("div");
+    div.className = "menuItem";
+
+    const info = document.createElement("div");
+    info.className = "menuInfo";
+    info.innerHTML = `
+      <p class="title">${item.nome}</p>
+      <p class="desc">${item.desc}</p>
+      <div class="price">${money(item.preco)}</div>
+    `;
+
+    const box = document.createElement("div");
+    box.className = "qtyBox";
+    const step = document.createElement("div");
+    step.className = "stepper";
+
+    const minus = document.createElement("button");
+    minus.type = "button";
+    minus.textContent = "−";
+    minus.onclick = () => changeQty(item.id, -1);
+
+    const count = document.createElement("span");
+    count.id = `q_${item.id}`;
+    count.textContent = qty[item.id];
+
+    const plus = document.createElement("button");
+    plus.type = "button";
+    plus.textContent = "+";
+    plus.onclick = () => changeQty(item.id, +1);
+
+    step.appendChild(minus);
+    step.appendChild(count);
+    step.appendChild(plus);
+    box.appendChild(step);
+
+    div.appendChild(info);
+    div.appendChild(box);
+    return div;
+  }
+
+  function changeQty(id, delta){
+    qty[id] = Math.max(0, (qty[id] || 0) + delta);
+    const el = document.getElementById(`q_${id}`);
+    if(el) el.textContent = qty[id];
+    updateTotals();
+  }
+
+  function calcSubtotal(){
+    let s = 0;
+    for(const it of menu) s += (qty[it.id] * it.preco);
+    for(const it of addons) s += (qty[it.id] * it.preco);
+    return s;
+  }
+
+  function countItems(){
+    let c = 0;
+    Object.values(qty).forEach(v => c += v);
+    return c;
+  }
+
+  function updateTotals(){
+    const items = countItems();
+    const subtotal = calcSubtotal();
+    document.getElementById("itensCount").textContent = items;
+    document.getElementById("subtotal").textContent = money(subtotal);
+    // Entrega: a combinar (você pode colocar valor fixo se quiser)
+    document.getElementById("entrega").textContent = "A combinar";
+    document.getElementById("total").textContent = money(subtotal); // sem taxa fixa por enquanto
+  }
+
+  function buildOrderText(){
+    const linhas = [];
+    linhas.push("🍢 *Pedido - Espetinho Sousa*");
+    linhas.push("");
+
+    // itens selecionados
+    const itensEscolhidos = [];
+
+    menu.forEach(it => {
+      if(qty[it.id] > 0){
+        itensEscolhidos.push(`• ${it.nome} x${qty[it.id]} — ${money(it.preco * qty[it.id])}`);
+      }
+    });
+    addons.forEach(it => {
+      if(qty[it.id] > 0){
+        itensEscolhidos.push(`• ${it.nome} x${qty[it.id]} — ${money(it.preco * qty[it.id])}`);
+      }
+    });
+
+    if(itensEscolhidos.length === 0){
+      return { ok:false, msg:"Escolha pelo menos 1 item do cardápio 😉" };
+    }
+
+    linhas.push("*Itens:*");
+    linhas.push(...itensEscolhidos);
+    linhas.push("");
+    linhas.push(`*Subtotal:* ${money(calcSubtotal())}`);
+    linhas.push(`*Entrega:* a combinar`);
+    linhas.push(`*Total:* ${money(calcSubtotal())}`);
+    linhas.push("");
+
+    // dados obrigatórios
+    const nome = document.getElementById("nome").value.trim();
+    const tel = document.getElementById("telefone").value.trim();
+    const tipo = document.getElementById("tipoPedido").value;
+    const pag = document.getElementById("pagamento").value;
+    const end = document.getElementById("endereco").value.trim();
+    const bairro = document.getElementById("bairro").value.trim();
+    const ref = document.getElementById("referencia").value.trim();
+    const troco = document.getElementById("troco").value.trim();
+    const obs = document.getElementById("obsPedido").value.trim();
+
+    // obrigatórios
+    const faltando = [];
+    if(!nome) faltando.push("Nome");
+    if(!tel) faltando.push("WhatsApp");
+    if(!tipo) faltando.push("Tipo do pedido");
+    if(!pag) faltando.push("Forma de pagamento");
+    if(!end) faltando.push("Endereço");
+    if(!bairro) faltando.push("Bairro");
+    if(!ref) faltando.push("Referência");
+
+    if(faltando.length){
+      return { ok:false, msg:"Preencha os campos obrigatórios:\n- " + faltando.join("\n- ") };
+    }
+
+    linhas.push("*Dados do cliente:*");
+    linhas.push(`• Nome: ${nome}`);
+    linhas.push(`• WhatsApp: ${tel}`);
+    linhas.push(`• Tipo: ${tipo}`);
+    linhas.push(`• Pagamento: ${pag}`);
+    linhas.push(`• Endereço: ${end}`);
+    linhas.push(`• Bairro: ${bairro}`);
+    linhas.push(`• Referência: ${ref}`);
+    if(troco) linhas.push(`• Troco: ${troco}`);
+    if(obs) linhas.push("");
+    if(obs) linhas.push(`📝 *Observações:* ${obs}`);
+
+    linhas.push("");
+    linhas.push("✅ Pode confirmar, por favor?");
+
+    return { ok:true, text: linhas.join("\n") };
+  }
+
+  function openWhatsApp(scrollFirst=false){
+    if(scrollFirst) scrollToId("pedido");
+
+    const built = buildOrderText();
+    if(!built.ok){
+      alert(built.msg);
+      return;
+    }
+
+    if(WHATSAPP_NUMBER.includes("SEUDDD")){
+      alert("Falta configurar seu WhatsApp no código!\n\nAbra o index.html e troque WHATSAPP_NUMBER (55 + DDD + número).");
+      return;
+    }
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(built.text)}`;
+    window.open(url, "_blank");
+  }
+
+  function resetAll(){
+    for(const k in qty) qty[k]=0;
+    renderLists();
+    ["nome","telefone","endereco","bairro","referencia","troco","obsPedido"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) el.value="";
+    });
+    document.getElementById("tipoPedido").value="";
+    document.getElementById("pagamento").value="";
+  }
+
+  // ----------------------
+  // Comentários/Avaliações (salva no próprio navegador)
+  const COMMENTS_KEY = "espetinho_sousa_comments_v1";
+
+  function loadComments(){
+    try{
+      return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]");
+    }catch{
+      return [];
+    }
+  }
+  function saveComments(list){
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
+  }
+  function renderComments(){
+    const list = loadComments();
+    const box = document.getElementById("commentsList");
+    box.innerHTML = "";
+    if(list.length === 0){
+      const p = document.createElement("p");
+      p.className="smallHint";
+      p.style.marginTop="10px";
+      p.textContent="Nenhum comentário ainda. Seja o primeiro 🙂";
+      box.appendChild(p);
+      return;
+    }
+    list.slice().reverse().forEach(c=>{
+      const d = document.createElement("div");
+      d.className="commentItem";
+      const stars = "⭐".repeat(Number(c.nota || 5));
+      d.innerHTML = `
+        <div class="meta">
+          <span>${c.nome || "Cliente"} ${stars}</span>
+          <span>${c.data}</span>
+        </div>
+        <div style="color:var(--text); font-weight:700; font-size:13.5px; line-height:1.35;">
+          ${escapeHtml(c.texto || "")}
+        </div>
+      `;
+      box.appendChild(d);
+    });
+  }
+
+  function escapeHtml(str){
+    return str
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;");
+  }
+
+  function addComment(){
+    const nome = document.getElementById("cNome").value.trim();
+    const nota = document.getElementById("cNota").value;
+    const texto = document.getElementById("cTexto").value.trim();
+
+    if(!texto){
+      alert("Escreva um comentário 🙂");
+      return;
+    }
+
+    const list = loadComments();
+    const now = new Date();
+    const data = now.toLocaleDateString("pt-BR") + " " + now.toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"});
+
+    list.push({ nome, nota, texto, data });
+    saveComments(list);
+
+    document.getElementById("cNome").value="";
+    document.getElementById("cNota").value="5";
+    document.getElementById("cTexto").value="";
+    renderComments();
+    alert("Comentário enviado! ⭐");
+  }
+
+  function clearComments(){
+    const ok = confirm("Deseja apagar os comentários salvos neste celular/navegador?");
+    if(!ok) return;
+    localStorage.removeItem(COMMENTS_KEY);
+    renderComments();
+  }
+
+  // init
+  renderLists();
+  renderComments();
+</script>
 </body>
 </html>
