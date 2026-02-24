@@ -1032,61 +1032,43 @@ async function payMercadoPago(){
 
   toast("Redirecionando...");
   showPayDebug("Iniciando pagamento... (se travar, o motivo aparece aqui)", null);
-
-  try{
+try {
     if(btn) btn.disabled = true;
 
-    const endpoints = [
-      "/create-payment",
-      "/create_preference",
-      "/create-preference",
-      "/payment",
-      "/mp",
-      "/checkout"
-    ];
-
-    let lastInfo = "";
-
-    for(const ep of endpoints){
-      try{
-        const res = await fetchWithTimeout(BACKEND_URL + ep, {
-          method:"POST",
-          headers:{ "Content-Type":"application/json" },
-          body: JSON.stringify(payload)
-        }, 25000);
-
-        const text = await res.text();
-        lastInfo = `Endpoint: ${ep}\nStatus: ${res.status}\nResposta:\n${text}`;
-
-        if(!res.ok){
-          showPayDebug("O backend respondeu com erro.\n\n" + lastInfo, null);
-          continue;
+    const res = await fetch(
+        "https://backend-mercadopago-zyg6.onrender.com/create_preference",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
         }
+    );
 
-        let data = null;
-        try{ data = JSON.parse(text); } catch { data = { raw:text }; }
+    const data = await res.json();
 
-        const link = extractRedirectUrl(data);
-        if(link){
-          showPayDebug("Link do pagamento recebido ✅\nSe não abrir automático, clique em “Abrir pagamento”.", link);
-          window.location.assign(link);
-          return;
-        }else{
-          showPayDebug("O backend respondeu, mas NÃO veio o link do Mercado Pago.\n\n" + lastInfo, null);
-        }
+    const redirectUrl =
+        data.init_point ||
+        data.initPoint ||
+        data.url ||
+        data.redirect_url ||
+        data.checkout_url ||
+        (data.preference && (data.preference.init_point || data.preference.initPoint)) ||
+        null;
 
-      }catch(err){
-        const msg = (err?.name === "AbortError")
-          ? `Timeout (25s) no endpoint ${ep}.`
-          : `Erro no endpoint ${ep}: ${err?.message || String(err)}`;
-
-        showPayDebug("Falha ao conectar no backend.\n\n" + msg, null);
-      }
+    if(!res.ok){
+        throw new Error("Erro do backend: " + JSON.stringify(data));
     }
 
-    alert("Não foi possível gerar o link de pagamento.\nVeja a mensagem detalhada na página (abaixo do botão).");
+    if(redirectUrl){
+        window.location.href = redirectUrl;
+    }else{
+        throw new Error("Backend não retornou link de pagamento.");
+    }
 
-  } finally {
+} catch(err){
+    alert("Erro ao conectar com pagamento. Tente novamente.");
+    console.error(err);
+} finally {
     if(btn) btn.disabled = false;
   }
 }
