@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Espetinho Sousa • Delivery</title>
+  <title>Espetinho dos Sousa • Delivery</title>
 
   <style>
     :root{
@@ -15,9 +15,6 @@
       --muted:#bdbdbd;
       --accent:#ffb100;
       --accent2:#ff7a00;
-      --ok:#31d07a;
-      --warn:#ffb100;
-      --danger:#ff6a6a;
       --shadow:0 18px 60px rgba(0,0,0,.55);
       --r1:18px;
       --r2:26px;
@@ -36,16 +33,15 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       min-height:100%;
     }
-
     a{ color:inherit; text-decoration:none; }
 
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 16px 14px 90px;
+      padding: 16px 14px 96px;
     }
 
-    /* Topbar */
+    /* Topo */
     .topbar{
       display:flex;
       gap:14px;
@@ -70,8 +66,8 @@
     }
 
     .logo{
-      width:48px;
-      height:48px;
+      width:50px;
+      height:50px;
       border-radius: 16px;
       overflow:hidden;
       background: radial-gradient(circle at 30% 30%, #ffd36a, #ffb100 55%, #b43a00 100%);
@@ -105,34 +101,6 @@
       text-overflow:ellipsis;
     }
 
-    .btn{
-      border: none;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 12px 14px;
-      font-weight: 900;
-      color: #111;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      box-shadow: 0 16px 40px rgba(255,140,0,.25);
-      user-select:none;
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn.ghost{
-      color: var(--text);
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--stroke);
-      box-shadow:none;
-    }
-    .btn:disabled{
-      opacity:.55;
-      cursor:not-allowed;
-      transform:none;
-      box-shadow:none;
-      background: rgba(255,255,255,.08);
-      color: rgba(255,255,255,.55);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
     /* Hero */
     .hero{
       margin: 18px 0 8px;
@@ -144,6 +112,9 @@
       font-size: 36px;
       letter-spacing: -0.6px;
       line-height: 1.05;
+      white-space: nowrap; /* mesma linha */
+      overflow:hidden;
+      text-overflow: ellipsis;
     }
     .hero p{
       margin:0;
@@ -152,19 +123,18 @@
       line-height: 1.45;
     }
 
-    /* Cards / Sections */
-    .section{
-      margin-top: 16px;
-    }
+    /* Seções */
+    .section{ margin-top: 16px; }
     .section h3{
       margin: 12px 2px 6px;
-      font-size: 34px;
+      font-size: 30px;
       letter-spacing: -0.5px;
     }
     .section .hint{
       margin: 0 2px 12px;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14.5px;
+      line-height:1.35;
     }
 
     .card{
@@ -213,7 +183,7 @@
       padding-left: 10px;
     }
 
-    /* Qty */
+    /* Quantidade */
     .qtyRow{
       margin-top: 12px;
       display:flex;
@@ -222,7 +192,7 @@
       gap: 10px;
     }
     .qtyBtn{
-      width: 52px;
+      width: 54px;
       height: 44px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,.10);
@@ -235,7 +205,7 @@
     }
     .qtyBtn:active{ transform: translateY(1px); }
     .qtyVal{
-      width: 48px;
+      width: 54px;
       text-align:center;
       font-weight: 900;
       font-size: 16px;
@@ -259,9 +229,9 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
     }
-    @media (max-width: 720px){
-      .grid2, .grid3{ grid-template-columns: 1fr; }
-      .hero h2{ font-size: 34px; }
+    @media (max-width: 740px){
+      .grid2,.grid3{ grid-template-columns: 1fr; }
+      .hero h2{ font-size: 32px; }
     }
 
     label{
@@ -270,7 +240,6 @@
       color: var(--muted);
       margin: 0 0 6px;
     }
-
     input, select, textarea{
       width:100%;
       padding: 12px 12px;
@@ -280,7 +249,7 @@
       color: var(--text);
       outline:none;
     }
-    textarea{ min-height: 92px; resize: vertical; }
+    textarea{ min-height: 96px; resize: vertical; }
 
     .smallHint{
       margin: 8px 0 0;
@@ -289,7 +258,7 @@
       line-height:1.4;
     }
 
-    /* Payment chips */
+    /* Bandeiras */
     .chips{
       display:flex;
       flex-wrap:wrap;
@@ -307,7 +276,7 @@
       user-select:none;
     }
 
-    /* Summary */
+    /* Resumo */
     .summary{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -330,9 +299,36 @@
       gap: 10px;
       padding: 0 14px 14px;
     }
-    .actions .btn{ flex: 1 1 220px; }
 
-    /* Floating button */
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius:999px;
+      padding: 12px 16px;
+      font-weight: 900;
+      color:#111;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 16px 40px rgba(255,140,0,.22);
+      user-select:none;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn.ghost{
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--stroke);
+      box-shadow:none;
+    }
+    .btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      transform:none;
+      box-shadow:none;
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    /* Botão flutuante (Finalizar só embaixo) */
     .floating{
       position: fixed;
       right: 14px;
@@ -370,7 +366,7 @@
     }
     .toast.show{ opacity:1; }
 
-    /* Footer */
+    /* Rodapé */
     footer{
       margin-top: 22px;
       text-align:center;
@@ -398,82 +394,56 @@
 <body>
   <div class="wrap">
 
-    <!-- TOPO -->
     <div class="topbar">
       <div class="brand">
         <div class="logo">
-          <!-- Seu logo já está no GitHub como logo.png -->
-          <img src="logo.png" alt="Logo Espetinho Sousa">
+          <img src="logo.png" alt="Logo Espetinho dos Sousa">
         </div>
         <div class="brandText">
-          <h1>Espetinho Sousa</h1>
+          <h1>Espetinho dos Sousa</h1>
           <p>Fogo, sabor e capricho • Delivery</p>
         </div>
       </div>
-      <button class="btn ghost" onclick="scrollToId('pedido')">Finalizar</button>
+      <!-- Sem botão aqui em cima -->
     </div>
 
-    <!-- HERO -->
     <div class="hero">
       <h2>O melhor espeto da região!</h2>
-      <p>Feito na brasa, sabor de verdade. Monte seu pedido e pague pelo site.</p>
+      <p>Monte seu pedido, coloque seu CEP e pague pelo site.</p>
     </div>
 
     <!-- ESPETOS -->
     <div class="section">
       <h3>Espetos</h3>
       <p class="hint">Escolha seus espetos e ajuste a quantidade.</p>
-
-      <div class="card">
-        <div class="list" id="espetosList"></div>
-      </div>
+      <div class="card"><div class="list" id="espetosList"></div></div>
     </div>
 
     <!-- COMBOS -->
     <div class="section">
       <h3>Combos</h3>
-      <p class="hint">Nos combos, informe na observação qual espeto deseja quando aplicável.</p>
-
-      <div class="card">
-        <div class="list" id="combosList"></div>
-      </div>
-
-      <div class="card" style="margin-top:10px">
-        <div class="grid">
-          <div class="pill">
-            <p class="t">Exemplo</p>
-            <p class="v" style="font-size:14px;color:var(--text);font-weight:800;margin-top:8px">
-              “Combo Prata: quero espeto de carne”.
-            </p>
-          </div>
-        </div>
-      </div>
+      <p class="hint">Nos combos, informe na observação qual espeto deseja. Ex.: “Combo Prata: quero espeto de carne”.</p>
+      <div class="card"><div class="list" id="combosList"></div></div>
     </div>
 
     <!-- ACOMPANHAMENTOS -->
     <div class="section">
       <h3>Acompanhamentos</h3>
       <p class="hint">Adicione acompanhamentos ao seu pedido.</p>
-
-      <div class="card">
-        <div class="list" id="addonsList"></div>
-      </div>
+      <div class="card"><div class="list" id="addonsList"></div></div>
     </div>
 
     <!-- BEBIDAS -->
     <div class="section">
       <h3>Bebidas</h3>
       <p class="hint">Refrigerantes 350ml e sucos naturais.</p>
-
-      <div class="card">
-        <div class="list" id="drinksList"></div>
-      </div>
+      <div class="card"><div class="list" id="drinksList"></div></div>
     </div>
 
-    <!-- PEDIDO / DELIVERY -->
+    <!-- FINALIZAR -->
     <div class="section" id="pedido">
-      <h3>Finalizar</h3>
-      <p class="hint">Preencha seus dados para calcular o frete e concluir o pagamento.</p>
+      <h3>Finalizar pedido</h3>
+      <p class="hint">Preencha seus dados para calcular o frete automaticamente e concluir o pagamento.</p>
 
       <div class="card">
         <div class="grid">
@@ -497,11 +467,11 @@
             </div>
             <div>
               <label>Bairro</label>
-              <input id="bairro" placeholder="(preenchido pelo CEP)" autocomplete="address-level3" disabled>
+              <input id="bairro" placeholder="(preenchido pelo CEP)" disabled>
             </div>
             <div>
               <label>Cidade/UF</label>
-              <input id="cidade" placeholder="(preenchido pelo CEP)" autocomplete="address-level2" disabled>
+              <input id="cidade" placeholder="(preenchido pelo CEP)" disabled>
             </div>
           </div>
 
@@ -545,8 +515,8 @@
 
           <div>
             <label>Observações do pedido (obrigatório)</label>
-            <textarea id="obsPedido" placeholder='Ex.: "Combo Prata: quero espeto de carne"'></textarea>
-            <p class="smallHint">Use este campo para escolhas do combo e preferências (ex.: “farofa sem calabresa”).</p>
+            <textarea id="obsPedido" placeholder='Ex.: "Combo Prata: quero espeto de carne"&#10;Ex.: "farofa sem calabresa"'></textarea>
+            <p class="smallHint">Campo obrigatório para escolhas do combo e preferências.</p>
           </div>
 
           <div class="summary">
@@ -566,12 +536,11 @@
 
           <div class="actions">
             <button class="btn ghost" onclick="resetAll()">Limpar</button>
-            <button class="btn ghost" onclick="scrollToId('avaliacoes')">Avaliar</button>
-            <button class="btn" id="payBtn" onclick="payMercadoPago()">Pagar com Mercado Pago</button>
+            <button class="btn" id="payBtn" onclick="payMercadoPago()">Pagar</button>
           </div>
 
           <p class="smallHint">
-            Ao clicar em <b>“Pagar com Mercado Pago”</b>, você será redirecionado para uma página segura de pagamento.
+            Ao clicar em <b>Pagar</b>, você será redirecionado para uma página segura do Mercado Pago.
           </p>
 
         </div>
@@ -585,7 +554,6 @@
 
       <div class="card">
         <div class="grid">
-
           <div class="grid2">
             <div>
               <label>Seu nome</label>
@@ -614,98 +582,79 @@
           </div>
 
           <div id="commentsList"></div>
-          <p class="smallHint">Esses comentários ficam salvos neste navegador/celular (não é um banco online).</p>
+          <p class="smallHint">Os comentários ficam salvos neste navegador/celular.</p>
         </div>
       </div>
     </div>
 
-    <!-- RODAPÉ -->
     <footer>
-      <div>Espetinho Sousa • Capão Redondo (Zona Sul)</div>
+      <div>São Paulo/SP</div>
       <div class="footLinks">
         <a href="https://wa.me/5511968363952" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://instagram.com/espetinhos.sousa" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.instagram.com/espetinhos.sousa/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </footer>
-
   </div>
 
+  <!-- Finalizar só embaixo -->
   <button class="floating" onclick="scrollToId('pedido')">Finalizar</button>
   <div class="toast" id="toast"></div>
 
 <script>
 /* ==========================
-   CONFIGURAÇÕES IMPORTANTES
+   CONFIG
 ========================== */
-
-// ✅ Seu backend Mercado Pago
 const BACKEND_URL = "https://backend-mercadopago-zyg6.onrender.com";
 
-// ✅ WhatsApp e Instagram (só no rodapé – já deixei lá)
-const WHATSAPP_NUMBER = "5511968363952";
-const INSTAGRAM = "espetinhos.sousa";
-
-// ✅ Regras de frete por bairro (VOCÊ EDITA AQUI)
-// - O CEP puxa o bairro pelo ViaCEP e aplica o valor.
-// - Se não encontrar o bairro, usa FRETE_PADRAO.
-const FRETE_PADRAO = 10;
-
-// Coloque aqui os bairros que você atende + valor de frete
-// (sugestão inicial – ajuste como quiser)
+/* FRETE (já reduzido como você pediu)
+   - Capão e próximos: 4 ou 5
+   - Médio e maior: -2 reais
+*/
+const FRETE_PADRAO = 6;
 const FRETE_POR_BAIRRO = {
-  "capão redondo": 5,
-  "campo limpo": 8,
-  "jardim ângela": 9,
-  "jardim sao luiz": 8,
-  "vila andrade": 10
+  "capao redondo": 4,
+  "campo limpo": 5,        // médio (reduzido)
+  "jardim sao luiz": 5,    // médio (reduzido)
+  "vila andrade": 6,       // maior (reduzido)
+  "jardim angela": 7       // maior (reduzido)
 };
 
 /* ==========================
    CARDÁPIO
 ========================== */
-
 const itens = [
-  // ESPETOS
-  { id:"carne", sec:"espetos", nome:"Brasa Clássico (carne)", desc:"Espeto de carne.", preco: 10.00 },
-  { id:"frango", sec:"espetos", nome:"Sabor do Fogo (frango)", desc:"Espeto de frango.", preco: 10.00 },
+  // Espetos
+  { id:"carne", sec:"espetos", nome:"Brasa Clássica (carne)", desc:"Espeto de carne.", preco: 10.00 },
   { id:"linguica", sec:"espetos", nome:"Sabor Intenso (linguiça)", desc:"Espeto de linguiça.", preco: 10.00 },
-  { id:"misto", sec:"espetos", nome:"Espeto Supremo (misto)", desc:"Mais completo, ideal pra quem quer capricho.", preco: 12.00 },
+  { id:"frango", sec:"espetos", nome:"Frango Dourado (frango)", desc:"Espeto de frango.", preco: 10.00 },
+  { id:"misto", sec:"espetos", nome:"Explosão de Sabor (misto)", desc:"Misto completo.", preco: 12.00 },
 
-  // COMBOS
+  // Combos
   { id:"combo_bronze", sec:"combos", nome:"Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne, frango ou linguiça).", preco: 13.00 },
   { id:"combo_prata", sec:"combos", nome:"Combo Prata Sabor", desc:"Arroz tradicional + vinagrete da casa + 1 espeto (qualquer opção do cardápio).", preco: 16.00 },
   { id:"combo_ouro", sec:"combos", nome:"Combo Ouro na Brasa", desc:"Arroz tradicional + vinagrete da casa + farofa + 1 espeto (qualquer opção do cardápio).", preco: 20.00 },
 
-  // ACOMPANHAMENTOS
+  // Acompanhamentos (com descrições)
   { id:"arroz", sec:"addons", nome:"Arroz Tradicional", desc:"Arroz branco soltinho, temperado com alho e sal, preparado com carinho.", preco: 7.00 },
   { id:"vinagrete", sec:"addons", nome:"Vinagrete da Casa", desc:"Vinagrete fresca com tomate, cebola e repolho, bem temperado.", preco: 7.00 },
   { id:"farofa", sec:"addons", nome:"Farofa Caseira", desc:"Farofa bem douradinha, preparada com calabresa defumada e bacon.", preco: 4.00 },
   { id:"pao_alho", sec:"addons", nome:"Pão de Alho", desc:"Cremoso caseiro, feito com pão francês e ingredientes especiais.", preco: 8.00 },
   { id:"maionese", sec:"addons", nome:"Maionese Especial", desc:"Maionese verde cremosa, perfeita para acompanhar seu pedido.", preco: 5.00 },
 
-  // BEBIDAS
+  // Bebidas
   { id:"coca", sec:"drinks", nome:"Coca-Cola 350ml", desc:"Lata 350ml.", preco: 6.00 },
   { id:"pepsi", sec:"drinks", nome:"Pepsi 350ml", desc:"Lata 350ml.", preco: 6.00 },
   { id:"guarana", sec:"drinks", nome:"Guaraná Antarctica 350ml", desc:"Lata 350ml.", preco: 6.00 },
   { id:"itubaina", sec:"drinks", nome:"Itubaína 350ml", desc:"Lata 350ml.", preco: 6.00 },
-
   { id:"suco300", sec:"drinks", nome:"Suco Natural 300ml", desc:"Abacaxi com hortelã, maracujá, laranja ou goiaba.", preco: 9.00 },
   { id:"suco500", sec:"drinks", nome:"Suco Natural 500ml", desc:"Abacaxi com hortelã, maracujá, laranja ou goiaba.", preco: 13.00 },
 ];
-
-/* ==========================
-   ESTADO
-========================== */
 
 const qty = {};
 itens.forEach(i => qty[i.id] = 0);
 
 let freteValor = 0;
 let enderecoData = {};
-
-/* ==========================
-   HELPERS UI
-========================== */
 
 const money = (v) => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
 
@@ -723,9 +672,8 @@ function scrollToId(id){
 }
 
 /* ==========================
-   RENDER LISTAS
+   RENDER
 ========================== */
-
 function itemCard(i){
   const div = document.createElement("div");
   div.className = "item";
@@ -737,7 +685,6 @@ function itemCard(i){
       </div>
       <div class="price">${money(i.preco)}</div>
     </div>
-
     <div class="qtyRow">
       <button class="qtyBtn" aria-label="diminuir" onclick="decQty('${i.id}')">-</button>
       <div class="qtyVal" id="q_${i.id}">0</div>
@@ -749,21 +696,21 @@ function itemCard(i){
 
 function renderAll(){
   const espetosList = document.getElementById("espetosList");
-  const combosList = document.getElementById("combosList");
-  const addonsList = document.getElementById("addonsList");
-  const drinksList = document.getElementById("drinksList");
+  const combosList  = document.getElementById("combosList");
+  const addonsList  = document.getElementById("addonsList");
+  const drinksList  = document.getElementById("drinksList");
 
   espetosList.innerHTML = "";
-  combosList.innerHTML = "";
-  addonsList.innerHTML = "";
-  drinksList.innerHTML = "";
+  combosList.innerHTML  = "";
+  addonsList.innerHTML  = "";
+  drinksList.innerHTML  = "";
 
   itens.forEach(i=>{
     const card = itemCard(i);
     if(i.sec === "espetos") espetosList.appendChild(card);
-    if(i.sec === "combos") combosList.appendChild(card);
-    if(i.sec === "addons") addonsList.appendChild(card);
-    if(i.sec === "drinks") drinksList.appendChild(card);
+    if(i.sec === "combos")  combosList.appendChild(card);
+    if(i.sec === "addons")  addonsList.appendChild(card);
+    if(i.sec === "drinks")  drinksList.appendChild(card);
   });
 
   updateTotals();
@@ -783,13 +730,11 @@ function decQty(id){
 /* ==========================
    TOTAIS
 ========================== */
-
 function calcSubtotal(){
   let s = 0;
   itens.forEach(i => s += (qty[i.id] || 0) * i.preco);
   return s;
 }
-
 function updateTotals(){
   const sub = calcSubtotal();
   const tot = sub + (freteValor || 0);
@@ -798,14 +743,12 @@ function updateTotals(){
   document.getElementById("frete").textContent = money(freteValor || 0);
   document.getElementById("total").textContent = money(tot);
 
-  // Habilita pagar somente se tiver algo no carrinho
   document.getElementById("payBtn").disabled = (sub <= 0);
 }
 
 /* ==========================
-   CEP (ViaCEP) + FRETE
+   CEP + FRETE
 ========================== */
-
 function normalize(s){
   return (s || "").toLowerCase()
     .replaceAll("á","a").replaceAll("à","a").replaceAll("ã","a").replaceAll("â","a")
@@ -816,13 +759,9 @@ function normalize(s){
     .replaceAll("ç","c")
     .trim();
 }
-
 function findFrete(bairro){
   const key = normalize(bairro);
-  // tenta match exato
   if(FRETE_POR_BAIRRO[key] != null) return FRETE_POR_BAIRRO[key];
-
-  // tenta match "contém"
   for(const k of Object.keys(FRETE_POR_BAIRRO)){
     if(key.includes(k)) return FRETE_POR_BAIRRO[k];
   }
@@ -861,7 +800,7 @@ async function buscarCEP(){
     document.getElementById("rua").value = d.logradouro || "";
 
     freteValor = findFrete(d.bairro || "");
-    hint.textContent = `Frete calculado automaticamente para ${d.bairro || "sua região"}: ${money(freteValor)}.`;
+    hint.textContent = `Frete calculado automaticamente: ${money(freteValor)}.`;
     updateTotals();
 
   }catch(e){
@@ -871,147 +810,58 @@ async function buscarCEP(){
   }
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
-  renderAll();
-  // ao sair do campo CEP
-  document.getElementById("cep").addEventListener("blur", buscarCEP);
-});
-
 /* ==========================
-   VALIDAÇÕES
+   VALIDAÇÃO
 ========================== */
-
 function required(id, label){
   const el = document.getElementById(id);
   const v = (el.value || "").trim();
   if(!v) return `• ${label}`;
   return null;
 }
-
-function buildOrderText(){
-  const linhas = [];
-  linhas.push("*Espetinho Sousa — Pedido*");
-  linhas.push("");
-
-  // Itens
-  const chosen = itens.filter(i => (qty[i.id]||0) > 0);
-  if(chosen.length === 0) return { ok:false, msg:"Selecione pelo menos 1 item do cardápio." };
-
-  linhas.push("*Itens:*");
-  chosen.forEach(i=>{
-    linhas.push(`- ${qty[i.id]}x ${i.nome} (${money(i.preco)})`);
-  });
-
-  linhas.push("");
-  linhas.push(`*Subtotal:* ${money(calcSubtotal())}`);
-  linhas.push(`*Entrega:* ${money(freteValor||0)}`);
-  linhas.push(`*Total:* ${money(calcSubtotal() + (freteValor||0))}`);
-  linhas.push("");
-
-  // Dados cliente
-  const nome = document.getElementById("nome").value.trim();
-  const telefone = document.getElementById("telefone").value.trim();
-  const cep = document.getElementById("cep").value.trim();
-  const rua = document.getElementById("rua").value.trim();
-  const numero = document.getElementById("numero").value.trim();
-  const complemento = document.getElementById("complemento").value.trim();
-  const referencia = document.getElementById("referencia").value.trim();
-  const bairro = document.getElementById("bairro").value.trim();
-
-  linhas.push("*Entrega:*");
-  linhas.push(`Nome: ${nome}`);
-  linhas.push(`Telefone: ${telefone}`);
-  linhas.push(`CEP: ${cep}`);
-  linhas.push(`Endereço: ${rua}, ${numero}`);
-  if(complemento) linhas.push(`Complemento: ${complemento}`);
-  if(bairro) linhas.push(`Bairro: ${bairro}`);
-  if(referencia) linhas.push(`Referência: ${referencia}`);
-  linhas.push("");
-
-  // Pagamento
-  const pag = document.getElementById("pagamento").value;
-  linhas.push(`*Pagamento:* ${pag}`);
-  linhas.push("");
-
-  // Observações
-  const obs = document.getElementById("obsPedido").value.trim();
-  linhas.push(`*Observações:* ${obs}`);
-  linhas.push("");
-  linhas.push("✅ Pode confirmar, por favor?");
-
-  return { ok:true, text: linhas.join("\n") };
-}
-
 function validateForm(){
   const faltando = [];
-
-  const r1 = required("nome","Seu nome (obrigatório)");
+  const r1 = required("nome","Seu nome");
   if(r1) faltando.push(r1);
-
-  const r2 = required("telefone","Telefone (obrigatório)");
+  const r2 = required("telefone","Telefone");
   if(r2) faltando.push(r2);
-
-  const r3 = required("cep","CEP (obrigatório)");
+  const r3 = required("cep","CEP");
   if(r3) faltando.push(r3);
-
-  const r4 = required("rua","Rua/Avenida (obrigatório)");
+  const r4 = required("rua","Rua/Avenida");
   if(r4) faltando.push(r4);
-
-  const r5 = required("numero","Número (obrigatório)");
+  const r5 = required("numero","Número");
   if(r5) faltando.push(r5);
-
-  const r6 = required("pagamento","Forma de pagamento (obrigatório)");
+  const r6 = required("pagamento","Forma de pagamento");
   if(r6) faltando.push(r6);
-
-  const r7 = required("obsPedido","Observações do pedido (obrigatório)");
+  const r7 = required("obsPedido","Observações do pedido");
   if(r7) faltando.push(r7);
-
-  // se o CEP foi preenchido mas o frete não calculou, força cálculo
-  const cep = (document.getElementById("cep").value || "").replace(/\D/g,"");
-  if(cep.length === 8 && (!freteValor || freteValor === 0)){
-    // não bloqueia, mas avisa
-    // (se quiser bloquear, eu coloco)
-  }
-
   return faltando;
 }
 
 /* ==========================
-   MERCADO PAGO (BACKEND)
+   PAGAMENTO MP
 ========================== */
-
 async function payMercadoPago(){
-  // valida itens
   if(calcSubtotal() <= 0){
     toast("Selecione pelo menos 1 item.");
     return;
   }
 
-  // valida form
   const faltando = validateForm();
   if(faltando.length){
     alert("Preencha os campos obrigatórios:\n\n" + faltando.join("\n"));
     return;
   }
 
-  // garante CEP
+  // tenta buscar CEP se ainda não buscou
   const cep = (document.getElementById("cep").value || "").replace(/\D/g,"");
   if(cep.length === 8 && (!enderecoData || !enderecoData.cep)){
-    // tenta buscar cep se ainda não buscou
     await buscarCEP();
   }
 
-  const built = buildOrderText();
-  if(!built.ok){
-    alert(built.msg);
-    return;
-  }
-
-  // monta payload pro backend
   const payload = {
     amount: Number((calcSubtotal() + (freteValor||0)).toFixed(2)),
-    description: "Pedido Espetinho Sousa",
-    orderText: built.text,
+    description: "Pedido Espetinho dos Sousa",
     customer: {
       name: document.getElementById("nome").value.trim(),
       phone: document.getElementById("telefone").value.trim(),
@@ -1022,7 +872,8 @@ async function payMercadoPago(){
       reference: document.getElementById("referencia").value.trim(),
       bairro: document.getElementById("bairro").value.trim(),
       city: document.getElementById("cidade").value.trim(),
-      payment: document.getElementById("pagamento").value
+      payment: document.getElementById("pagamento").value,
+      notes: document.getElementById("obsPedido").value.trim(),
     },
     items: itens
       .filter(i => (qty[i.id]||0) > 0)
@@ -1034,8 +885,7 @@ async function payMercadoPago(){
     toast("Gerando pagamento...");
     document.getElementById("payBtn").disabled = true;
 
-    // endpoints comuns: /create-payment ou /create_preference
-    // Se o seu backend usar outro, me diga o caminho exato.
+    // tenta endpoints comuns
     const endpoints = ["/create-payment", "/create_preference", "/create-preference"];
     let lastErr = null;
 
@@ -1053,9 +903,8 @@ async function payMercadoPago(){
         }
 
         const data = await r.json();
-
-        // Mercado Pago geralmente retorna init_point
         const link = data.init_point || data.initPoint || data.url;
+
         if(!link){
           lastErr = JSON.stringify(data);
           continue;
@@ -1069,7 +918,7 @@ async function payMercadoPago(){
       }
     }
 
-    alert("Não consegui abrir o pagamento.\n\nPossível motivo:\n- Seu backend pode estar usando outro endpoint.\n- Ou retornando outro campo.\n\nDetalhe:\n" + (lastErr || "sem detalhe"));
+    alert("Não consegui abrir o pagamento.\n\nDetalhe:\n" + (lastErr || "sem detalhe"));
     document.getElementById("payBtn").disabled = false;
 
   }catch(e){
@@ -1081,7 +930,6 @@ async function payMercadoPago(){
 /* ==========================
    RESET
 ========================== */
-
 function resetAll(){
   for(const k in qty){ qty[k] = 0; }
   itens.forEach(i=>{
@@ -1097,8 +945,8 @@ function resetAll(){
   document.getElementById("bairro").value = "";
   document.getElementById("cidade").value = "";
   document.getElementById("pagamento").value = "";
-
   document.getElementById("cepHint").textContent = "";
+
   freteValor = 0;
   enderecoData = {};
   updateTotals();
@@ -1108,8 +956,7 @@ function resetAll(){
 /* ==========================
    COMENTÁRIOS (localStorage)
 ========================== */
-
-const COMMENTS_KEY = "espetinho_sousa_comments_v1";
+const COMMENTS_KEY = "espetinho_dos_sousa_comments_v1";
 
 function loadComments(){
   try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); }
@@ -1118,6 +965,15 @@ function loadComments(){
 function saveComments(list){
   localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
 }
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
 function renderComments(){
   const list = loadComments();
   const box = document.getElementById("commentsList");
@@ -1139,7 +995,7 @@ function renderComments(){
       <div class="itemTop">
         <div>
           <p class="itemName">${escapeHtml(c.nome || "Cliente")}</p>
-          <p class="itemDesc">Nota: <b>${c.nota}/5</b></p>
+          <p class="itemDesc">Nota: <b>${escapeHtml(c.nota)}/5</b></p>
         </div>
         <div class="price" style="font-size:13px;color:rgba(255,255,255,.55)">${new Date(c.ts).toLocaleString("pt-BR")}</div>
       </div>
@@ -1147,15 +1003,6 @@ function renderComments(){
     `;
     box.appendChild(div);
   });
-}
-
-function escapeHtml(str){
-  return String(str)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
 }
 
 function addComment(){
@@ -1187,7 +1034,12 @@ function clearComments(){
   toast("Avaliações apagadas.");
 }
 
-document.addEventListener("DOMContentLoaded", renderComments);
+/* Init */
+document.addEventListener("DOMContentLoaded", ()=>{
+  renderAll();
+  renderComments();
+  document.getElementById("cep").addEventListener("blur", buscarCEP);
+});
 </script>
 </body>
 </html>
