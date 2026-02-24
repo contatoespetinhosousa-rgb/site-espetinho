@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Espetinho Sousa</title>
+  <title>Espetinho Sousa • Delivery</title>
+
   <style>
     :root{
       --bg0:#070707;
@@ -15,984 +16,1178 @@
       --accent:#ffb100;
       --accent2:#ff7a00;
       --ok:#31d07a;
+      --warn:#ffb100;
       --danger:#ff6a6a;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow:0 18px 60px rgba(0,0,0,.55);
       --r1:18px;
       --r2:26px;
-      --max:980px;
+      --max: 980px;
     }
+
     *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
+      color: var(--text);
       background:
         radial-gradient(900px 450px at 20% 0%, rgba(255,177,0,.20), transparent 60%),
         radial-gradient(800px 380px at 100% 10%, rgba(255,122,0,.16), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
-      min-height:100vh;
+      min-height:100%;
     }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:16px 14px 110px; }
 
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 14px 90px;
+    }
+
+    /* Topbar */
     .topbar{
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-      padding:14px 14px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px;
       border:1px solid var(--stroke);
       background: linear-gradient(180deg, rgba(18,18,18,.88), rgba(10,10,10,.72));
       border-radius: var(--r2);
       box-shadow: var(--shadow);
-      position:sticky; top:10px; z-index:10;
+      position: sticky;
+      top: 10px;
+      z-index: 20;
       backdrop-filter: blur(10px);
     }
-    .brand{ display:flex; align-items:center; gap:12px; min-width:0; }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      min-width:0;
+    }
+
     .logo{
-      width:46px; height:46px; border-radius:16px; overflow:hidden;
+      width:48px;
+      height:48px;
+      border-radius: 16px;
+      overflow:hidden;
       background: radial-gradient(circle at 30% 30%, #ffd36a, #ffb100 55%, #b43a00 100%);
       box-shadow: 0 10px 30px rgba(255,140,0,.25);
       flex:0 0 auto;
-      display:grid; place-items:center;
+      display:grid;
+      place-items:center;
     }
-    .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .title{ min-width:0; }
-    .title h1{ margin:0; font-size:18px; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .title p{ margin:2px 0 0; color:var(--muted); font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .brandText{ min-width:0; }
+    .brandText h1{
+      font-size:18px;
+      margin:0;
+      line-height:1.1;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brandText p{
+      margin:2px 0 0;
+      color: var(--muted);
+      font-size:12.5px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
 
     .btn{
-      border:none; border-radius:999px;
-      padding:12px 14px;
-      font-weight:900;
-      cursor:pointer;
-      color:#111;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 12px 14px;
+      font-weight: 900;
+      color: #111;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       box-shadow: 0 16px 40px rgba(255,140,0,.25);
       user-select:none;
-      white-space:nowrap;
     }
     .btn:active{ transform: translateY(1px); }
     .btn.ghost{
+      color: var(--text);
       background: rgba(255,255,255,.06);
-      color:var(--text);
-      border:1px solid var(--stroke);
+      border: 1px solid var(--stroke);
       box-shadow:none;
-      font-weight:800;
     }
     .btn:disabled{
-      opacity:.45;
+      opacity:.55;
       cursor:not-allowed;
       transform:none;
       box-shadow:none;
-      filter: grayscale(.4);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.08);
     }
 
-    .hero{ margin-top:14px; padding:18px 12px 8px; text-align:center; }
-    .hero h2{ margin:16px 0 10px; font-size:34px; letter-spacing:-.6px; }
-    .hero p{ margin:0; color:var(--muted); font-size:16px; line-height:1.45; }
+    /* Hero */
+    .hero{
+      margin: 18px 0 8px;
+      text-align:center;
+      padding: 18px 12px 8px;
+    }
+    .hero h2{
+      margin: 14px 0 8px;
+      font-size: 36px;
+      letter-spacing: -0.6px;
+      line-height: 1.05;
+    }
+    .hero p{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
 
-    .hoursWrap{
-      margin:12px auto 0;
-      max-width:780px;
-      border:1px solid var(--stroke);
-      background: rgba(18,18,18,.55);
-      border-radius: var(--r1);
-      padding:12px 12px;
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      text-align:left;
+    /* Cards / Sections */
+    .section{
+      margin-top: 16px;
     }
-    .hoursTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      color:var(--muted);
-      font-size:12.5px;
-      font-weight:700;
+    .section h3{
+      margin: 12px 2px 6px;
+      font-size: 34px;
+      letter-spacing: -0.5px;
     }
-    .badge b{ color:var(--text); }
-    .statusDot{
-      width:10px; height:10px; border-radius:50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 3px rgba(49,208,122,.15);
+    .section .hint{
+      margin: 0 2px 12px;
+      color: var(--muted);
+      font-size: 15px;
     }
-    .hoursList{
-      margin-top:10px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:6px;
-      color:var(--muted);
-      font-size:13.5px;
-    }
-    .hoursList span{ color:var(--text); font-weight:800; }
-    .noteWarn{
-      margin-top:10px;
-      font-size:12.5px;
-      color:var(--muted);
-      border-top:1px dashed rgba(255,255,255,.12);
-      padding-top:10px;
-      line-height:1.35;
-    }
-    .noteWarn b{ color:var(--text); }
 
-    section{ margin-top:22px; }
-    .secTitle{ margin:0; font-size:34px; letter-spacing:-.6px; }
-    .secSub{ margin:6px 0 0; color:var(--muted); font-size:15px; }
-
-    .grid{ margin-top:14px; display:grid; grid-template-columns: 1fr; gap:14px; }
     .card{
-      border:1px solid var(--stroke);
-      background: rgba(18,18,18,.62);
+      background: var(--card);
+      border: 1px solid var(--stroke);
       border-radius: var(--r2);
       box-shadow: var(--shadow);
-      padding:16px 16px;
+      overflow:hidden;
     }
-    .rowTop{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
-    .itemName{ margin:0; font-size:20px; font-weight:900; }
-    .itemDesc{ margin:6px 0 0; color:var(--muted); font-size:14px; line-height:1.35; }
-    .price{ font-size:20px; font-weight:900; color: var(--accent); white-space:nowrap; }
 
-    .qtyRow{
-      margin-top:14px;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      border-top: 1px solid rgba(255,255,255,.10);
-      padding-top:14px;
+    .list{
+      padding: 10px;
+      display:grid;
+      gap: 10px;
     }
-    .qtyCtrl{
-      display:flex; align-items:center; gap:10px;
-      background: rgba(0,0,0,.28);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 999px;
-      padding:10px 10px;
-      min-width: 190px;
+
+    .item{
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--r2);
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.05));
+    }
+    .itemTop{
+      display:flex;
+      align-items:flex-start;
       justify-content:space-between;
+      gap: 12px;
     }
-    .qbtn{
-      width:42px; height:42px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
+    .itemName{
+      font-weight: 900;
+      font-size: 18px;
+      margin: 0;
+      line-height:1.15;
+    }
+    .itemDesc{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height:1.35;
+    }
+    .price{
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 18px;
+      white-space:nowrap;
+      padding-left: 10px;
+    }
+
+    /* Qty */
+    .qtyRow{
+      margin-top: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap: 10px;
+    }
+    .qtyBtn{
+      width: 52px;
+      height: 44px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
       color: var(--text);
-      font-size:20px;
-      font-weight:900;
+      font-size: 22px;
+      font-weight: 900;
       cursor:pointer;
       user-select:none;
     }
-    .qbtn:active{ transform: translateY(1px); }
-    .qval{
-      font-size:18px;
-      font-weight:900;
-      min-width: 34px;
+    .qtyBtn:active{ transform: translateY(1px); }
+    .qtyVal{
+      width: 48px;
       text-align:center;
-    }
-    .miniTotal{
-      color:var(--muted);
-      font-size:13px;
-      text-align:right;
-      line-height:1.2;
-    }
-    .miniTotal b{ color:var(--text); }
-
-    .checkout{
-      margin-top:18px;
-      border:1px solid var(--stroke);
-      background: rgba(18,18,18,.62);
-      border-radius: var(--r2);
-      box-shadow: var(--shadow);
-      padding:16px 16px;
-    }
-    .fieldGrid{ display:grid; grid-template-columns: 1fr; gap:12px; margin-top:10px; }
-    label{ display:block; font-size:12.5px; color:var(--muted); font-weight:800; margin-bottom:6px; }
-    input, select, textarea{
-      width:100%;
-      padding:14px 14px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.28);
+      font-weight: 900;
+      font-size: 16px;
       color: var(--text);
-      outline:none;
-      font-size:15px;
-    }
-    textarea{ min-height: 90px; resize: vertical; }
-    .split2{ display:grid; grid-template-columns: 1fr; gap:12px; }
-
-    .payWrap{
-      margin-top:12px;
-      border-top:1px dashed rgba(255,255,255,.12);
-      padding-top:12px;
-    }
-    .cards{
-      display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;
-    }
-    .cardPill{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:.4px;
+      opacity:.95;
     }
 
-    /* Mostra frete/total e “Delivery” só depois do CEP válido */
-    .deliveryBox{
-      margin-top:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.22);
-      border-radius: 18px;
-      padding:12px 12px;
-      display:none;
+    /* Form */
+    .grid{
+      display:grid;
+      gap: 10px;
+      padding: 14px;
     }
-    .deliveryBox.show{ display:block; }
-
-    .totals{
-      margin-top:12px;
+    .grid2{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:12px;
+      gap: 10px;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 720px){
+      .grid2, .grid3{ grid-template-columns: 1fr; }
+      .hero h2{ font-size: 34px; }
+    }
+
+    label{
+      display:block;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.35);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{ min-height: 92px; resize: vertical; }
+
+    .smallHint{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height:1.4;
+    }
+
+    /* Payment chips */
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .2px;
+      user-select:none;
+    }
+
+    /* Summary */
+    .summary{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px;
     }
     .pill{
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.22);
-      border-radius: 18px;
-      padding:12px 12px;
+      background: rgba(0,0,0,.25);
+      border-radius: 20px;
+      padding: 12px;
       text-align:center;
     }
-    .pill small{ display:block; color:var(--muted); font-size:12px; font-weight:800; }
-    .pill b{ display:block; margin-top:4px; font-size:20px; color: var(--accent); }
-    .pill.total{ grid-column: 1 / -1; }
+    .pill .t{ color: var(--muted); font-size: 12px; margin:0; }
+    .pill .v{ color: var(--accent); font-size: 22px; font-weight: 900; margin: 6px 0 0; }
 
     .actions{
-      margin-top:14px;
       display:flex;
-      gap:10px;
       flex-wrap:wrap;
+      gap: 10px;
+      padding: 0 14px 14px;
     }
+    .actions .btn{ flex: 1 1 220px; }
 
-    .commentBox{
-      margin-top:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.22);
-      border-radius: 18px;
-      padding:14px 14px;
-    }
-    .commentsList{ margin-top:10px; display:grid; gap:10px; }
-    .commentItem{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      border-radius: 16px;
-      padding:12px 12px;
-    }
-    .commentItem .top{
-      display:flex; justify-content:space-between; gap:10px; align-items:center;
-      color:var(--muted); font-size:12.5px;
-    }
-    .stars{ color: var(--accent); font-weight:900; }
-    .commentItem p{ margin:8px 0 0; color:var(--text); line-height:1.35; }
-
-    footer{
-      margin-top:26px;
-      border:1px solid var(--stroke);
-      background: rgba(18,18,18,.55);
-      border-radius: var(--r2);
-      padding:14px 14px;
-      color: var(--muted);
-      box-shadow: var(--shadow);
-    }
-    .footRow{ display:flex; gap:12px; justify-content:space-between; align-items:center; flex-wrap:wrap; }
-    .footLinks{ display:flex; gap:10px; flex-wrap:wrap; }
-    .footBtn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight:900;
-      font-size:13px;
-    }
-
+    /* Floating button */
     .floating{
-      position:fixed;
-      right:16px;
-      bottom:18px;
-      z-index:20;
-      border:none;
-      border-radius:999px;
-      padding:14px 18px;
-      font-weight:900;
-      cursor:pointer;
-      color:#111;
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 50;
+      border-radius: 999px;
+      padding: 14px 16px;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,.08);
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      box-shadow: 0 18px 60px rgba(255,140,0,.30);
+      color:#111;
+      box-shadow: 0 18px 55px rgba(255,140,0,.30);
+      cursor:pointer;
     }
 
-    @media(min-width: 780px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-      .fieldGrid{ grid-template-columns: 1fr 1fr; }
-      .split2{ grid-template-columns: 1fr 1fr; }
-      .hero h2{ font-size:44px; }
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 84px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.70);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-size: 13px;
+      box-shadow: var(--shadow);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .25s ease;
+      z-index: 60;
+      max-width: calc(100% - 28px);
+      text-align:center;
+    }
+    .toast.show{ opacity:1; }
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      text-align:center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 16px 0 0;
+    }
+    .footLinks{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .footLinks a{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <header class="topbar">
+
+    <!-- TOPO -->
+    <div class="topbar">
       <div class="brand">
-        <div class="logo" title="Logo">
-          <img src="logo.png" alt="Logo Espetinho Sousa" onerror="this.style.display='none';" />
+        <div class="logo">
+          <!-- Seu logo já está no GitHub como logo.png -->
+          <img src="logo.png" alt="Logo Espetinho Sousa">
         </div>
-        <div class="title">
+        <div class="brandText">
           <h1>Espetinho Sousa</h1>
           <p>Fogo, sabor e capricho • Delivery</p>
         </div>
       </div>
-      <button class="btn ghost" onclick="scrollToId('finalizar')">Finalizar</button>
-    </header>
+      <button class="btn ghost" onclick="scrollToId('pedido')">Finalizar</button>
+    </div>
 
+    <!-- HERO -->
     <div class="hero">
       <h2>O melhor espeto da região!</h2>
       <p>Feito na brasa, sabor de verdade. Monte seu pedido e pague pelo site.</p>
+    </div>
 
-      <div class="hoursWrap" id="horarios">
-        <div class="hoursTop">
-          <div class="badge">
-            <span class="statusDot"></span>
-            <b>Horário de funcionamento</b>
+    <!-- ESPETOS -->
+    <div class="section">
+      <h3>Espetos</h3>
+      <p class="hint">Escolha seus espetos e ajuste a quantidade.</p>
+
+      <div class="card">
+        <div class="list" id="espetosList"></div>
+      </div>
+    </div>
+
+    <!-- COMBOS -->
+    <div class="section">
+      <h3>Combos</h3>
+      <p class="hint">Nos combos, informe na observação qual espeto deseja quando aplicável.</p>
+
+      <div class="card">
+        <div class="list" id="combosList"></div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="grid">
+          <div class="pill">
+            <p class="t">Exemplo</p>
+            <p class="v" style="font-size:14px;color:var(--text);font-weight:800;margin-top:8px">
+              “Combo Prata: quero espeto de carne”.
+            </p>
           </div>
-          <div class="badge">
-            Região: <b>Capão Redondo • Zona Sul</b>
-          </div>
-        </div>
-        <div class="hoursList">
-          <div><span>Quinta a Sábado:</span> 19h às 01h</div>
-          <div><span>Domingo:</span> 14h às 18h</div>
-        </div>
-        <div class="noteWarn">
-          <b>Modo teste:</b> pagamento liberado sem bloqueio de horário (você pediu pra testar).
         </div>
       </div>
     </div>
 
-    <section>
-      <h3 class="secTitle">Espetos</h3>
-      <p class="secSub">Escolha seus espetos e ajuste a quantidade.</p>
-      <div class="grid" id="listEspetos"></div>
-    </section>
+    <!-- ACOMPANHAMENTOS -->
+    <div class="section">
+      <h3>Acompanhamentos</h3>
+      <p class="hint">Adicione acompanhamentos ao seu pedido.</p>
 
-    <section>
-      <h3 class="secTitle">Combos</h3>
-      <p class="secSub">Nos combos, informe na observação qual espeto deseja quando aplicável.</p>
-      <div class="card" style="margin-top:12px;">
-        <b>Exemplo:</b> “Combo Prata: quero espeto de carne”.
+      <div class="card">
+        <div class="list" id="addonsList"></div>
       </div>
-      <div class="grid" id="listCombos"></div>
-    </section>
+    </div>
 
-    <section>
-      <h3 class="secTitle">Acompanhamentos</h3>
-      <p class="secSub">Adicione acompanhamentos ao seu pedido.</p>
-      <div class="grid" id="listAcomp"></div>
-    </section>
+    <!-- BEBIDAS -->
+    <div class="section">
+      <h3>Bebidas</h3>
+      <p class="hint">Refrigerantes 350ml e sucos naturais.</p>
 
-    <section>
-      <h3 class="secTitle">Bebidas</h3>
-      <p class="secSub">Refrigerantes 350ml e sucos naturais.</p>
-      <div class="grid" id="listBebidas"></div>
-    </section>
-
-    <section id="finalizar">
-      <h3 class="secTitle">Finalizar</h3>
-      <p class="secSub">Preencha seus dados. O frete aparece automaticamente após o CEP válido.</p>
-
-      <div class="checkout">
-        <div class="fieldGrid">
-          <div>
-            <label>Seu nome (obrigatório)</label>
-            <input id="nome" placeholder="Ex: Ingrid" />
-          </div>
-          <div>
-            <label>Telefone (obrigatório)</label>
-            <input id="telefone" placeholder="Ex: (11) 99999-9999" inputmode="tel" />
-          </div>
-        </div>
-
-        <div class="fieldGrid">
-          <div>
-            <label>CEP (obrigatório)</label>
-            <input id="cep" placeholder="Ex: 00000-000" inputmode="numeric" />
-          </div>
-          <div>
-            <label>Rua</label>
-            <input id="rua" placeholder="Será preenchido pelo CEP" />
-          </div>
-        </div>
-
-        <div class="fieldGrid">
-          <div>
-            <label>Número (obrigatório)</label>
-            <input id="numero" placeholder="Ex: 123" inputmode="numeric" />
-          </div>
-          <div>
-            <label>Complemento</label>
-            <input id="complemento" placeholder="Ex: Apto 12 / Casa 2" />
-          </div>
-        </div>
-
-        <div class="fieldGrid">
-          <div>
-            <label>Bairro</label>
-            <input id="bairro" placeholder="Será preenchido pelo CEP" />
-          </div>
-          <div>
-            <label>Cidade/UF</label>
-            <input id="cidadeUf" placeholder="Será preenchido pelo CEP" />
-          </div>
-        </div>
-
-        <!-- DELIVERY (aparece só com CEP válido) -->
-        <div class="deliveryBox" id="deliveryBox">
-          <b style="color:var(--text);">Delivery</b>
-          <div style="margin-top:6px;color:var(--muted);font-size:12.8px;line-height:1.35;">
-            O frete é calculado automaticamente pelo bairro retornado no CEP (ou pelo bairro que você digitar).
-          </div>
-
-          <div class="totals">
-            <div class="pill">
-              <small>Subtotal</small>
-              <b id="subtotalTxt">R$ 0,00</b>
-            </div>
-            <div class="pill">
-              <small>Entrega</small>
-              <b id="freteTxt">R$ 0,00</b>
-            </div>
-            <div class="pill total">
-              <small>Total</small>
-              <b id="totalTxt">R$ 0,00</b>
-            </div>
-          </div>
-        </div>
-
-        <div class="payWrap">
-          <label>Forma de pagamento (obrigatório)</label>
-          <select id="pagamento">
-            <option value="">Selecione...</option>
-            <option value="PIX">PIX</option>
-            <option value="CARTAO">Cartão (débito/crédito)</option>
-          </select>
-
-          <div class="cards" aria-label="Bandeiras aceitas">
-            <span class="cardPill">VISA</span>
-            <span class="cardPill">MASTER</span>
-            <span class="cardPill">ELO</span>
-            <span class="cardPill">HIPERCARD</span>
-          </div>
-        </div>
-
-        <div style="margin-top:12px;">
-          <label>Observações do pedido (obrigatório)</label>
-          <textarea id="obsPedido" placeholder="Ex.: Combo Prata: quero espeto de carne."></textarea>
-          <div style="margin-top:6px; color:var(--muted); font-size:12.5px; line-height:1.35;">
-            Use este campo para escolhas do combo e preferências (ex.: “farofa sem calabresa”).
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn ghost" onclick="resetAll()">Limpar</button>
-          <button class="btn ghost" onclick="scrollToId('avaliacoes')">Avaliar</button>
-          <button class="btn" id="btnPagar" onclick="pagarMercadoPago()">Pagar com Mercado Pago</button>
-        </div>
-
-        <div style="margin-top:10px; color:var(--muted); font-size:12.5px; line-height:1.35;">
-          Ao clicar em “Pagar com Mercado Pago”, você será redirecionado para uma página segura de pagamento.
-        </div>
+      <div class="card">
+        <div class="list" id="drinksList"></div>
       </div>
-    </section>
+    </div>
 
-    <section id="avaliacoes">
-      <h3 class="secTitle">Avaliações</h3>
-      <p class="secSub">Deixe sua nota e comentário.</p>
+    <!-- PEDIDO / DELIVERY -->
+    <div class="section" id="pedido">
+      <h3>Finalizar</h3>
+      <p class="hint">Preencha seus dados para calcular o frete e concluir o pagamento.</p>
 
-      <div class="commentBox">
-        <div class="split2">
-          <div>
-            <label>Seu nome</label>
-            <input id="cNome" placeholder="Ex: Maria" />
+      <div class="card">
+        <div class="grid">
+
+          <div class="grid2">
+            <div>
+              <label>Seu nome (obrigatório)</label>
+              <input id="nome" placeholder="Ex: Maria" autocomplete="name">
+            </div>
+            <div>
+              <label>Telefone (obrigatório)</label>
+              <input id="telefone" placeholder="Ex: 11 99999-9999" inputmode="tel" autocomplete="tel">
+            </div>
           </div>
+
+          <div class="grid3">
+            <div>
+              <label>CEP (obrigatório)</label>
+              <input id="cep" placeholder="Ex: 05700-000" inputmode="numeric" autocomplete="postal-code">
+              <p class="smallHint" id="cepHint"></p>
+            </div>
+            <div>
+              <label>Bairro</label>
+              <input id="bairro" placeholder="(preenchido pelo CEP)" autocomplete="address-level3" disabled>
+            </div>
+            <div>
+              <label>Cidade/UF</label>
+              <input id="cidade" placeholder="(preenchido pelo CEP)" autocomplete="address-level2" disabled>
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div>
+              <label>Rua / Avenida (obrigatório)</label>
+              <input id="rua" placeholder="(preenchido pelo CEP)" autocomplete="address-line1">
+            </div>
+            <div>
+              <label>Número (obrigatório)</label>
+              <input id="numero" placeholder="Ex: 123" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div>
+              <label>Complemento</label>
+              <input id="complemento" placeholder="Ex: Apto 12">
+            </div>
+            <div>
+              <label>Referência</label>
+              <input id="referencia" placeholder="Ex: Perto do mercado">
+            </div>
+          </div>
+
           <div>
-            <label>Nota (1 a 5)</label>
-            <select id="cNota">
-              <option value="5">5 - Excelente</option>
-              <option value="4">4 - Muito bom</option>
-              <option value="3">3 - Bom</option>
-              <option value="2">2 - Regular</option>
-              <option value="1">1 - Ruim</option>
+            <label>Forma de pagamento (obrigatório)</label>
+            <select id="pagamento">
+              <option value="">Selecione…</option>
+              <option value="PIX">PIX</option>
+              <option value="CARTAO">Cartão (débito/crédito)</option>
             </select>
+
+            <div class="chips" aria-label="Bandeiras aceitas">
+              <span class="chip">VISA</span>
+              <span class="chip">MASTER</span>
+              <span class="chip">ELO</span>
+              <span class="chip">HIPERCARD</span>
+            </div>
           </div>
-        </div>
 
-        <div style="margin-top:10px;">
-          <label>Comentário</label>
-          <textarea id="cTexto" placeholder="Conte como foi sua experiência..."></textarea>
-        </div>
+          <div>
+            <label>Observações do pedido (obrigatório)</label>
+            <textarea id="obsPedido" placeholder='Ex.: "Combo Prata: quero espeto de carne"'></textarea>
+            <p class="smallHint">Use este campo para escolhas do combo e preferências (ex.: “farofa sem calabresa”).</p>
+          </div>
 
-        <div class="actions" style="margin-top:10px;">
-          <button class="btn ghost" onclick="clearComments()">Apagar comentários</button>
-          <button class="btn" onclick="addComment()">Enviar comentário</button>
-        </div>
+          <div class="summary">
+            <div class="pill">
+              <p class="t">Subtotal</p>
+              <p class="v" id="subtotal">R$ 0,00</p>
+            </div>
+            <div class="pill">
+              <p class="t">Entrega</p>
+              <p class="v" id="frete">R$ 0,00</p>
+            </div>
+            <div class="pill" style="grid-column: 1 / -1;">
+              <p class="t">Total</p>
+              <p class="v" id="total">R$ 0,00</p>
+            </div>
+          </div>
 
-        <div id="commentsList" class="commentsList"></div>
-        <p style="margin:10px 0 0; color:var(--muted); font-size:12.5px;">
-          Esses comentários ficam salvos neste navegador/celular (não é um banco online).
-        </p>
+          <div class="actions">
+            <button class="btn ghost" onclick="resetAll()">Limpar</button>
+            <button class="btn ghost" onclick="scrollToId('avaliacoes')">Avaliar</button>
+            <button class="btn" id="payBtn" onclick="payMercadoPago()">Pagar com Mercado Pago</button>
+          </div>
+
+          <p class="smallHint">
+            Ao clicar em <b>“Pagar com Mercado Pago”</b>, você será redirecionado para uma página segura de pagamento.
+          </p>
+
+        </div>
       </div>
-    </section>
+    </div>
 
+    <!-- AVALIAÇÕES -->
+    <div class="section" id="avaliacoes">
+      <h3>Avaliações</h3>
+      <p class="hint">Deixe sua nota e comentário.</p>
+
+      <div class="card">
+        <div class="grid">
+
+          <div class="grid2">
+            <div>
+              <label>Seu nome</label>
+              <input id="cNome" placeholder="Ex: Maria">
+            </div>
+            <div>
+              <label>Nota (1 a 5)</label>
+              <select id="cNota">
+                <option value="5">5 - Excelente</option>
+                <option value="4">4 - Muito bom</option>
+                <option value="3">3 - Bom</option>
+                <option value="2">2 - Regular</option>
+                <option value="1">1 - Ruim</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label>Comentário</label>
+            <textarea id="cTexto" placeholder="Conte como foi sua experiência..."></textarea>
+          </div>
+
+          <div class="actions" style="padding:0">
+            <button class="btn ghost" onclick="clearComments()">Apagar comentários</button>
+            <button class="btn" onclick="addComment()">Enviar comentário</button>
+          </div>
+
+          <div id="commentsList"></div>
+          <p class="smallHint">Esses comentários ficam salvos neste navegador/celular (não é um banco online).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RODAPÉ -->
     <footer>
-      <div class="footRow">
-        <div>
-          <b style="color:var(--text);">Espetinho Sousa</b><br/>
-          <span>Capão Redondo • Zona Sul</span>
-        </div>
-        <div class="footLinks">
-          <a class="footBtn" id="linkWhats" href="#" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="footBtn" id="linkInsta" href="#" target="_blank" rel="noopener">Instagram</a>
-        </div>
+      <div>Espetinho Sousa • Capão Redondo (Zona Sul)</div>
+      <div class="footLinks">
+        <a href="https://wa.me/5511968363952" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://instagram.com/espetinhos.sousa" target="_blank" rel="noopener">Instagram</a>
       </div>
     </footer>
+
   </div>
 
-  <button class="floating" onclick="scrollToId('finalizar')">Finalizar</button>
+  <button class="floating" onclick="scrollToId('pedido')">Finalizar</button>
+  <div class="toast" id="toast"></div>
 
-  <script>
-    /**********************
-     * CONFIGURAÇÕES
-     **********************/
-    // ✅ SUA URL DO BACKEND (já preenchida)
-    const BACKEND_URL = "https://backend-mercadopago-zyg6.onrender.com";
+<script>
+/* ==========================
+   CONFIGURAÇÕES IMPORTANTES
+========================== */
 
-    // ✅ Seu WhatsApp (somente números: 55 + DDD + número)
-    const WHATSAPP_NUMBER = "5511968363952";
+// ✅ Seu backend Mercado Pago
+const BACKEND_URL = "https://backend-mercadopago-zyg6.onrender.com";
 
-    // ✅ Instagram
-    const INSTAGRAM_USER = "espetinhos.sousa";
+// ✅ WhatsApp e Instagram (só no rodapé – já deixei lá)
+const WHATSAPP_NUMBER = "5511968363952";
+const INSTAGRAM = "espetinhos.sousa";
 
-    // ✅ Tabela de frete por bairro (edite como quiser)
-    const FRETE_POR_BAIRRO = [
-      { match: ["capão redondo", "capao redondo"], valor: 5.00 },
-      { match: ["campo limpo"], valor: 6.00 },
-      { match: ["jardim ângela", "jardim angela"], valor: 7.00 },
-      { match: ["vila das belezas"], valor: 6.00 },
-      { match: ["jardim são luís", "jardim sao luis"], valor: 7.00 },
-    ];
-    const FRETE_PADRAO = 8.00;
+// ✅ Regras de frete por bairro (VOCÊ EDITA AQUI)
+// - O CEP puxa o bairro pelo ViaCEP e aplica o valor.
+// - Se não encontrar o bairro, usa FRETE_PADRAO.
+const FRETE_PADRAO = 10;
 
-    // ✅ Produtos
-    const ESPETOS = [
-      { id:"carne",  nome:"Brasa Clássico (carne)", desc:"Espeto de carne.", preco: 10.00 },
-      { id:"frango", nome:"Sabor do Fogo (frango)", desc:"Espeto de frango.", preco: 10.00 },
-      { id:"ling",   nome:"Sabor Intenso (linguiça)", desc:"Espeto de linguiça.", preco: 10.00 },
-      { id:"misto",  nome:"Espeto Supremo (misto)", desc:"Mais completo, ideal pra quem quer capricho.", preco: 12.00 },
-    ];
+// Coloque aqui os bairros que você atende + valor de frete
+// (sugestão inicial – ajuste como quiser)
+const FRETE_POR_BAIRRO = {
+  "capão redondo": 5,
+  "campo limpo": 8,
+  "jardim ângela": 9,
+  "jardim sao luiz": 8,
+  "vila andrade": 10
+};
 
-    const COMBOS = [
-      { id:"combo_bronze", nome:"Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne, frango ou linguiça).", preco: 13.00 },
-      { id:"combo_prata",  nome:"Combo Prata Sabor", desc:"Arroz tradicional + vinagrete da casa + 1 espeto (qualquer opção do cardápio).", preco: 16.00 },
-      { id:"combo_ouro",   nome:"Combo Ouro na Brasa", desc:"Arroz tradicional + vinagrete da casa + farofa + 1 espeto (qualquer opção do cardápio).", preco: 20.00 },
-    ];
+/* ==========================
+   CARDÁPIO
+========================== */
 
-    const ACOMP = [
-      { id:"arroz", nome:"Arroz Tradicional", desc:"Arroz branco soltinho, temperado com alho e sal, preparado com carinho.", preco: 7.00 },
-      { id:"vina",  nome:"Vinagrete da Casa", desc:"Vinagrete fresca com tomate, cebola e repolho, bem temperado.", preco: 7.00 },
-      { id:"farofa",nome:"Farofa Caseira", desc:"Farofa bem douradinha, preparada com calabresa defumada e bacon.", preco: 4.00 },
-      { id:"paoalho",nome:"Pão de Alho", desc:"Cremoso caseiro, feito com pão francês e ingredientes especiais.", preco: 8.00 },
-      { id:"maio",  nome:"Maionese Especial", desc:"Maionese verde cremosa, perfeita para acompanhar seu pedido.", preco: 5.00 },
-    ];
+const itens = [
+  // ESPETOS
+  { id:"carne", sec:"espetos", nome:"Brasa Clássico (carne)", desc:"Espeto de carne.", preco: 10.00 },
+  { id:"frango", sec:"espetos", nome:"Sabor do Fogo (frango)", desc:"Espeto de frango.", preco: 10.00 },
+  { id:"linguica", sec:"espetos", nome:"Sabor Intenso (linguiça)", desc:"Espeto de linguiça.", preco: 10.00 },
+  { id:"misto", sec:"espetos", nome:"Espeto Supremo (misto)", desc:"Mais completo, ideal pra quem quer capricho.", preco: 12.00 },
 
-    const BEBIDAS = [
-      { id:"coca", nome:"Coca-Cola 350ml", desc:"Geladinha.", preco: 6.00 },
-      { id:"pepsi", nome:"Pepsi 350ml", desc:"Geladinha.", preco: 6.00 },
-      { id:"guarana", nome:"Guaraná Antarctica 350ml", desc:"Geladinha.", preco: 6.00 },
-      { id:"ituba", nome:"Itubaína 350ml", desc:"Geladinha.", preco: 6.00 },
-      { id:"suco300_abacaxi", nome:"Suco natural 300ml (abacaxi com hortelã)", desc:"Feito na hora.", preco: 9.00 },
-      { id:"suco300_maracuja", nome:"Suco natural 300ml (maracujá)", desc:"Feito na hora.", preco: 9.00 },
-      { id:"suco300_laranja", nome:"Suco natural 300ml (laranja)", desc:"Feito na hora.", preco: 9.00 },
-      { id:"suco300_goiaba", nome:"Suco natural 300ml (goiaba)", desc:"Feito na hora.", preco: 9.00 },
-      { id:"suco500_abacaxi", nome:"Suco natural 500ml (abacaxi com hortelã)", desc:"Feito na hora.", preco: 13.00 },
-      { id:"suco500_maracuja", nome:"Suco natural 500ml (maracujá)", desc:"Feito na hora.", preco: 13.00 },
-      { id:"suco500_laranja", nome:"Suco natural 500ml (laranja)", desc:"Feito na hora.", preco: 13.00 },
-      { id:"suco500_goiaba", nome:"Suco natural 500ml (goiaba)", desc:"Feito na hora.", preco: 13.00 },
-    ];
+  // COMBOS
+  { id:"combo_bronze", sec:"combos", nome:"Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne, frango ou linguiça).", preco: 13.00 },
+  { id:"combo_prata", sec:"combos", nome:"Combo Prata Sabor", desc:"Arroz tradicional + vinagrete da casa + 1 espeto (qualquer opção do cardápio).", preco: 16.00 },
+  { id:"combo_ouro", sec:"combos", nome:"Combo Ouro na Brasa", desc:"Arroz tradicional + vinagrete da casa + farofa + 1 espeto (qualquer opção do cardápio).", preco: 20.00 },
 
-    /**********************
-     * ESTADO / HELPERS
-     **********************/
-    const money = v => (v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-    const qty = {};
-    const ALL = [...ESPETOS, ...COMBOS, ...ACOMP, ...BEBIDAS];
-    ALL.forEach(i => qty[i.id] = 0);
+  // ACOMPANHAMENTOS
+  { id:"arroz", sec:"addons", nome:"Arroz Tradicional", desc:"Arroz branco soltinho, temperado com alho e sal, preparado com carinho.", preco: 7.00 },
+  { id:"vinagrete", sec:"addons", nome:"Vinagrete da Casa", desc:"Vinagrete fresca com tomate, cebola e repolho, bem temperado.", preco: 7.00 },
+  { id:"farofa", sec:"addons", nome:"Farofa Caseira", desc:"Farofa bem douradinha, preparada com calabresa defumada e bacon.", preco: 4.00 },
+  { id:"pao_alho", sec:"addons", nome:"Pão de Alho", desc:"Cremoso caseiro, feito com pão francês e ingredientes especiais.", preco: 8.00 },
+  { id:"maionese", sec:"addons", nome:"Maionese Especial", desc:"Maionese verde cremosa, perfeita para acompanhar seu pedido.", preco: 5.00 },
 
-    let freteAtual = 0;
-    let cepValido = false;
+  // BEBIDAS
+  { id:"coca", sec:"drinks", nome:"Coca-Cola 350ml", desc:"Lata 350ml.", preco: 6.00 },
+  { id:"pepsi", sec:"drinks", nome:"Pepsi 350ml", desc:"Lata 350ml.", preco: 6.00 },
+  { id:"guarana", sec:"drinks", nome:"Guaraná Antarctica 350ml", desc:"Lata 350ml.", preco: 6.00 },
+  { id:"itubaina", sec:"drinks", nome:"Itubaína 350ml", desc:"Lata 350ml.", preco: 6.00 },
 
-    function scrollToId(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.scrollIntoView({behavior:"smooth", block:"start"});
-    }
+  { id:"suco300", sec:"drinks", nome:"Suco Natural 300ml", desc:"Abacaxi com hortelã, maracujá, laranja ou goiaba.", preco: 9.00 },
+  { id:"suco500", sec:"drinks", nome:"Suco Natural 500ml", desc:"Abacaxi com hortelã, maracujá, laranja ou goiaba.", preco: 13.00 },
+];
 
-    function renderCard(item){
-      const q = qty[item.id] || 0;
-      const mini = q * item.preco;
-      return `
-        <div class="card" data-id="${item.id}">
-          <div class="rowTop">
-            <div style="min-width:0;">
-              <p class="itemName">${item.nome}</p>
-              <p class="itemDesc">${item.desc}</p>
-            </div>
-            <div class="price">${money(item.preco)}</div>
-          </div>
+/* ==========================
+   ESTADO
+========================== */
 
-          <div class="qtyRow">
-            <div class="qtyCtrl">
-              <button class="qbtn" onclick="dec('${item.id}')">−</button>
-              <div class="qval" id="q_${item.id}">${q}</div>
-              <button class="qbtn" onclick="inc('${item.id}')">+</button>
-            </div>
-            <div class="miniTotal">
-              <div>Parcial</div>
-              <b id="m_${item.id}">${money(mini)}</b>
-            </div>
-          </div>
-        </div>
-      `;
-    }
+const qty = {};
+itens.forEach(i => qty[i.id] = 0);
 
-    function renderAll(){
-      document.getElementById("listEspetos").innerHTML = ESPETOS.map(renderCard).join("");
-      document.getElementById("listCombos").innerHTML  = COMBOS.map(renderCard).join("");
-      document.getElementById("listAcomp").innerHTML   = ACOMP.map(renderCard).join("");
-      document.getElementById("listBebidas").innerHTML = BEBIDAS.map(renderCard).join("");
+let freteValor = 0;
+let enderecoData = {};
+
+/* ==========================
+   HELPERS UI
+========================== */
+
+const money = (v) => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+
+function toast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  setTimeout(()=> el.classList.remove("show"), 2200);
+}
+
+function scrollToId(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.scrollIntoView({ behavior:"smooth", block:"start" });
+}
+
+/* ==========================
+   RENDER LISTAS
+========================== */
+
+function itemCard(i){
+  const div = document.createElement("div");
+  div.className = "item";
+  div.innerHTML = `
+    <div class="itemTop">
+      <div style="min-width:0">
+        <p class="itemName">${i.nome}</p>
+        <p class="itemDesc">${i.desc}</p>
+      </div>
+      <div class="price">${money(i.preco)}</div>
+    </div>
+
+    <div class="qtyRow">
+      <button class="qtyBtn" aria-label="diminuir" onclick="decQty('${i.id}')">-</button>
+      <div class="qtyVal" id="q_${i.id}">0</div>
+      <button class="qtyBtn" aria-label="aumentar" onclick="incQty('${i.id}')">+</button>
+    </div>
+  `;
+  return div;
+}
+
+function renderAll(){
+  const espetosList = document.getElementById("espetosList");
+  const combosList = document.getElementById("combosList");
+  const addonsList = document.getElementById("addonsList");
+  const drinksList = document.getElementById("drinksList");
+
+  espetosList.innerHTML = "";
+  combosList.innerHTML = "";
+  addonsList.innerHTML = "";
+  drinksList.innerHTML = "";
+
+  itens.forEach(i=>{
+    const card = itemCard(i);
+    if(i.sec === "espetos") espetosList.appendChild(card);
+    if(i.sec === "combos") combosList.appendChild(card);
+    if(i.sec === "addons") addonsList.appendChild(card);
+    if(i.sec === "drinks") drinksList.appendChild(card);
+  });
+
+  updateTotals();
+}
+
+function incQty(id){
+  qty[id] = (qty[id] || 0) + 1;
+  document.getElementById("q_"+id).textContent = qty[id];
+  updateTotals();
+}
+function decQty(id){
+  qty[id] = Math.max(0, (qty[id] || 0) - 1);
+  document.getElementById("q_"+id).textContent = qty[id];
+  updateTotals();
+}
+
+/* ==========================
+   TOTAIS
+========================== */
+
+function calcSubtotal(){
+  let s = 0;
+  itens.forEach(i => s += (qty[i.id] || 0) * i.preco);
+  return s;
+}
+
+function updateTotals(){
+  const sub = calcSubtotal();
+  const tot = sub + (freteValor || 0);
+
+  document.getElementById("subtotal").textContent = money(sub);
+  document.getElementById("frete").textContent = money(freteValor || 0);
+  document.getElementById("total").textContent = money(tot);
+
+  // Habilita pagar somente se tiver algo no carrinho
+  document.getElementById("payBtn").disabled = (sub <= 0);
+}
+
+/* ==========================
+   CEP (ViaCEP) + FRETE
+========================== */
+
+function normalize(s){
+  return (s || "").toLowerCase()
+    .replaceAll("á","a").replaceAll("à","a").replaceAll("ã","a").replaceAll("â","a")
+    .replaceAll("é","e").replaceAll("ê","e")
+    .replaceAll("í","i")
+    .replaceAll("ó","o").replaceAll("ô","o").replaceAll("õ","o")
+    .replaceAll("ú","u")
+    .replaceAll("ç","c")
+    .trim();
+}
+
+function findFrete(bairro){
+  const key = normalize(bairro);
+  // tenta match exato
+  if(FRETE_POR_BAIRRO[key] != null) return FRETE_POR_BAIRRO[key];
+
+  // tenta match "contém"
+  for(const k of Object.keys(FRETE_POR_BAIRRO)){
+    if(key.includes(k)) return FRETE_POR_BAIRRO[k];
+  }
+  return FRETE_PADRAO;
+}
+
+async function buscarCEP(){
+  const cepEl = document.getElementById("cep");
+  let cep = (cepEl.value || "").replace(/\D/g,"");
+  const hint = document.getElementById("cepHint");
+  hint.textContent = "";
+
+  if(cep.length !== 8){
+    hint.textContent = "Digite um CEP válido (8 números).";
+    freteValor = 0;
+    updateTotals();
+    return;
+  }
+
+  try{
+    hint.textContent = "Buscando CEP...";
+    const r = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const d = await r.json();
+
+    if(d.erro){
+      hint.textContent = "CEP não encontrado.";
+      freteValor = 0;
       updateTotals();
+      return;
     }
 
-    function inc(id){
-      qty[id] = (qty[id]||0) + 1;
-      updateItem(id);
-    }
-    function dec(id){
-      qty[id] = Math.max(0, (qty[id]||0) - 1);
-      updateItem(id);
-    }
-    function updateItem(id){
-      const item = ALL.find(x => x.id === id);
-      if(!item) return;
-      const qEl = document.getElementById("q_"+id);
-      const mEl = document.getElementById("m_"+id);
-      if(qEl) qEl.textContent = qty[id];
-      if(mEl) mEl.textContent = money((qty[id]||0)*item.preco);
-      updateTotals();
-    }
+    enderecoData = d;
 
-    function calcSubtotal(){
-      let s = 0;
-      for(const it of ALL){
-        s += (qty[it.id]||0) * it.preco;
-      }
-      return s;
-    }
+    document.getElementById("bairro").value = d.bairro || "";
+    document.getElementById("cidade").value = `${d.localidade || ""}/${d.uf || ""}`;
+    document.getElementById("rua").value = d.logradouro || "";
 
-    function updateTotals(){
-      const subtotal = calcSubtotal();
-      document.getElementById("subtotalTxt").textContent = money(subtotal);
-      document.getElementById("freteTxt").textContent = money(freteAtual);
-      document.getElementById("totalTxt").textContent = money(subtotal + freteAtual);
+    freteValor = findFrete(d.bairro || "");
+    hint.textContent = `Frete calculado automaticamente para ${d.bairro || "sua região"}: ${money(freteValor)}.`;
+    updateTotals();
 
-      const dbox = document.getElementById("deliveryBox");
-      if(cepValido){
-        dbox.classList.add("show");
-      }else{
-        dbox.classList.remove("show");
-      }
+  }catch(e){
+    hint.textContent = "Falha ao consultar CEP. Tente novamente.";
+    freteValor = 0;
+    updateTotals();
+  }
+}
 
-      updatePayButtonState();
-    }
+document.addEventListener("DOMContentLoaded", ()=>{
+  renderAll();
+  // ao sair do campo CEP
+  document.getElementById("cep").addEventListener("blur", buscarCEP);
+});
 
-    /**********************
-     * CEP + FRETE
-     **********************/
-    function onlyDigits(s){ return (s||"").replace(/\D+/g,""); }
+/* ==========================
+   VALIDAÇÕES
+========================== */
 
-    async function buscarCep(){
-      const cep = onlyDigits(document.getElementById("cep").value);
-      if(cep.length !== 8){
-        cepValido = false;
-        freteAtual = 0;
-        updateTotals();
-        return;
-      }
+function required(id, label){
+  const el = document.getElementById(id);
+  const v = (el.value || "").trim();
+  if(!v) return `• ${label}`;
+  return null;
+}
 
+function buildOrderText(){
+  const linhas = [];
+  linhas.push("*Espetinho Sousa — Pedido*");
+  linhas.push("");
+
+  // Itens
+  const chosen = itens.filter(i => (qty[i.id]||0) > 0);
+  if(chosen.length === 0) return { ok:false, msg:"Selecione pelo menos 1 item do cardápio." };
+
+  linhas.push("*Itens:*");
+  chosen.forEach(i=>{
+    linhas.push(`- ${qty[i.id]}x ${i.nome} (${money(i.preco)})`);
+  });
+
+  linhas.push("");
+  linhas.push(`*Subtotal:* ${money(calcSubtotal())}`);
+  linhas.push(`*Entrega:* ${money(freteValor||0)}`);
+  linhas.push(`*Total:* ${money(calcSubtotal() + (freteValor||0))}`);
+  linhas.push("");
+
+  // Dados cliente
+  const nome = document.getElementById("nome").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
+  const cep = document.getElementById("cep").value.trim();
+  const rua = document.getElementById("rua").value.trim();
+  const numero = document.getElementById("numero").value.trim();
+  const complemento = document.getElementById("complemento").value.trim();
+  const referencia = document.getElementById("referencia").value.trim();
+  const bairro = document.getElementById("bairro").value.trim();
+
+  linhas.push("*Entrega:*");
+  linhas.push(`Nome: ${nome}`);
+  linhas.push(`Telefone: ${telefone}`);
+  linhas.push(`CEP: ${cep}`);
+  linhas.push(`Endereço: ${rua}, ${numero}`);
+  if(complemento) linhas.push(`Complemento: ${complemento}`);
+  if(bairro) linhas.push(`Bairro: ${bairro}`);
+  if(referencia) linhas.push(`Referência: ${referencia}`);
+  linhas.push("");
+
+  // Pagamento
+  const pag = document.getElementById("pagamento").value;
+  linhas.push(`*Pagamento:* ${pag}`);
+  linhas.push("");
+
+  // Observações
+  const obs = document.getElementById("obsPedido").value.trim();
+  linhas.push(`*Observações:* ${obs}`);
+  linhas.push("");
+  linhas.push("✅ Pode confirmar, por favor?");
+
+  return { ok:true, text: linhas.join("\n") };
+}
+
+function validateForm(){
+  const faltando = [];
+
+  const r1 = required("nome","Seu nome (obrigatório)");
+  if(r1) faltando.push(r1);
+
+  const r2 = required("telefone","Telefone (obrigatório)");
+  if(r2) faltando.push(r2);
+
+  const r3 = required("cep","CEP (obrigatório)");
+  if(r3) faltando.push(r3);
+
+  const r4 = required("rua","Rua/Avenida (obrigatório)");
+  if(r4) faltando.push(r4);
+
+  const r5 = required("numero","Número (obrigatório)");
+  if(r5) faltando.push(r5);
+
+  const r6 = required("pagamento","Forma de pagamento (obrigatório)");
+  if(r6) faltando.push(r6);
+
+  const r7 = required("obsPedido","Observações do pedido (obrigatório)");
+  if(r7) faltando.push(r7);
+
+  // se o CEP foi preenchido mas o frete não calculou, força cálculo
+  const cep = (document.getElementById("cep").value || "").replace(/\D/g,"");
+  if(cep.length === 8 && (!freteValor || freteValor === 0)){
+    // não bloqueia, mas avisa
+    // (se quiser bloquear, eu coloco)
+  }
+
+  return faltando;
+}
+
+/* ==========================
+   MERCADO PAGO (BACKEND)
+========================== */
+
+async function payMercadoPago(){
+  // valida itens
+  if(calcSubtotal() <= 0){
+    toast("Selecione pelo menos 1 item.");
+    return;
+  }
+
+  // valida form
+  const faltando = validateForm();
+  if(faltando.length){
+    alert("Preencha os campos obrigatórios:\n\n" + faltando.join("\n"));
+    return;
+  }
+
+  // garante CEP
+  const cep = (document.getElementById("cep").value || "").replace(/\D/g,"");
+  if(cep.length === 8 && (!enderecoData || !enderecoData.cep)){
+    // tenta buscar cep se ainda não buscou
+    await buscarCEP();
+  }
+
+  const built = buildOrderText();
+  if(!built.ok){
+    alert(built.msg);
+    return;
+  }
+
+  // monta payload pro backend
+  const payload = {
+    amount: Number((calcSubtotal() + (freteValor||0)).toFixed(2)),
+    description: "Pedido Espetinho Sousa",
+    orderText: built.text,
+    customer: {
+      name: document.getElementById("nome").value.trim(),
+      phone: document.getElementById("telefone").value.trim(),
+      cep: document.getElementById("cep").value.trim(),
+      street: document.getElementById("rua").value.trim(),
+      number: document.getElementById("numero").value.trim(),
+      complement: document.getElementById("complemento").value.trim(),
+      reference: document.getElementById("referencia").value.trim(),
+      bairro: document.getElementById("bairro").value.trim(),
+      city: document.getElementById("cidade").value.trim(),
+      payment: document.getElementById("pagamento").value
+    },
+    items: itens
+      .filter(i => (qty[i.id]||0) > 0)
+      .map(i => ({ id:i.id, name:i.nome, unit_price:i.preco, quantity: qty[i.id] })),
+    deliveryFee: freteValor||0
+  };
+
+  try{
+    toast("Gerando pagamento...");
+    document.getElementById("payBtn").disabled = true;
+
+    // endpoints comuns: /create-payment ou /create_preference
+    // Se o seu backend usar outro, me diga o caminho exato.
+    const endpoints = ["/create-payment", "/create_preference", "/create-preference"];
+    let lastErr = null;
+
+    for(const ep of endpoints){
       try{
-        const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-        const data = await res.json();
-        if(data.erro) throw new Error("CEP inválido");
-
-        document.getElementById("rua").value = data.logradouro || "";
-        document.getElementById("bairro").value = data.bairro || "";
-        document.getElementById("cidadeUf").value = `${data.localidade || ""}/${data.uf || ""}`.replace(/^\/|\/$/g,"");
-
-        freteAtual = calcularFretePorBairro(data.bairro || "");
-        cepValido = true;
-        updateTotals();
-      }catch(e){
-        cepValido = false;
-        freteAtual = 0;
-        updateTotals();
-      }
-    }
-
-    function calcularFretePorBairro(bairro){
-      const b = (bairro||"").toLowerCase().trim();
-      if(!b) return FRETE_PADRAO;
-
-      for(const regra of FRETE_POR_BAIRRO){
-        for(const termo of regra.match){
-          if(b.includes((termo||"").toLowerCase())){
-            return Number(regra.valor || 0);
-          }
-        }
-      }
-      return FRETE_PADRAO;
-    }
-
-    /**********************
-     * LINKS
-     **********************/
-    function initLinks(){
-      const w = document.getElementById("linkWhats");
-      const i = document.getElementById("linkInsta");
-      w.href = `https://wa.me/${WHATSAPP_NUMBER}`;
-      i.href = `https://instagram.com/${INSTAGRAM_USER}`;
-    }
-
-    /**********************
-     * PAGAMENTO (SEM BLOQUEIO - TESTE)
-     **********************/
-    function validateCheckout(){
-      const faltando = [];
-      const nome = document.getElementById("nome").value.trim();
-      const tel = document.getElementById("telefone").value.trim();
-      const cep = onlyDigits(document.getElementById("cep").value);
-      const numero = document.getElementById("numero").value.trim();
-      const pagamento = document.getElementById("pagamento").value;
-      const obs = document.getElementById("obsPedido").value.trim();
-
-      if(!nome) faltando.push("Nome");
-      if(!tel) faltando.push("Telefone");
-      if(cep.length !== 8) faltando.push("CEP");
-      if(!numero) faltando.push("Número");
-      if(!pagamento) faltando.push("Forma de pagamento");
-      if(!obs) faltando.push("Observações do pedido");
-      if(calcSubtotal() <= 0) faltando.push("Itens do pedido");
-
-      return { ok: faltando.length === 0, faltando };
-    }
-
-    function updatePayButtonState(){
-      const btn = document.getElementById("btnPagar");
-      const subtotal = calcSubtotal();
-      // ✅ sem bloqueio de horário
-      btn.disabled = !(subtotal > 0);
-    }
-
-    async function pagarMercadoPago(){
-      if(!BACKEND_URL){
-        alert("Falta configurar a URL do backend no código (BACKEND_URL).");
-        return;
-      }
-
-      const v = validateCheckout();
-      if(!v.ok){
-        alert("Campos obrigatórios:\n- " + v.faltando.join("\n- "));
-        return;
-      }
-
-      const items = ALL
-        .filter(i => (qty[i.id]||0) > 0)
-        .map(i => ({
-          id: i.id,
-          title: i.nome,
-          description: i.desc,
-          quantity: qty[i.id],
-          unit_price: i.preco
-        }));
-
-      const payload = {
-        customer: {
-          name: document.getElementById("nome").value.trim(),
-          phone: document.getElementById("telefone").value.trim(),
-        },
-        address: {
-          cep: document.getElementById("cep").value.trim(),
-          street: document.getElementById("rua").value.trim(),
-          number: document.getElementById("numero").value.trim(),
-          complement: document.getElementById("complemento").value.trim(),
-          neighborhood: document.getElementById("bairro").value.trim(),
-          cityUf: document.getElementById("cidadeUf").value.trim(),
-        },
-        payment_method: document.getElementById("pagamento").value, // PIX ou CARTAO
-        notes: document.getElementById("obsPedido").value.trim(),
-        items,
-        shipping: { amount: freteAtual },
-        totals: {
-          subtotal: calcSubtotal(),
-          total: calcSubtotal() + freteAtual
-        }
-      };
-
-      try{
-        const btn = document.getElementById("btnPagar");
-        btn.disabled = true;
-        btn.textContent = "Abrindo pagamento...";
-
-        // Endpoint esperado: /create-preference => { init_point }
-        const res = await fetch(`${BACKEND_URL}/create-preference`, {
-          method: "POST",
-          headers: { "Content-Type":"application/json" },
+        const r = await fetch(BACKEND_URL + ep, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
           body: JSON.stringify(payload)
         });
 
-        if(!res.ok){
-          const t = await res.text().catch(()=> "");
-          throw new Error("Backend respondeu erro. " + t);
+        if(!r.ok){
+          lastErr = await r.text();
+          continue;
         }
 
-        const data = await res.json();
-        if(!data || !data.init_point){
-          throw new Error("Resposta do backend sem init_point.");
+        const data = await r.json();
+
+        // Mercado Pago geralmente retorna init_point
+        const link = data.init_point || data.initPoint || data.url;
+        if(!link){
+          lastErr = JSON.stringify(data);
+          continue;
         }
 
-        window.location.href = data.init_point;
+        window.location.href = link;
+        return;
+
       }catch(e){
-        alert("Não foi possível abrir o pagamento agora.\n\nDetalhe: " + (e.message || e));
-      }finally{
-        const btn = document.getElementById("btnPagar");
-        btn.textContent = "Pagar com Mercado Pago";
-        updatePayButtonState();
+        lastErr = e?.message || String(e);
       }
     }
 
-    /**********************
-     * RESET
-     **********************/
-    function resetAll(){
-      for(const k in qty) qty[k] = 0;
-      ["nome","telefone","cep","rua","numero","complemento","bairro","cidadeUf","obsPedido"].forEach(id=>{
-        const el = document.getElementById(id);
-        if(el) el.value = "";
-      });
-      document.getElementById("pagamento").value = "";
-      freteAtual = 0;
-      cepValido = false;
-      renderAll();
-    }
+    alert("Não consegui abrir o pagamento.\n\nPossível motivo:\n- Seu backend pode estar usando outro endpoint.\n- Ou retornando outro campo.\n\nDetalhe:\n" + (lastErr || "sem detalhe"));
+    document.getElementById("payBtn").disabled = false;
 
-    /**********************
-     * COMENTÁRIOS
-     **********************/
-    const COMMENTS_KEY = "espetinho_sousa_comments_v1";
-    function loadComments(){
-      try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); }
-      catch(e){ return []; }
-    }
-    function saveComments(list){
-      localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
-    }
-    function renderComments(){
-      const list = loadComments();
-      const box = document.getElementById("commentsList");
-      box.innerHTML = "";
-      if(list.length === 0){
-        box.innerHTML = `<div style="color:var(--muted); font-size:13px;">Sem avaliações ainda.</div>`;
-        return;
-      }
-      for(const c of list.slice().reverse()){
-        const stars = "★".repeat(Number(c.rating||5)) + "☆".repeat(5-Number(c.rating||5));
-        const el = document.createElement("div");
-        el.className = "commentItem";
-        el.innerHTML = `
-          <div class="top">
-            <span><b style="color:var(--text);">${escapeHtml(c.name||"Cliente")}</b> • ${escapeHtml(c.date||"")}</span>
-            <span class="stars">${stars}</span>
-          </div>
-          <p>${escapeHtml(c.text||"")}</p>
-        `;
-        box.appendChild(el);
-      }
-    }
-    function addComment(){
-      const name = document.getElementById("cNome").value.trim() || "Cliente";
-      const rating = Number(document.getElementById("cNota").value || 5);
-      const text = document.getElementById("cTexto").value.trim();
-      if(!text){
-        alert("Escreva um comentário antes de enviar.");
-        return;
-      }
-      const list = loadComments();
-      list.push({
-        name,
-        rating,
-        text,
-        date: new Date().toLocaleString("pt-BR")
-      });
-      saveComments(list);
-      document.getElementById("cTexto").value = "";
-      renderComments();
-    }
-    function clearComments(){
-      if(!confirm("Apagar todos os comentários deste navegador/celular?")) return;
-      localStorage.removeItem(COMMENTS_KEY);
-      renderComments();
-    }
-    function escapeHtml(str){
-      return (str||"").replace(/[&<>"']/g, m => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-      }[m]));
-    }
+  }catch(e){
+    alert("Erro ao iniciar pagamento: " + (e?.message || e));
+    document.getElementById("payBtn").disabled = false;
+  }
+}
 
-    /**********************
-     * CEP: máscara + eventos
-     **********************/
-    function maskCep(){
-      const el = document.getElementById("cep");
-      const d = onlyDigits(el.value).slice(0,8);
-      el.value = d.length > 5 ? (d.slice(0,5) + "-" + d.slice(5)) : d;
-    }
+/* ==========================
+   RESET
+========================== */
 
-    document.addEventListener("input", (ev)=>{
-      if(ev.target && ev.target.id === "cep"){
-        maskCep();
-      }
-    });
+function resetAll(){
+  for(const k in qty){ qty[k] = 0; }
+  itens.forEach(i=>{
+    const el = document.getElementById("q_"+i.id);
+    if(el) el.textContent = "0";
+  });
 
-    document.addEventListener("blur", (ev)=>{
-      if(ev.target && ev.target.id === "cep"){
-        buscarCep();
-      }
-      if(ev.target && ev.target.id === "bairro"){
-        freteAtual = calcularFretePorBairro(document.getElementById("bairro").value || "");
-        if(onlyDigits(document.getElementById("cep").value).length === 8){
-          cepValido = true;
-        }
-        updateTotals();
-      }
-    }, true);
+  ["nome","telefone","cep","rua","numero","complemento","referencia","obsPedido"].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.value = "";
+  });
 
-    renderAll();
-    renderComments();
-    initLinks();
-    updatePayButtonState();
-  </script>
+  document.getElementById("bairro").value = "";
+  document.getElementById("cidade").value = "";
+  document.getElementById("pagamento").value = "";
+
+  document.getElementById("cepHint").textContent = "";
+  freteValor = 0;
+  enderecoData = {};
+  updateTotals();
+  toast("Tudo limpo!");
+}
+
+/* ==========================
+   COMENTÁRIOS (localStorage)
+========================== */
+
+const COMMENTS_KEY = "espetinho_sousa_comments_v1";
+
+function loadComments(){
+  try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); }
+  catch{ return []; }
+}
+function saveComments(list){
+  localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
+}
+function renderComments(){
+  const list = loadComments();
+  const box = document.getElementById("commentsList");
+  box.innerHTML = "";
+
+  if(list.length === 0){
+    const p = document.createElement("p");
+    p.className = "smallHint";
+    p.textContent = "Ainda não há avaliações aqui.";
+    box.appendChild(p);
+    return;
+  }
+
+  list.slice().reverse().forEach(c=>{
+    const div = document.createElement("div");
+    div.className = "item";
+    div.style.marginTop = "10px";
+    div.innerHTML = `
+      <div class="itemTop">
+        <div>
+          <p class="itemName">${escapeHtml(c.nome || "Cliente")}</p>
+          <p class="itemDesc">Nota: <b>${c.nota}/5</b></p>
+        </div>
+        <div class="price" style="font-size:13px;color:rgba(255,255,255,.55)">${new Date(c.ts).toLocaleString("pt-BR")}</div>
+      </div>
+      <p class="itemDesc" style="margin-top:10px;font-size:14px;color:rgba(255,255,255,.88)">${escapeHtml(c.texto || "")}</p>
+    `;
+    box.appendChild(div);
+  });
+}
+
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function addComment(){
+  const nome = document.getElementById("cNome").value.trim();
+  const nota = document.getElementById("cNota").value;
+  const texto = document.getElementById("cTexto").value.trim();
+
+  if(!texto){
+    toast("Escreva um comentário.");
+    return;
+  }
+
+  const list = loadComments();
+  list.push({ nome, nota, texto, ts: Date.now() });
+  saveComments(list);
+
+  document.getElementById("cNome").value = "";
+  document.getElementById("cTexto").value = "";
+  document.getElementById("cNota").value = "5";
+
+  renderComments();
+  toast("Comentário enviado!");
+}
+
+function clearComments(){
+  if(!confirm("Apagar todas as avaliações salvas neste celular/navegador?")) return;
+  localStorage.removeItem(COMMENTS_KEY);
+  renderComments();
+  toast("Avaliações apagadas.");
+}
+
+document.addEventListener("DOMContentLoaded", renderComments);
+</script>
 </body>
 </html>
