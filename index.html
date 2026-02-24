@@ -4,27 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Espetinho Sousa</title>
-
   <style>
     :root{
       --bg0:#070707;
       --bg1:#0b0b0b;
+      --card: rgba(18,18,18,.78);
       --stroke: rgba(255,255,255,.10);
       --text:#f4f4f4;
       --muted:#bdbdbd;
       --accent:#ffb100;
       --accent2:#ff7a00;
+      --ok:#31d07a;
+      --danger:#ff6a6a;
       --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --r1:18px;
       --r2:26px;
       --max:980px;
-      --danger:#ff6a6a;
-      --ok:#31d07a;
-      --warn:#ffb100;
     }
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
       background:
         radial-gradient(900px 450px at 20% 0%, rgba(255,177,0,.20), transparent 60%),
@@ -33,22 +33,21 @@
       min-height:100vh;
     }
     a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:16px 14px 90px; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:16px 14px 110px; }
 
     .topbar{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
-      padding:14px;
+      padding:14px 14px;
       border:1px solid var(--stroke);
       background: linear-gradient(180deg, rgba(18,18,18,.88), rgba(10,10,10,.72));
       border-radius: var(--r2);
       box-shadow: var(--shadow);
-      position: sticky; top: 10px; z-index: 10;
+      position:sticky; top:10px; z-index:10;
       backdrop-filter: blur(10px);
     }
     .brand{ display:flex; align-items:center; gap:12px; min-width:0; }
     .logo{
-      width:46px; height:46px; border-radius: 16px;
-      overflow:hidden;
+      width:46px; height:46px; border-radius:16px; overflow:hidden;
       background: radial-gradient(circle at 30% 30%, #ffd36a, #ffb100 55%, #b43a00 100%);
       box-shadow: 0 10px 30px rgba(255,140,0,.25);
       flex:0 0 auto;
@@ -56,203 +55,292 @@
     }
     .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
     .title{ min-width:0; }
-    .title h1{ margin:0; font-size:18px; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .title h1{ margin:0; font-size:18px; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .title p{ margin:2px 0 0; color:var(--muted); font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     .btn{
-      border:none;
-      border-radius: 999px;
-      padding: 12px 14px;
-      font-weight: 900;
+      border:none; border-radius:999px;
+      padding:12px 14px;
+      font-weight:900;
       cursor:pointer;
       color:#111;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       box-shadow: 0 16px 40px rgba(255,140,0,.25);
       user-select:none;
+      white-space:nowrap;
     }
     .btn:active{ transform: translateY(1px); }
     .btn.ghost{
       background: rgba(255,255,255,.06);
-      color: var(--text);
+      color:var(--text);
       border:1px solid var(--stroke);
-      box-shadow: none;
+      box-shadow:none;
+      font-weight:800;
     }
     .btn:disabled{
-      opacity:.55;
+      opacity:.45;
       cursor:not-allowed;
       transform:none;
       box-shadow:none;
-      background: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.8);
-      border:1px solid var(--stroke);
+      filter: grayscale(.4);
     }
 
     .hero{ margin-top:14px; padding:18px 12px 8px; text-align:center; }
-    .hero h2{ margin: 10px 0 8px; font-size: 34px; letter-spacing: -.6px; }
-    .hero p{ margin:0; color: var(--muted); font-size: 16px; line-height:1.45; }
+    .hero h2{ margin:16px 0 10px; font-size:34px; letter-spacing:-.6px; }
+    .hero p{ margin:0; color:var(--muted); font-size:16px; line-height:1.45; }
 
     .hoursWrap{
-      margin: 12px auto 0;
-      max-width: 780px;
+      margin:12px auto 0;
+      max-width:780px;
       border:1px solid var(--stroke);
       background: rgba(18,18,18,.55);
-      border-radius: 18px;
-      padding: 12px 12px;
-      text-align:left;
+      border-radius: var(--r1);
+      padding:12px 12px;
       box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      text-align:left;
     }
-    .hoursTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom: 8px;
-    }
+    .hoursTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
     .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
       border:1px solid var(--stroke);
-      font-weight: 1000;
-      font-size: 12px;
-      letter-spacing: .4px;
-      background: rgba(0,0,0,.25);
+      background: rgba(255,255,255,.06);
+      color:var(--muted);
+      font-size:12.5px;
+      font-weight:700;
     }
-    .dot{
-      width:10px; height:10px; border-radius: 999px;
-      background: var(--warn);
-      box-shadow: 0 0 0 4px rgba(255,177,0,.12);
-    }
-    .dot.ok{
+    .badge b{ color:var(--text); }
+    .statusDot{
+      width:10px; height:10px; border-radius:50%;
       background: var(--ok);
-      box-shadow: 0 0 0 4px rgba(49,208,122,.12);
+      box-shadow: 0 0 0 3px rgba(49,208,122,.15);
     }
-    .hoursText{
-      color: var(--muted);
-      font-size: 13.5px;
-      line-height: 1.35;
-      margin:0;
+    .hoursList{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:6px;
+      color:var(--muted);
+      font-size:13.5px;
     }
+    .hoursList span{ color:var(--text); font-weight:800; }
+    .noteWarn{
+      margin-top:10px;
+      font-size:12.5px;
+      color:var(--muted);
+      border-top:1px dashed rgba(255,255,255,.12);
+      padding-top:10px;
+      line-height:1.35;
+    }
+    .noteWarn b{ color:var(--text); }
 
-    .sectionTitle{ margin: 28px 4px 10px; font-size: 26px; letter-spacing: -.3px; }
-    .sectionHint{ margin:0 4px 12px; color:var(--muted); font-size: 14px; line-height: 1.35; }
+    section{ margin-top:22px; }
+    .secTitle{ margin:0; font-size:34px; letter-spacing:-.6px; }
+    .secSub{ margin:6px 0 0; color:var(--muted); font-size:15px; }
 
+    .grid{ margin-top:14px; display:grid; grid-template-columns: 1fr; gap:14px; }
     .card{
       border:1px solid var(--stroke);
+      background: rgba(18,18,18,.62);
       border-radius: var(--r2);
-      background: linear-gradient(180deg, rgba(18,18,18,.86), rgba(10,10,10,.70));
       box-shadow: var(--shadow);
-      padding: 14px;
+      padding:16px 16px;
     }
-    .grid{ display:grid; grid-template-columns: 1fr; gap:12px; }
-    @media(min-width: 860px){ .grid{ grid-template-columns: 1fr 1fr; } }
+    .rowTop{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .itemName{ margin:0; font-size:20px; font-weight:900; }
+    .itemDesc{ margin:6px 0 0; color:var(--muted); font-size:14px; line-height:1.35; }
+    .price{ font-size:20px; font-weight:900; color: var(--accent); white-space:nowrap; }
 
-    .item{
-      border:1px solid var(--stroke);
-      border-radius: var(--r2);
-      background: rgba(18,18,18,.58);
-      padding: 14px;
-      display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
+    .qtyRow{
+      margin-top:14px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top:14px;
     }
-    .item h4{ margin:0; font-size:18px; }
-    .item p{ margin:6px 0 0; color:var(--muted); font-size:13.5px; line-height:1.25; }
-    .price{ font-weight: 1000; color: var(--accent); font-size: 18px; white-space:nowrap; margin-left: 10px; }
-
-    .qtyBox{ display:flex; align-items:center; gap:10px; margin-top:10px; }
-    .qtyBtn{
-      width:38px; height:38px; border-radius: 12px;
-      border:1px solid var(--stroke);
-      background: rgba(0,0,0,.25);
-      color: var(--text);
-      font-weight: 1000;
-      cursor:pointer;
-    }
-    .qtyVal{ min-width: 28px; text-align:center; font-weight: 1000; }
-
-    .divider{ height:1px; background: var(--stroke); margin:14px 0; }
-
-    .formGrid{ display:grid; grid-template-columns: 1fr; gap:10px; }
-    @media(min-width: 860px){ .formGrid{ grid-template-columns: 1fr 1fr; } }
-
-    label{ font-size:12px; color:var(--muted); display:block; margin:8px 0 6px; font-weight:800; }
-    input, select, textarea{
-      width:100%; padding: 12px 12px; border-radius: 14px;
-      border:1px solid var(--stroke); background: rgba(0,0,0,.25);
-      color: var(--text); outline:none;
-    }
-    textarea{ min-height: 92px; resize: vertical; }
-
-    .totalsRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end; margin-top: 12px; }
-    .totalBox{
-      border:1px solid var(--stroke);
-      background: rgba(18,18,18,.55);
-      border-radius: 16px;
-      padding: 10px 12px;
-      min-width: 170px;
-      text-align:right;
-    }
-    .totalBox small{ display:block; color:var(--muted); }
-    .totalBox b{ font-size:18px; color: var(--accent); }
-
-    .flags{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
-    .flag{
-      border:1px solid var(--stroke);
-      background: rgba(18,18,18,.55);
+    .qtyCtrl{
+      display:flex; align-items:center; gap:10px;
+      background: rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.10);
       border-radius: 999px;
-      padding: 6px 10px;
-      font-weight: 1000;
-      font-size: 12px;
-      letter-spacing:.5px;
+      padding:10px 10px;
+      min-width: 190px;
+      justify-content:space-between;
     }
-
-    .helper{ margin: 8px 2px 0; color: var(--muted); font-size: 12.5px; line-height:1.35; }
-    .dangerText{ color: var(--danger); font-weight: 900; margin-top: 10px; display:none; white-space: pre-line; }
-
-    .commentItem{
-      border:1px solid var(--stroke);
-      background: rgba(18,18,18,.40);
-      border-radius: 16px;
-      padding: 12px;
-      margin-top:10px;
+    .qbtn{
+      width:42px; height:42px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-size:20px;
+      font-weight:900;
+      cursor:pointer;
+      user-select:none;
     }
-    .commentMeta{
-      display:flex; justify-content:space-between; gap:10px;
-      color:var(--muted); font-size:12px; font-weight:900;
-      margin-bottom:6px;
-    }
-
-    footer{
-      margin-top: 18px;
-      border-top:1px solid var(--stroke);
-      padding: 18px 8px 0;
-      color: var(--muted);
-      font-size: 12.5px;
+    .qbtn:active{ transform: translateY(1px); }
+    .qval{
+      font-size:18px;
+      font-weight:900;
+      min-width: 34px;
       text-align:center;
     }
-    .footerLinks{ display:flex; flex-direction:column; gap:10px; margin-top: 8px; }
-    .footerLinks a{ color: var(--text); font-weight: 900; }
-    .footerLinks a:hover{ text-decoration: underline; }
+    .miniTotal{
+      color:var(--muted);
+      font-size:13px;
+      text-align:right;
+      line-height:1.2;
+    }
+    .miniTotal b{ color:var(--text); }
+
+    .checkout{
+      margin-top:18px;
+      border:1px solid var(--stroke);
+      background: rgba(18,18,18,.62);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow);
+      padding:16px 16px;
+    }
+    .fieldGrid{ display:grid; grid-template-columns: 1fr; gap:12px; margin-top:10px; }
+    label{ display:block; font-size:12.5px; color:var(--muted); font-weight:800; margin-bottom:6px; }
+    input, select, textarea{
+      width:100%;
+      padding:14px 14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.28);
+      color: var(--text);
+      outline:none;
+      font-size:15px;
+    }
+    textarea{ min-height: 90px; resize: vertical; }
+    .split2{ display:grid; grid-template-columns: 1fr; gap:12px; }
+
+    .payWrap{
+      margin-top:12px;
+      border-top:1px dashed rgba(255,255,255,.12);
+      padding-top:12px;
+    }
+    .cards{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;
+    }
+    .cardPill{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.4px;
+    }
+
+    /* Mostra frete/total e “Delivery” só depois do CEP válido */
+    .deliveryBox{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      border-radius: 18px;
+      padding:12px 12px;
+      display:none;
+    }
+    .deliveryBox.show{ display:block; }
+
+    .totals{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .pill{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      border-radius: 18px;
+      padding:12px 12px;
+      text-align:center;
+    }
+    .pill small{ display:block; color:var(--muted); font-size:12px; font-weight:800; }
+    .pill b{ display:block; margin-top:4px; font-size:20px; color: var(--accent); }
+    .pill.total{ grid-column: 1 / -1; }
+
+    .actions{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .commentBox{
+      margin-top:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      border-radius: 18px;
+      padding:14px 14px;
+    }
+    .commentsList{ margin-top:10px; display:grid; gap:10px; }
+    .commentItem{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding:12px 12px;
+    }
+    .commentItem .top{
+      display:flex; justify-content:space-between; gap:10px; align-items:center;
+      color:var(--muted); font-size:12.5px;
+    }
+    .stars{ color: var(--accent); font-weight:900; }
+    .commentItem p{ margin:8px 0 0; color:var(--text); line-height:1.35; }
+
+    footer{
+      margin-top:26px;
+      border:1px solid var(--stroke);
+      background: rgba(18,18,18,.55);
+      border-radius: var(--r2);
+      padding:14px 14px;
+      color: var(--muted);
+      box-shadow: var(--shadow);
+    }
+    .footRow{ display:flex; gap:12px; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+    .footLinks{ display:flex; gap:10px; flex-wrap:wrap; }
+    .footBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight:900;
+      font-size:13px;
+    }
 
     .floating{
-      position:fixed; right:14px; bottom:14px; z-index:20;
-      border:none; padding: 14px 16px; border-radius: 999px;
-      font-weight: 1000;
+      position:fixed;
+      right:16px;
+      bottom:18px;
+      z-index:20;
+      border:none;
+      border-radius:999px;
+      padding:14px 18px;
+      font-weight:900;
+      cursor:pointer;
+      color:#111;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color: #111; cursor:pointer;
-      box-shadow: 0 18px 50px rgba(255,140,0,.30);
+      box-shadow: 0 18px 60px rgba(255,140,0,.30);
+    }
+
+    @media(min-width: 780px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+      .fieldGrid{ grid-template-columns: 1fr 1fr; }
+      .split2{ grid-template-columns: 1fr 1fr; }
+      .hero h2{ font-size:44px; }
     }
   </style>
 </head>
-
 <body>
   <div class="wrap">
-    <div class="topbar">
+    <header class="topbar">
       <div class="brand">
         <div class="logo" title="Logo">
-          <img src="logo.png" alt="Logo Espetinho Sousa" onerror="this.remove()" />
+          <img src="logo.png" alt="Logo Espetinho Sousa" onerror="this.style.display='none';" />
         </div>
         <div class="title">
           <h1>Espetinho Sousa</h1>
@@ -260,539 +348,651 @@
         </div>
       </div>
       <button class="btn ghost" onclick="scrollToId('finalizar')">Finalizar</button>
-    </div>
+    </header>
 
     <div class="hero">
       <h2>O melhor espeto da região!</h2>
       <p>Feito na brasa, sabor de verdade. Monte seu pedido e pague pelo site.</p>
 
-      <!-- HORÁRIO + STATUS -->
-      <div class="hoursWrap" aria-label="Horário de funcionamento">
+      <div class="hoursWrap" id="horarios">
         <div class="hoursTop">
-          <div class="badge" id="statusBadge">
-            <span class="dot" id="statusDot"></span>
-            <span id="statusText">Verificando horário...</span>
+          <div class="badge">
+            <span class="statusDot"></span>
+            <b>Horário de funcionamento</b>
           </div>
-          <div class="badge" title="Horário de funcionamento">
-            🕒 Horário
+          <div class="badge">
+            Região: <b>Capão Redondo • Zona Sul</b>
           </div>
         </div>
-        <p class="hoursText">
-          <b>Quinta a Sábado:</b> 19h às 01h<br/>
-          <b>Domingo:</b> 14h às 18h
-        </p>
-        <p class="helper" id="closedHint" style="margin-top:10px; display:none;">
-          Estamos fechados no momento. O pagamento fica bloqueado fora do horário.
-        </p>
-      </div>
-    </div>
-
-    <h3 class="sectionTitle" id="espetos">Espetos</h3>
-    <p class="sectionHint">Escolha seus espetos e ajuste a quantidade.</p>
-    <div class="card"><div class="grid" id="menuList"></div></div>
-
-    <h3 class="sectionTitle" id="combos">Combos</h3>
-    <p class="sectionHint">Nos combos, informe na observação qual espeto deseja quando aplicável.</p>
-    <div class="card">
-      <div class="grid" id="comboList"></div>
-      <p class="helper"><b>Exemplo:</b> “Combo Prata: quero espeto de carne”.</p>
-    </div>
-
-    <h3 class="sectionTitle" id="acompanhamentos">Acompanhamentos</h3>
-    <p class="sectionHint">Adicione acompanhamentos ao seu pedido.</p>
-    <div class="card"><div class="grid" id="addonsList"></div></div>
-
-    <h3 class="sectionTitle" id="bebidas">Bebidas</h3>
-    <p class="sectionHint">Refrigerantes 350ml e sucos naturais.</p>
-    <div class="card"><div class="grid" id="drinksList"></div></div>
-
-    <!-- DELIVERY por BAIRROS -->
-    <h3 class="sectionTitle" id="delivery">Delivery</h3>
-    <p class="sectionHint">Escolha seu bairro para calcular o frete automaticamente.</p>
-    <div class="card">
-      <div class="formGrid">
-        <div>
-          <label for="bairro">Bairro (obrigatório)</label>
-          <select id="bairro" onchange="updateTotals()">
-            <option value="">Selecione seu bairro...</option>
-
-            <optgroup label="Frete R$ 5,00">
-              <option value="5">Capão Redondo</option>
-              <option value="5">Jardim Ângela</option>
-              <option value="5">Jardim São Luís</option>
-              <option value="5">Jardim Nakamura</option>
-              <option value="5">Parque Santo Antônio</option>
-            </optgroup>
-
-            <optgroup label="Frete R$ 7,00">
-              <option value="7">Campo Limpo</option>
-              <option value="7">Vila das Belezas</option>
-              <option value="7">Pirajussara</option>
-              <option value="7">Jardim Umarizal</option>
-              <option value="7">Jardim Mitsutani</option>
-            </optgroup>
-
-            <optgroup label="Frete R$ 9,00">
-              <option value="9">Morumbi</option>
-              <option value="9">Vila Andrade</option>
-              <option value="9">Santo Amaro</option>
-              <option value="9">Brooklin</option>
-              <option value="9">Chácara Santo Antônio</option>
-            </optgroup>
-          </select>
-          <p class="helper">O valor do frete será somado automaticamente ao total.</p>
+        <div class="hoursList">
+          <div><span>Quinta a Sábado:</span> 19h às 01h</div>
+          <div><span>Domingo:</span> 14h às 18h</div>
         </div>
-
-        <div>
-          <label>Taxa de entrega</label>
-          <div class="totalBox" style="text-align:left">
-            <small>Taxa atual</small>
-            <b id="taxaEntrega">R$ 0,00</b>
-          </div>
+        <div class="noteWarn">
+          <b>Modo teste:</b> pagamento liberado sem bloqueio de horário (você pediu pra testar).
         </div>
       </div>
     </div>
 
-    <h3 class="sectionTitle" id="finalizar">Finalizar Pedido</h3>
-    <p class="sectionHint">Preencha os dados obrigatórios e pague pelo site.</p>
+    <section>
+      <h3 class="secTitle">Espetos</h3>
+      <p class="secSub">Escolha seus espetos e ajuste a quantidade.</p>
+      <div class="grid" id="listEspetos"></div>
+    </section>
 
-    <div class="card">
-      <div class="formGrid">
-        <div>
-          <label for="nome">Seu nome (obrigatório)</label>
-          <input id="nome" placeholder="Ex: Ingrid" />
-        </div>
-        <div>
-          <label for="telefone">Telefone (obrigatório)</label>
-          <input id="telefone" placeholder="Ex: 11 96836-3952" />
-        </div>
-        <div>
-          <label for="endereco">Endereço (obrigatório)</label>
-          <input id="endereco" placeholder="Rua, número" />
-        </div>
-        <div>
-          <label for="referencia">Referência (obrigatório)</label>
-          <input id="referencia" placeholder="Ex: perto da padaria..." />
+    <section>
+      <h3 class="secTitle">Combos</h3>
+      <p class="secSub">Nos combos, informe na observação qual espeto deseja quando aplicável.</p>
+      <div class="card" style="margin-top:12px;">
+        <b>Exemplo:</b> “Combo Prata: quero espeto de carne”.
+      </div>
+      <div class="grid" id="listCombos"></div>
+    </section>
+
+    <section>
+      <h3 class="secTitle">Acompanhamentos</h3>
+      <p class="secSub">Adicione acompanhamentos ao seu pedido.</p>
+      <div class="grid" id="listAcomp"></div>
+    </section>
+
+    <section>
+      <h3 class="secTitle">Bebidas</h3>
+      <p class="secSub">Refrigerantes 350ml e sucos naturais.</p>
+      <div class="grid" id="listBebidas"></div>
+    </section>
+
+    <section id="finalizar">
+      <h3 class="secTitle">Finalizar</h3>
+      <p class="secSub">Preencha seus dados. O frete aparece automaticamente após o CEP válido.</p>
+
+      <div class="checkout">
+        <div class="fieldGrid">
+          <div>
+            <label>Seu nome (obrigatório)</label>
+            <input id="nome" placeholder="Ex: Ingrid" />
+          </div>
+          <div>
+            <label>Telefone (obrigatório)</label>
+            <input id="telefone" placeholder="Ex: (11) 99999-9999" inputmode="tel" />
+          </div>
         </div>
 
-        <div>
-          <label for="pagamento">Forma de pagamento (obrigatório)</label>
+        <div class="fieldGrid">
+          <div>
+            <label>CEP (obrigatório)</label>
+            <input id="cep" placeholder="Ex: 00000-000" inputmode="numeric" />
+          </div>
+          <div>
+            <label>Rua</label>
+            <input id="rua" placeholder="Será preenchido pelo CEP" />
+          </div>
+        </div>
+
+        <div class="fieldGrid">
+          <div>
+            <label>Número (obrigatório)</label>
+            <input id="numero" placeholder="Ex: 123" inputmode="numeric" />
+          </div>
+          <div>
+            <label>Complemento</label>
+            <input id="complemento" placeholder="Ex: Apto 12 / Casa 2" />
+          </div>
+        </div>
+
+        <div class="fieldGrid">
+          <div>
+            <label>Bairro</label>
+            <input id="bairro" placeholder="Será preenchido pelo CEP" />
+          </div>
+          <div>
+            <label>Cidade/UF</label>
+            <input id="cidadeUf" placeholder="Será preenchido pelo CEP" />
+          </div>
+        </div>
+
+        <!-- DELIVERY (aparece só com CEP válido) -->
+        <div class="deliveryBox" id="deliveryBox">
+          <b style="color:var(--text);">Delivery</b>
+          <div style="margin-top:6px;color:var(--muted);font-size:12.8px;line-height:1.35;">
+            O frete é calculado automaticamente pelo bairro retornado no CEP (ou pelo bairro que você digitar).
+          </div>
+
+          <div class="totals">
+            <div class="pill">
+              <small>Subtotal</small>
+              <b id="subtotalTxt">R$ 0,00</b>
+            </div>
+            <div class="pill">
+              <small>Entrega</small>
+              <b id="freteTxt">R$ 0,00</b>
+            </div>
+            <div class="pill total">
+              <small>Total</small>
+              <b id="totalTxt">R$ 0,00</b>
+            </div>
+          </div>
+        </div>
+
+        <div class="payWrap">
+          <label>Forma de pagamento (obrigatório)</label>
           <select id="pagamento">
             <option value="">Selecione...</option>
-            <option value="pix">PIX</option>
-            <option value="cartao">Débito/Crédito</option>
+            <option value="PIX">PIX</option>
+            <option value="CARTAO">Cartão (débito/crédito)</option>
           </select>
-          <div class="flags">
-            <span class="flag">VISA</span>
-            <span class="flag">MASTER</span>
-            <span class="flag">ELO</span>
-            <span class="flag">HIPERCARD</span>
+
+          <div class="cards" aria-label="Bandeiras aceitas">
+            <span class="cardPill">VISA</span>
+            <span class="cardPill">MASTER</span>
+            <span class="cardPill">ELO</span>
+            <span class="cardPill">HIPERCARD</span>
           </div>
         </div>
 
-        <div>
-          <label for="obsPedido">Observações do pedido (obrigatório)</label>
-          <textarea id="obsPedido" placeholder='Ex.: "Combo Prata: quero espeto de carne".'></textarea>
-          <p class="helper">Use este campo para escolhas do combo e preferências (ex.: “farofa sem calabresa”).</p>
+        <div style="margin-top:12px;">
+          <label>Observações do pedido (obrigatório)</label>
+          <textarea id="obsPedido" placeholder="Ex.: Combo Prata: quero espeto de carne."></textarea>
+          <div style="margin-top:6px; color:var(--muted); font-size:12.5px; line-height:1.35;">
+            Use este campo para escolhas do combo e preferências (ex.: “farofa sem calabresa”).
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="resetAll()">Limpar</button>
+          <button class="btn ghost" onclick="scrollToId('avaliacoes')">Avaliar</button>
+          <button class="btn" id="btnPagar" onclick="pagarMercadoPago()">Pagar com Mercado Pago</button>
+        </div>
+
+        <div style="margin-top:10px; color:var(--muted); font-size:12.5px; line-height:1.35;">
+          Ao clicar em “Pagar com Mercado Pago”, você será redirecionado para uma página segura de pagamento.
         </div>
       </div>
+    </section>
 
-      <div class="divider"></div>
+    <section id="avaliacoes">
+      <h3 class="secTitle">Avaliações</h3>
+      <p class="secSub">Deixe sua nota e comentário.</p>
 
-      <div class="totalsRow">
-        <div class="totalBox">
-          <small>Subtotal</small>
-          <b id="subtotalTxt">R$ 0,00</b>
+      <div class="commentBox">
+        <div class="split2">
+          <div>
+            <label>Seu nome</label>
+            <input id="cNome" placeholder="Ex: Maria" />
+          </div>
+          <div>
+            <label>Nota (1 a 5)</label>
+            <select id="cNota">
+              <option value="5">5 - Excelente</option>
+              <option value="4">4 - Muito bom</option>
+              <option value="3">3 - Bom</option>
+              <option value="2">2 - Regular</option>
+              <option value="1">1 - Ruim</option>
+            </select>
+          </div>
         </div>
-        <div class="totalBox">
-          <small>Entrega</small>
-          <b id="deliveryTxt">R$ 0,00</b>
+
+        <div style="margin-top:10px;">
+          <label>Comentário</label>
+          <textarea id="cTexto" placeholder="Conte como foi sua experiência..."></textarea>
         </div>
-        <div class="totalBox">
-          <small>Total</small>
-          <b id="totalTxt">R$ 0,00</b>
+
+        <div class="actions" style="margin-top:10px;">
+          <button class="btn ghost" onclick="clearComments()">Apagar comentários</button>
+          <button class="btn" onclick="addComment()">Enviar comentário</button>
         </div>
+
+        <div id="commentsList" class="commentsList"></div>
+        <p style="margin:10px 0 0; color:var(--muted); font-size:12.5px;">
+          Esses comentários ficam salvos neste navegador/celular (não é um banco online).
+        </p>
       </div>
-
-      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
-        <button class="btn ghost" onclick="resetAll()">Limpar</button>
-        <button class="btn ghost" onclick="scrollToId('avaliacoes')">Avaliar</button>
-        <button class="btn" id="payBtn" onclick="payWithMercadoPago()">Pagar com Mercado Pago</button>
-      </div>
-
-      <p id="mpError" class="dangerText"></p>
-      <p class="helper" id="payHint">Ao clicar em “Pagar com Mercado Pago”, você será redirecionado para uma página segura de pagamento.</p>
-    </div>
-
-    <h3 class="sectionTitle" id="avaliacoes">Avaliações</h3>
-    <p class="sectionHint">Deixe sua nota e comentário.</p>
-
-    <div class="card">
-      <div class="formGrid">
-        <div>
-          <label for="cNome">Seu nome</label>
-          <input id="cNome" placeholder="Ex: Maria" />
-        </div>
-        <div>
-          <label for="cNota">Nota</label>
-          <select id="cNota">
-            <option value="5">5 - Excelente</option>
-            <option value="4">4 - Muito bom</option>
-            <option value="3">3 - Bom</option>
-            <option value="2">2 - Regular</option>
-            <option value="1">1 - Ruim</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label for="cTexto">Comentário</label>
-        <textarea id="cTexto" placeholder="Conte como foi sua experiência..."></textarea>
-      </div>
-
-      <div style="margin-top:10px; display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
-        <button class="btn ghost" onclick="clearComments()">Apagar</button>
-        <button class="btn" onclick="addComment()">Enviar</button>
-      </div>
-
-      <div class="divider"></div>
-      <div id="commentsList"></div>
-      <p class="helper">* Os comentários ficam salvos neste navegador/celular.</p>
-    </div>
+    </section>
 
     <footer>
-      <div class="footerLinks">
-        <a href="https://wa.me/5511968363952" target="_blank" rel="noopener">WhatsApp: (11) 96836-3952</a>
-        <a href="https://instagram.com/espetinhos.sousa" target="_blank" rel="noopener">Instagram: @espetinhos.sousa</a>
+      <div class="footRow">
+        <div>
+          <b style="color:var(--text);">Espetinho Sousa</b><br/>
+          <span>Capão Redondo • Zona Sul</span>
+        </div>
+        <div class="footLinks">
+          <a class="footBtn" id="linkWhats" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="footBtn" id="linkInsta" href="#" target="_blank" rel="noopener">Instagram</a>
+        </div>
       </div>
-      <div style="margin-top:12px">© <span id="year"></span> Espetinho Sousa</div>
     </footer>
   </div>
 
   <button class="floating" onclick="scrollToId('finalizar')">Finalizar</button>
 
   <script>
-    // === CONFIG MERCADO PAGO (backend do Render) ===
+    /**********************
+     * CONFIGURAÇÕES
+     **********************/
+    // ✅ SUA URL DO BACKEND (já preenchida)
     const BACKEND_URL = "https://backend-mercadopago-zyg6.onrender.com";
-    const MP_CREATE_PREF_ENDPOINT = "/create_preference";
 
-    const money = (v) => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
-    const byId = (id) => document.getElementById(id);
+    // ✅ Seu WhatsApp (somente números: 55 + DDD + número)
+    const WHATSAPP_NUMBER = "5511968363952";
 
-    // === ITENS ===
-    const espetos = [
-      { id:"carne",    nome:"Brasa Clássico (carne)",    desc:"Espeto de carne.", preco:10.00 },
-      { id:"linguica", nome:"Sabor Intenso (linguiça)",  desc:"Espeto de linguiça.", preco:10.00 },
-      { id:"frango",   nome:"Frango Dourado (frango)",   desc:"Espeto de frango.", preco:10.00 },
-      { id:"misto",    nome:"Explosão de Sabor (misto)", desc:"Misto especial.", preco:12.00 },
+    // ✅ Instagram
+    const INSTAGRAM_USER = "espetinhos.sousa";
+
+    // ✅ Tabela de frete por bairro (edite como quiser)
+    const FRETE_POR_BAIRRO = [
+      { match: ["capão redondo", "capao redondo"], valor: 5.00 },
+      { match: ["campo limpo"], valor: 6.00 },
+      { match: ["jardim ângela", "jardim angela"], valor: 7.00 },
+      { match: ["vila das belezas"], valor: 6.00 },
+      { match: ["jardim são luís", "jardim sao luis"], valor: 7.00 },
+    ];
+    const FRETE_PADRAO = 8.00;
+
+    // ✅ Produtos
+    const ESPETOS = [
+      { id:"carne",  nome:"Brasa Clássico (carne)", desc:"Espeto de carne.", preco: 10.00 },
+      { id:"frango", nome:"Sabor do Fogo (frango)", desc:"Espeto de frango.", preco: 10.00 },
+      { id:"ling",   nome:"Sabor Intenso (linguiça)", desc:"Espeto de linguiça.", preco: 10.00 },
+      { id:"misto",  nome:"Espeto Supremo (misto)", desc:"Mais completo, ideal pra quem quer capricho.", preco: 12.00 },
     ];
 
-    const combos = [
-      { id:"combo_bronze", nome:"Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne, frango ou linguiça).", preco:13.00 },
-      { id:"combo_prata",  nome:"Combo Prata Sabor", desc:"Arroz tradicional + vinagrete da casa + 1 espeto (qualquer opção do cardápio).", preco:16.00 },
-      { id:"combo_ouro",   nome:"Combo Ouro na Brasa", desc:"Arroz tradicional + vinagrete da casa + farofa + 1 espeto (qualquer opção do cardápio).", preco:20.00 },
+    const COMBOS = [
+      { id:"combo_bronze", nome:"Combo Bronze Raiz", desc:"Arroz tradicional + 1 espeto (carne, frango ou linguiça).", preco: 13.00 },
+      { id:"combo_prata",  nome:"Combo Prata Sabor", desc:"Arroz tradicional + vinagrete da casa + 1 espeto (qualquer opção do cardápio).", preco: 16.00 },
+      { id:"combo_ouro",   nome:"Combo Ouro na Brasa", desc:"Arroz tradicional + vinagrete da casa + farofa + 1 espeto (qualquer opção do cardápio).", preco: 20.00 },
     ];
 
-    const acompanhamentos = [
-      { id:"arroz", nome:"Arroz Tradicional", desc:"Arroz branco soltinho, temperado com alho e sal, preparado com carinho.", preco:7.00 },
-      { id:"vinagrete", nome:"Vinagrete da Casa", desc:"Vinagrete fresca com tomate, cebola e repolho, bem temperado.", preco:7.00 },
-      { id:"farofa", nome:"Farofa Caseira", desc:"Farofa bem douradinha, preparada com calabresa defumada e bacon.", preco:4.00 },
-      { id:"pao_alho", nome:"Pão de Alho", desc:"Cremoso caseiro, feito com pão francês e ingredientes especiais.", preco:8.00 },
-      { id:"maionese", nome:"Maionese Especial", desc:"Maionese verde cremosa, perfeita para acompanhar seu pedido.", preco:5.00 },
+    const ACOMP = [
+      { id:"arroz", nome:"Arroz Tradicional", desc:"Arroz branco soltinho, temperado com alho e sal, preparado com carinho.", preco: 7.00 },
+      { id:"vina",  nome:"Vinagrete da Casa", desc:"Vinagrete fresca com tomate, cebola e repolho, bem temperado.", preco: 7.00 },
+      { id:"farofa",nome:"Farofa Caseira", desc:"Farofa bem douradinha, preparada com calabresa defumada e bacon.", preco: 4.00 },
+      { id:"paoalho",nome:"Pão de Alho", desc:"Cremoso caseiro, feito com pão francês e ingredientes especiais.", preco: 8.00 },
+      { id:"maio",  nome:"Maionese Especial", desc:"Maionese verde cremosa, perfeita para acompanhar seu pedido.", preco: 5.00 },
     ];
 
-    const bebidas = [
-      { id:"coca", nome:"Coca-Cola 350ml", desc:"Lata 350ml.", preco:6.00 },
-      { id:"pepsi", nome:"Pepsi 350ml", desc:"Lata 350ml.", preco:6.00 },
-      { id:"guarana", nome:"Guaraná Antarctica 350ml", desc:"Lata 350ml.", preco:6.00 },
-      { id:"itubaina", nome:"Itubaína 350ml", desc:"Lata 350ml.", preco:6.00 },
-
-      { id:"suco_300_abacaxi", nome:"Suco natural 300ml (Abacaxi com hortelã)", desc:"Copo 300ml.", preco:9.00 },
-      { id:"suco_300_maracuja", nome:"Suco natural 300ml (Maracujá)", desc:"Copo 300ml.", preco:9.00 },
-      { id:"suco_300_laranja", nome:"Suco natural 300ml (Laranja)", desc:"Copo 300ml.", preco:9.00 },
-      { id:"suco_300_goiaba", nome:"Suco natural 300ml (Goiaba)", desc:"Copo 300ml.", preco:9.00 },
-
-      { id:"suco_500_abacaxi", nome:"Suco natural 500ml (Abacaxi com hortelã)", desc:"Copo 500ml.", preco:13.00 },
-      { id:"suco_500_maracuja", nome:"Suco natural 500ml (Maracujá)", desc:"Copo 500ml.", preco:13.00 },
-      { id:"suco_500_laranja", nome:"Suco natural 500ml (Laranja)", desc:"Copo 500ml.", preco:13.00 },
-      { id:"suco_500_goiaba", nome:"Suco natural 500ml (Goiaba)", desc:"Copo 500ml.", preco:13.00 },
+    const BEBIDAS = [
+      { id:"coca", nome:"Coca-Cola 350ml", desc:"Geladinha.", preco: 6.00 },
+      { id:"pepsi", nome:"Pepsi 350ml", desc:"Geladinha.", preco: 6.00 },
+      { id:"guarana", nome:"Guaraná Antarctica 350ml", desc:"Geladinha.", preco: 6.00 },
+      { id:"ituba", nome:"Itubaína 350ml", desc:"Geladinha.", preco: 6.00 },
+      { id:"suco300_abacaxi", nome:"Suco natural 300ml (abacaxi com hortelã)", desc:"Feito na hora.", preco: 9.00 },
+      { id:"suco300_maracuja", nome:"Suco natural 300ml (maracujá)", desc:"Feito na hora.", preco: 9.00 },
+      { id:"suco300_laranja", nome:"Suco natural 300ml (laranja)", desc:"Feito na hora.", preco: 9.00 },
+      { id:"suco300_goiaba", nome:"Suco natural 300ml (goiaba)", desc:"Feito na hora.", preco: 9.00 },
+      { id:"suco500_abacaxi", nome:"Suco natural 500ml (abacaxi com hortelã)", desc:"Feito na hora.", preco: 13.00 },
+      { id:"suco500_maracuja", nome:"Suco natural 500ml (maracujá)", desc:"Feito na hora.", preco: 13.00 },
+      { id:"suco500_laranja", nome:"Suco natural 500ml (laranja)", desc:"Feito na hora.", preco: 13.00 },
+      { id:"suco500_goiaba", nome:"Suco natural 500ml (goiaba)", desc:"Feito na hora.", preco: 13.00 },
     ];
 
+    /**********************
+     * ESTADO / HELPERS
+     **********************/
+    const money = v => (v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
     const qty = {};
-    [...espetos, ...combos, ...acompanhamentos, ...bebidas].forEach(i => qty[i.id] = 0);
+    const ALL = [...ESPETOS, ...COMBOS, ...ACOMP, ...BEBIDAS];
+    ALL.forEach(i => qty[i.id] = 0);
 
-    // === HORÁRIO (BLOQUEIO) ===
-    // getDay(): 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sáb
-    // Qui-Sáb: 19:00 -> 01:00 (cruza meia-noite)
-    // Dom: 14:00 -> 18:00
-    function isOpenNow(){
-      const now = new Date();
-      const day = now.getDay();
-      const mins = now.getHours()*60 + now.getMinutes();
+    let freteAtual = 0;
+    let cepValido = false;
 
-      const openThuToSatEvening = ([4,5,6].includes(day) && mins >= 19*60); // 19:00 até 23:59
-      const afterMidnightFromThuFriSat = ([5,6,0].includes(day) && mins < 1*60); // 00:00 até 00:59 (sexta/sábado/domingo)
-      const openSunday = (day === 0 && mins >= 14*60 && mins < 18*60); // 14:00-17:59
-
-      return openThuToSatEvening || afterMidnightFromThuFriSat || openSunday;
-    }
-
-    function updateOpenStatusUI(){
-      const open = isOpenNow();
-      const badge = byId("statusBadge");
-      const dot = byId("statusDot");
-      const text = byId("statusText");
-      const closedHint = byId("closedHint");
-      const payBtn = byId("payBtn");
-
-      if(open){
-        dot.classList.add("ok");
-        text.textContent = "ABERTO AGORA";
-        closedHint.style.display = "none";
-        payBtn.disabled = false;
-      }else{
-        dot.classList.remove("ok");
-        text.textContent = "FECHADO AGORA";
-        closedHint.style.display = "block";
-        payBtn.disabled = true;
-      }
-    }
-
-    // === UI helpers ===
     function scrollToId(id){
-      const el = byId(id);
-      if(el) el.scrollIntoView({ behavior:"smooth", block:"start" });
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:"smooth", block:"start"});
     }
 
-    function itemCard(item){
-      const div = document.createElement("div");
-      div.className = "item";
+    function renderCard(item){
+      const q = qty[item.id] || 0;
+      const mini = q * item.preco;
+      return `
+        <div class="card" data-id="${item.id}">
+          <div class="rowTop">
+            <div style="min-width:0;">
+              <p class="itemName">${item.nome}</p>
+              <p class="itemDesc">${item.desc}</p>
+            </div>
+            <div class="price">${money(item.preco)}</div>
+          </div>
 
-      const left = document.createElement("div");
-      const h = document.createElement("h4"); h.textContent = item.nome;
-      const p = document.createElement("p"); p.textContent = item.desc;
-
-      const q = document.createElement("div"); q.className = "qtyBox";
-
-      const minus = document.createElement("button");
-      minus.className = "qtyBtn";
-      minus.textContent = "−";
-      minus.onclick = () => { qty[item.id] = Math.max(0, (qty[item.id]||0) - 1); updateTotals(true); };
-
-      const val = document.createElement("div");
-      val.className = "qtyVal";
-      val.id = "q_" + item.id;
-      val.textContent = qty[item.id] || 0;
-
-      const plus = document.createElement("button");
-      plus.className = "qtyBtn";
-      plus.textContent = "+";
-      plus.onclick = () => { qty[item.id] = (qty[item.id]||0) + 1; updateTotals(true); };
-
-      q.append(minus, val, plus);
-      left.append(h, p, q);
-
-      const right = document.createElement("div");
-      const pr = document.createElement("div");
-      pr.className = "price"; pr.textContent = money(item.preco);
-      right.append(pr);
-
-      div.append(left, right);
-      return div;
+          <div class="qtyRow">
+            <div class="qtyCtrl">
+              <button class="qbtn" onclick="dec('${item.id}')">−</button>
+              <div class="qval" id="q_${item.id}">${q}</div>
+              <button class="qbtn" onclick="inc('${item.id}')">+</button>
+            </div>
+            <div class="miniTotal">
+              <div>Parcial</div>
+              <b id="m_${item.id}">${money(mini)}</b>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     function renderAll(){
-      byId("menuList").innerHTML = "";
-      byId("comboList").innerHTML = "";
-      byId("addonsList").innerHTML = "";
-      byId("drinksList").innerHTML = "";
-
-      espetos.forEach(i => byId("menuList").appendChild(itemCard(i)));
-      combos.forEach(i => byId("comboList").appendChild(itemCard(i)));
-      acompanhamentos.forEach(i => byId("addonsList").appendChild(itemCard(i)));
-      bebidas.forEach(i => byId("drinksList").appendChild(itemCard(i)));
-
-      updateTotals(true);
+      document.getElementById("listEspetos").innerHTML = ESPETOS.map(renderCard).join("");
+      document.getElementById("listCombos").innerHTML  = COMBOS.map(renderCard).join("");
+      document.getElementById("listAcomp").innerHTML   = ACOMP.map(renderCard).join("");
+      document.getElementById("listBebidas").innerHTML = BEBIDAS.map(renderCard).join("");
+      updateTotals();
     }
 
-    function getDeliveryFee(){
-      const v = Number(byId("bairro").value || 0);
-      return isNaN(v) ? 0 : v;
+    function inc(id){
+      qty[id] = (qty[id]||0) + 1;
+      updateItem(id);
+    }
+    function dec(id){
+      qty[id] = Math.max(0, (qty[id]||0) - 1);
+      updateItem(id);
+    }
+    function updateItem(id){
+      const item = ALL.find(x => x.id === id);
+      if(!item) return;
+      const qEl = document.getElementById("q_"+id);
+      const mEl = document.getElementById("m_"+id);
+      if(qEl) qEl.textContent = qty[id];
+      if(mEl) mEl.textContent = money((qty[id]||0)*item.preco);
+      updateTotals();
     }
 
     function calcSubtotal(){
-      let total = 0;
-      const all = [...espetos, ...combos, ...acompanhamentos, ...bebidas];
-      all.forEach(i => total += (qty[i.id]||0) * i.preco);
-      return total;
-    }
-
-    function updateTotals(updateQtyLabels){
-      if(updateQtyLabels){
-        Object.keys(qty).forEach(id=>{
-          const el = byId("q_" + id);
-          if(el) el.textContent = qty[id] || 0;
-        });
+      let s = 0;
+      for(const it of ALL){
+        s += (qty[it.id]||0) * it.preco;
       }
-      const sub = calcSubtotal();
-      const fee = getDeliveryFee();
-      byId("subtotalTxt").textContent = money(sub);
-      byId("deliveryTxt").textContent = money(fee);
-      byId("totalTxt").textContent = money(sub + fee);
-      byId("taxaEntrega").textContent = money(fee);
+      return s;
     }
 
-    function hasItems(){
-      return Object.values(qty).some(v => (v||0) > 0);
+    function updateTotals(){
+      const subtotal = calcSubtotal();
+      document.getElementById("subtotalTxt").textContent = money(subtotal);
+      document.getElementById("freteTxt").textContent = money(freteAtual);
+      document.getElementById("totalTxt").textContent = money(subtotal + freteAtual);
+
+      const dbox = document.getElementById("deliveryBox");
+      if(cepValido){
+        dbox.classList.add("show");
+      }else{
+        dbox.classList.remove("show");
+      }
+
+      updatePayButtonState();
     }
 
-    function requiredCheck(){
-      const faltando = [];
-      if(!hasItems()) faltando.push("Selecione ao menos 1 item");
-      if(!byId("bairro").value) faltando.push("Bairro (delivery)");
-      if(!byId("nome").value.trim()) faltando.push("Nome");
-      if(!byId("telefone").value.trim()) faltando.push("Telefone");
-      if(!byId("endereco").value.trim()) faltando.push("Endereço");
-      if(!byId("referencia").value.trim()) faltando.push("Referência");
-      if(!byId("pagamento").value) faltando.push("Forma de pagamento");
-      if(!byId("obsPedido").value.trim()) faltando.push("Observações do pedido");
-      if(faltando.length) return { ok:false, msg:"Falta preencher:\n- " + faltando.join("\n- ") };
-      return { ok:true };
-    }
+    /**********************
+     * CEP + FRETE
+     **********************/
+    function onlyDigits(s){ return (s||"").replace(/\D+/g,""); }
 
-    async function payWithMercadoPago(){
-      // BLOQUEIO fora do horário
-      if(!isOpenNow()){
-        alert("Estamos FECHADOS no momento.\nHorário:\n- Quinta a Sábado: 19h às 01h\n- Domingo: 14h às 18h");
-        updateOpenStatusUI();
+    async function buscarCep(){
+      const cep = onlyDigits(document.getElementById("cep").value);
+      if(cep.length !== 8){
+        cepValido = false;
+        freteAtual = 0;
+        updateTotals();
         return;
       }
 
-      const errEl = byId("mpError");
-      errEl.style.display = "none";
+      try{
+        const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await res.json();
+        if(data.erro) throw new Error("CEP inválido");
 
-      const check = requiredCheck();
-      if(!check.ok){ alert(check.msg); return; }
+        document.getElementById("rua").value = data.logradouro || "";
+        document.getElementById("bairro").value = data.bairro || "";
+        document.getElementById("cidadeUf").value = `${data.localidade || ""}/${data.uf || ""}`.replace(/^\/|\/$/g,"");
 
-      const items = [];
-      const pushItems = (arr, category) => {
-        arr.forEach(i=>{
-          const q = qty[i.id] || 0;
-          if(q > 0){
-            items.push({ title:i.nome, quantity:q, unit_price:i.preco, category_id:category });
+        freteAtual = calcularFretePorBairro(data.bairro || "");
+        cepValido = true;
+        updateTotals();
+      }catch(e){
+        cepValido = false;
+        freteAtual = 0;
+        updateTotals();
+      }
+    }
+
+    function calcularFretePorBairro(bairro){
+      const b = (bairro||"").toLowerCase().trim();
+      if(!b) return FRETE_PADRAO;
+
+      for(const regra of FRETE_POR_BAIRRO){
+        for(const termo of regra.match){
+          if(b.includes((termo||"").toLowerCase())){
+            return Number(regra.valor || 0);
           }
-        });
-      };
+        }
+      }
+      return FRETE_PADRAO;
+    }
 
-      pushItems(espetos, "espetos");
-      pushItems(combos, "combos");
-      pushItems(acompanhamentos, "acompanhamentos");
-      pushItems(bebidas, "bebidas");
+    /**********************
+     * LINKS
+     **********************/
+    function initLinks(){
+      const w = document.getElementById("linkWhats");
+      const i = document.getElementById("linkInsta");
+      w.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+      i.href = `https://instagram.com/${INSTAGRAM_USER}`;
+    }
 
-      const fee = getDeliveryFee();
-      if(fee > 0){
-        items.push({ title:"Taxa de entrega", quantity:1, unit_price:fee, category_id:"delivery" });
+    /**********************
+     * PAGAMENTO (SEM BLOQUEIO - TESTE)
+     **********************/
+    function validateCheckout(){
+      const faltando = [];
+      const nome = document.getElementById("nome").value.trim();
+      const tel = document.getElementById("telefone").value.trim();
+      const cep = onlyDigits(document.getElementById("cep").value);
+      const numero = document.getElementById("numero").value.trim();
+      const pagamento = document.getElementById("pagamento").value;
+      const obs = document.getElementById("obsPedido").value.trim();
+
+      if(!nome) faltando.push("Nome");
+      if(!tel) faltando.push("Telefone");
+      if(cep.length !== 8) faltando.push("CEP");
+      if(!numero) faltando.push("Número");
+      if(!pagamento) faltando.push("Forma de pagamento");
+      if(!obs) faltando.push("Observações do pedido");
+      if(calcSubtotal() <= 0) faltando.push("Itens do pedido");
+
+      return { ok: faltando.length === 0, faltando };
+    }
+
+    function updatePayButtonState(){
+      const btn = document.getElementById("btnPagar");
+      const subtotal = calcSubtotal();
+      // ✅ sem bloqueio de horário
+      btn.disabled = !(subtotal > 0);
+    }
+
+    async function pagarMercadoPago(){
+      if(!BACKEND_URL){
+        alert("Falta configurar a URL do backend no código (BACKEND_URL).");
+        return;
       }
 
+      const v = validateCheckout();
+      if(!v.ok){
+        alert("Campos obrigatórios:\n- " + v.faltando.join("\n- "));
+        return;
+      }
+
+      const items = ALL
+        .filter(i => (qty[i.id]||0) > 0)
+        .map(i => ({
+          id: i.id,
+          title: i.nome,
+          description: i.desc,
+          quantity: qty[i.id],
+          unit_price: i.preco
+        }));
+
       const payload = {
-        items,
         customer: {
-          name: byId("nome").value.trim(),
-          phone: byId("telefone").value.trim(),
-          address: byId("endereco").value.trim(),
-          reference: byId("referencia").value.trim(),
-          region: byId("bairro").selectedOptions[0]?.textContent || ""
+          name: document.getElementById("nome").value.trim(),
+          phone: document.getElementById("telefone").value.trim(),
         },
-        payment_method: byId("pagamento").value,
-        notes: byId("obsPedido").value.trim()
+        address: {
+          cep: document.getElementById("cep").value.trim(),
+          street: document.getElementById("rua").value.trim(),
+          number: document.getElementById("numero").value.trim(),
+          complement: document.getElementById("complemento").value.trim(),
+          neighborhood: document.getElementById("bairro").value.trim(),
+          cityUf: document.getElementById("cidadeUf").value.trim(),
+        },
+        payment_method: document.getElementById("pagamento").value, // PIX ou CARTAO
+        notes: document.getElementById("obsPedido").value.trim(),
+        items,
+        shipping: { amount: freteAtual },
+        totals: {
+          subtotal: calcSubtotal(),
+          total: calcSubtotal() + freteAtual
+        }
       };
 
       try{
-        const res = await fetch(BACKEND_URL + MP_CREATE_PREF_ENDPOINT, {
+        const btn = document.getElementById("btnPagar");
+        btn.disabled = true;
+        btn.textContent = "Abrindo pagamento...";
+
+        // Endpoint esperado: /create-preference => { init_point }
+        const res = await fetch(`${BACKEND_URL}/create-preference`, {
           method: "POST",
           headers: { "Content-Type":"application/json" },
           body: JSON.stringify(payload)
         });
 
-        const data = await res.json().catch(()=> ({}));
-        if(!res.ok) throw new Error(data?.message || "Erro no servidor ao criar o pagamento.");
+        if(!res.ok){
+          const t = await res.text().catch(()=> "");
+          throw new Error("Backend respondeu erro. " + t);
+        }
 
-        const link = data.init_point || data.sandbox_init_point;
-        if(!link) throw new Error("O backend não retornou o link de pagamento (init_point).");
+        const data = await res.json();
+        if(!data || !data.init_point){
+          throw new Error("Resposta do backend sem init_point.");
+        }
 
-        window.open(link, "_blank");
+        window.location.href = data.init_point;
       }catch(e){
-        errEl.textContent = "Não consegui abrir o pagamento agora. " + (e?.message || e);
-        errEl.style.display = "block";
+        alert("Não foi possível abrir o pagamento agora.\n\nDetalhe: " + (e.message || e));
+      }finally{
+        const btn = document.getElementById("btnPagar");
+        btn.textContent = "Pagar com Mercado Pago";
+        updatePayButtonState();
       }
     }
 
+    /**********************
+     * RESET
+     **********************/
     function resetAll(){
-      Object.keys(qty).forEach(k => qty[k] = 0);
-      ["nome","telefone","endereco","referencia","obsPedido"].forEach(id => byId(id).value = "");
-      byId("pagamento").value = "";
-      byId("bairro").value = "";
-      updateTotals(true);
+      for(const k in qty) qty[k] = 0;
+      ["nome","telefone","cep","rua","numero","complemento","bairro","cidadeUf","obsPedido"].forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) el.value = "";
+      });
+      document.getElementById("pagamento").value = "";
+      freteAtual = 0;
+      cepValido = false;
+      renderAll();
     }
 
-    // === Comentários (localStorage) ===
+    /**********************
+     * COMENTÁRIOS
+     **********************/
     const COMMENTS_KEY = "espetinho_sousa_comments_v1";
-    function loadComments(){ try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); } catch{ return []; } }
-    function saveComments(list){ localStorage.setItem(COMMENTS_KEY, JSON.stringify(list)); }
+    function loadComments(){
+      try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); }
+      catch(e){ return []; }
+    }
+    function saveComments(list){
+      localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
+    }
     function renderComments(){
       const list = loadComments();
-      const box = byId("commentsList");
+      const box = document.getElementById("commentsList");
       box.innerHTML = "";
       if(list.length === 0){
-        const p = document.createElement("p");
-        p.style.color = "var(--muted)";
-        p.style.margin = "0";
-        p.textContent = "Ainda não há avaliações.";
-        box.appendChild(p);
+        box.innerHTML = `<div style="color:var(--muted); font-size:13px;">Sem avaliações ainda.</div>`;
         return;
       }
-      list.slice().reverse().forEach(c=>{
-        const d = document.createElement("div");
-        d.className = "commentItem";
-        const meta = document.createElement("div");
-        meta.className = "commentMeta";
-        meta.innerHTML = `<span>${(c.nome||"Cliente")} • ${"⭐".repeat(Number(c.nota||5))}</span><span>${c.data||""}</span>`;
-        const txt = document.createElement("div");
-        txt.style.fontWeight = "700";
-        txt.style.lineHeight = "1.35";
-        txt.textContent = c.texto || "";
-        d.append(meta, txt);
-        box.appendChild(d);
-      });
+      for(const c of list.slice().reverse()){
+        const stars = "★".repeat(Number(c.rating||5)) + "☆".repeat(5-Number(c.rating||5));
+        const el = document.createElement("div");
+        el.className = "commentItem";
+        el.innerHTML = `
+          <div class="top">
+            <span><b style="color:var(--text);">${escapeHtml(c.name||"Cliente")}</b> • ${escapeHtml(c.date||"")}</span>
+            <span class="stars">${stars}</span>
+          </div>
+          <p>${escapeHtml(c.text||"")}</p>
+        `;
+        box.appendChild(el);
+      }
     }
     function addComment(){
-      const nome = byId("cNome").value.trim();
-      const nota = byId("cNota").value;
-      const texto = byId("cTexto").value.trim();
-      if(!texto){ alert("Escreva um comentário antes de enviar."); return; }
+      const name = document.getElementById("cNome").value.trim() || "Cliente";
+      const rating = Number(document.getElementById("cNota").value || 5);
+      const text = document.getElementById("cTexto").value.trim();
+      if(!text){
+        alert("Escreva um comentário antes de enviar.");
+        return;
+      }
       const list = loadComments();
-      const now = new Date();
-      list.push({ nome, nota, texto, data: now.toLocaleDateString("pt-BR") });
+      list.push({
+        name,
+        rating,
+        text,
+        date: new Date().toLocaleString("pt-BR")
+      });
       saveComments(list);
-      byId("cNome").value = "";
-      byId("cNota").value = "5";
-      byId("cTexto").value = "";
+      document.getElementById("cTexto").value = "";
       renderComments();
     }
     function clearComments(){
-      if(confirm("Apagar as avaliações salvas neste celular/navegador?")){
-        localStorage.removeItem(COMMENTS_KEY);
-        renderComments();
-      }
+      if(!confirm("Apagar todos os comentários deste navegador/celular?")) return;
+      localStorage.removeItem(COMMENTS_KEY);
+      renderComments();
+    }
+    function escapeHtml(str){
+      return (str||"").replace(/[&<>"']/g, m => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[m]));
     }
 
-    // Init
-    byId("year").textContent = new Date().getFullYear();
+    /**********************
+     * CEP: máscara + eventos
+     **********************/
+    function maskCep(){
+      const el = document.getElementById("cep");
+      const d = onlyDigits(el.value).slice(0,8);
+      el.value = d.length > 5 ? (d.slice(0,5) + "-" + d.slice(5)) : d;
+    }
+
+    document.addEventListener("input", (ev)=>{
+      if(ev.target && ev.target.id === "cep"){
+        maskCep();
+      }
+    });
+
+    document.addEventListener("blur", (ev)=>{
+      if(ev.target && ev.target.id === "cep"){
+        buscarCep();
+      }
+      if(ev.target && ev.target.id === "bairro"){
+        freteAtual = calcularFretePorBairro(document.getElementById("bairro").value || "");
+        if(onlyDigits(document.getElementById("cep").value).length === 8){
+          cepValido = true;
+        }
+        updateTotals();
+      }
+    }, true);
+
     renderAll();
     renderComments();
-    updateOpenStatusUI();
-    // Atualiza o status a cada 30s (caso vire o horário enquanto o cliente está no site)
-    setInterval(updateOpenStatusUI, 30000);
+    initLinks();
+    updatePayButtonState();
   </script>
 </body>
 </html>
