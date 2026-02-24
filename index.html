@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Espetinho dos Sousa • Delivery</title>
+  <title>Espetinhos dos Sousa • Delivery</title>
 
   <style>
     :root{
@@ -16,7 +16,6 @@
       --accent:#ffb100;
       --accent2:#ff7a00;
       --shadow:0 18px 60px rgba(0,0,0,.55);
-      --r1:18px;
       --r2:26px;
       --max: 980px;
     }
@@ -41,7 +40,6 @@
       padding: 16px 14px 96px;
     }
 
-    /* Topo */
     .topbar{
       display:flex;
       gap:14px;
@@ -101,20 +99,18 @@
       text-overflow:ellipsis;
     }
 
-    /* Hero */
     .hero{
-      margin: 18px 0 8px;
+      margin: 18px 0 10px;
       text-align:center;
       padding: 18px 12px 8px;
     }
     .hero h2{
       margin: 14px 0 8px;
-      font-size: 36px;
+      font-size: 34px;
       letter-spacing: -0.6px;
-      line-height: 1.05;
-      white-space: nowrap; /* mesma linha */
-      overflow:hidden;
-      text-overflow: ellipsis;
+      line-height: 1.1;
+      /* ✅ agora não corta: permite quebrar linha */
+      white-space: normal;
     }
     .hero p{
       margin:0;
@@ -123,7 +119,11 @@
       line-height: 1.45;
     }
 
-    /* Seções */
+    @media (max-width: 520px){
+      .hero h2{ font-size: 28px; }
+      .hero p{ font-size: 14.5px; }
+    }
+
     .section{ margin-top: 16px; }
     .section h3{
       margin: 12px 2px 6px;
@@ -183,7 +183,6 @@
       padding-left: 10px;
     }
 
-    /* Quantidade */
     .qtyRow{
       margin-top: 12px;
       display:flex;
@@ -213,7 +212,6 @@
       opacity:.95;
     }
 
-    /* Form */
     .grid{
       display:grid;
       gap: 10px;
@@ -231,7 +229,6 @@
     }
     @media (max-width: 740px){
       .grid2,.grid3{ grid-template-columns: 1fr; }
-      .hero h2{ font-size: 32px; }
     }
 
     label{
@@ -258,25 +255,17 @@
       line-height:1.4;
     }
 
-    /* Bandeiras */
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
+    .flagsLine{
       margin-top: 10px;
-    }
-    .chip{
       padding: 10px 12px;
-      border-radius: 999px;
+      border-radius: 16px;
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
-      font-weight: 900;
+      font-weight: 800;
+      color: rgba(255,255,255,.92);
       font-size: 13px;
-      letter-spacing: .2px;
-      user-select:none;
     }
 
-    /* Resumo */
     .summary{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -310,6 +299,7 @@
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       box-shadow: 0 16px 40px rgba(255,140,0,.22);
       user-select:none;
+      flex: 1 1 220px;
     }
     .btn:active{ transform: translateY(1px); }
     .btn.ghost{
@@ -328,7 +318,6 @@
       border:1px solid rgba(255,255,255,.08);
     }
 
-    /* Botão flutuante (Finalizar só embaixo) */
     .floating{
       position: fixed;
       right: 14px;
@@ -344,7 +333,6 @@
       cursor:pointer;
     }
 
-    /* Toast */
     .toast{
       position: fixed;
       left: 50%;
@@ -366,7 +354,6 @@
     }
     .toast.show{ opacity:1; }
 
-    /* Rodapé */
     footer{
       margin-top: 22px;
       text-align:center;
@@ -374,19 +361,32 @@
       font-size: 13px;
       padding: 16px 0 0;
     }
-    .footLinks{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
+    .footInfo{
+      display:grid;
       gap: 10px;
-      margin-top: 8px;
+      justify-items:center;
+      margin-top: 10px;
     }
-    .footLinks a{
+    .footRow{
+      display:flex;
+      gap: 10px;
+      align-items:center;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
       border-radius: 999px;
       padding: 10px 12px;
       font-weight: 900;
+      max-width: 100%;
+      flex-wrap: wrap;
+      justify-content:center;
+    }
+    .icon{
+      width: 18px;
+      height: 18px;
+      display:inline-grid;
+      place-items:center;
+      font-size: 18px;
+      line-height: 1;
     }
   </style>
 </head>
@@ -397,19 +397,31 @@
     <div class="topbar">
       <div class="brand">
         <div class="logo">
-          <img src="logo.png" alt="Logo Espetinho dos Sousa">
+          <img src="logo.png" alt="Logo Espetinhos dos Sousa">
         </div>
         <div class="brandText">
-          <h1>Espetinho dos Sousa</h1>
+          <h1>Espetinhos dos Sousa</h1>
           <p>Fogo, sabor e capricho • Delivery</p>
         </div>
       </div>
-      <!-- Sem botão aqui em cima -->
     </div>
 
     <div class="hero">
       <h2>O melhor espeto da região!</h2>
-      <p>Monte seu pedido, coloque seu CEP e pague pelo site.</p>
+      <p><b>Espetinhos dos Sousa</b>: brasa no ponto certo, tempero de casa e muito capricho em cada pedido — do jeitinho que a gente gosta.</p>
+    </div>
+
+    <!-- HORÁRIO -->
+    <div class="section">
+      <h3>Horário de funcionamento</h3>
+      <p class="hint">Atendemos nos horários abaixo.</p>
+      <div class="card">
+        <div class="grid">
+          <div class="flagsLine" style="text-align:center">
+            <b>Quinta a sábado:</b> 19h às 01h • <b>Domingo:</b> 14h às 18h
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ESPETOS -->
@@ -436,7 +448,7 @@
     <!-- BEBIDAS -->
     <div class="section">
       <h3>Bebidas</h3>
-      <p class="hint">Refrigerantes 350ml e sucos naturais.</p>
+      <p class="hint">Refrigerantes 350ml e sucos naturais por sabor (pra não ter erro).</p>
       <div class="card"><div class="list" id="drinksList"></div></div>
     </div>
 
@@ -505,12 +517,8 @@
               <option value="CARTAO">Cartão (débito/crédito)</option>
             </select>
 
-            <div class="chips" aria-label="Bandeiras aceitas">
-              <span class="chip">VISA</span>
-              <span class="chip">MASTER</span>
-              <span class="chip">ELO</span>
-              <span class="chip">HIPERCARD</span>
-            </div>
+            <!-- ✅ não clicável, só texto -->
+            <div class="flagsLine">Aceitamos: <b>Visa, Master, Elo e Hipercard</b></div>
           </div>
 
           <div>
@@ -536,6 +544,7 @@
 
           <div class="actions">
             <button class="btn ghost" onclick="resetAll()">Limpar</button>
+            <!-- ✅ botão voltou -->
             <button class="btn" id="payBtn" onclick="payMercadoPago()">Pagar</button>
           </div>
 
@@ -588,45 +597,46 @@
     </div>
 
     <footer>
-      <div>São Paulo/SP</div>
-      <div class="footLinks">
-        <a href="https://wa.me/5511968363952" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://www.instagram.com/espetinhos.sousa/" target="_blank" rel="noopener">Instagram</a>
+      <div><b>Espetinhos dos Sousa</b> - São Paulo/SP</div>
+
+      <!-- ✅ ícone + texto (e link funcionando) -->
+      <div class="footInfo">
+        <a class="footRow" href="https://wa.me/5511968363952" target="_blank" rel="noopener">
+          <span class="icon">🟢</span>
+          <span>WhatsApp: <b>11 96836-3952</b></span>
+        </a>
+
+        <a class="footRow" href="https://www.instagram.com/espetinhos.sousa/" target="_blank" rel="noopener">
+          <span class="icon">📷</span>
+          <span>Instagram: <b>@espetinhos.sousa</b></span>
+        </a>
       </div>
     </footer>
   </div>
 
-  <!-- Finalizar só embaixo -->
   <button class="floating" onclick="scrollToId('pedido')">Finalizar</button>
   <div class="toast" id="toast"></div>
 
 <script>
-/* ==========================
-   CONFIG
-========================== */
+/* CONFIG */
 const BACKEND_URL = "https://backend-mercadopago-zyg6.onrender.com";
 
-/* FRETE (já reduzido como você pediu)
-   - Capão e próximos: 4 ou 5
-   - Médio e maior: -2 reais
-*/
+/* ✅ FRETE (já reduzido como você pediu) */
 const FRETE_PADRAO = 6;
 const FRETE_POR_BAIRRO = {
   "capao redondo": 4,
-  "campo limpo": 5,        // médio (reduzido)
-  "jardim sao luiz": 5,    // médio (reduzido)
-  "vila andrade": 6,       // maior (reduzido)
-  "jardim angela": 7       // maior (reduzido)
+  "campo limpo": 5,
+  "jardim sao luiz": 5,
+  "vila andrade": 6,
+  "jardim angela": 7
 };
 
-/* ==========================
-   CARDÁPIO
-========================== */
+/* CARDÁPIO */
 const itens = [
   // Espetos
-  { id:"carne", sec:"espetos", nome:"Brasa Clássica (carne)", desc:"Espeto de carne.", preco: 10.00 },
-  { id:"linguica", sec:"espetos", nome:"Sabor Intenso (linguiça)", desc:"Espeto de linguiça.", preco: 10.00 },
-  { id:"frango", sec:"espetos", nome:"Frango Dourado (frango)", desc:"Espeto de frango.", preco: 10.00 },
+  { id:"carne", sec:"espetos", nome:"Brasa Clássica (carne)", desc:"Espeto de carne no capricho.", preco: 10.00 },
+  { id:"linguica", sec:"espetos", nome:"Sabor Intenso (linguiça)", desc:"Linguiça bem temperada.", preco: 10.00 },
+  { id:"frango", sec:"espetos", nome:"Frango Dourado (frango)", desc:"Frango suculento e dourado.", preco: 10.00 },
   { id:"misto", sec:"espetos", nome:"Explosão de Sabor (misto)", desc:"Misto completo.", preco: 12.00 },
 
   // Combos
@@ -634,20 +644,27 @@ const itens = [
   { id:"combo_prata", sec:"combos", nome:"Combo Prata Sabor", desc:"Arroz tradicional + vinagrete da casa + 1 espeto (qualquer opção do cardápio).", preco: 16.00 },
   { id:"combo_ouro", sec:"combos", nome:"Combo Ouro na Brasa", desc:"Arroz tradicional + vinagrete da casa + farofa + 1 espeto (qualquer opção do cardápio).", preco: 20.00 },
 
-  // Acompanhamentos (com descrições)
+  // Acompanhamentos
   { id:"arroz", sec:"addons", nome:"Arroz Tradicional", desc:"Arroz branco soltinho, temperado com alho e sal, preparado com carinho.", preco: 7.00 },
   { id:"vinagrete", sec:"addons", nome:"Vinagrete da Casa", desc:"Vinagrete fresca com tomate, cebola e repolho, bem temperado.", preco: 7.00 },
   { id:"farofa", sec:"addons", nome:"Farofa Caseira", desc:"Farofa bem douradinha, preparada com calabresa defumada e bacon.", preco: 4.00 },
   { id:"pao_alho", sec:"addons", nome:"Pão de Alho", desc:"Cremoso caseiro, feito com pão francês e ingredientes especiais.", preco: 8.00 },
   { id:"maionese", sec:"addons", nome:"Maionese Especial", desc:"Maionese verde cremosa, perfeita para acompanhar seu pedido.", preco: 5.00 },
 
-  // Bebidas
-  { id:"coca", sec:"drinks", nome:"Coca-Cola 350ml", desc:"Lata 350ml.", preco: 6.00 },
-  { id:"pepsi", sec:"drinks", nome:"Pepsi 350ml", desc:"Lata 350ml.", preco: 6.00 },
-  { id:"guarana", sec:"drinks", nome:"Guaraná Antarctica 350ml", desc:"Lata 350ml.", preco: 6.00 },
-  { id:"itubaina", sec:"drinks", nome:"Itubaína 350ml", desc:"Lata 350ml.", preco: 6.00 },
-  { id:"suco300", sec:"drinks", nome:"Suco Natural 300ml", desc:"Abacaxi com hortelã, maracujá, laranja ou goiaba.", preco: 9.00 },
-  { id:"suco500", sec:"drinks", nome:"Suco Natural 500ml", desc:"Abacaxi com hortelã, maracujá, laranja ou goiaba.", preco: 13.00 },
+  // Refrigerantes (350ml)
+  { id:"coca", sec:"drinks", nome:"Coca-Cola 350ml", desc:"Refrigerante 350ml.", preco: 6.00 },
+  { id:"guarana", sec:"drinks", nome:"Guaraná 350ml", desc:"Refrigerante 350ml.", preco: 6.00 },
+  { id:"itubaina", sec:"drinks", nome:"Itubaína 350ml", desc:"Refrigerante 350ml.", preco: 6.00 },
+
+  // Sucos naturais 300ml (sabores)
+  { id:"suco300_maracuja", sec:"drinks", nome:"Suco Natural 300ml (Maracujá)", desc:"Suco natural 300ml.", preco: 9.00 },
+  { id:"suco300_abacaxi", sec:"drinks", nome:"Suco Natural 300ml (Abacaxi c/ hortelã)", desc:"Suco natural 300ml.", preco: 9.00 },
+  { id:"suco300_laranja", sec:"drinks", nome:"Suco Natural 300ml (Laranja)", desc:"Suco natural 300ml.", preco: 9.00 },
+
+  // Sucos naturais 500ml (sabores)
+  { id:"suco500_maracuja", sec:"drinks", nome:"Suco Natural 500ml (Maracujá)", desc:"Suco natural 500ml.", preco: 13.00 },
+  { id:"suco500_laranja", sec:"drinks", nome:"Suco Natural 500ml (Laranja)", desc:"Suco natural 500ml.", preco: 13.00 },
+  { id:"suco500_abacaxi", sec:"drinks", nome:"Suco Natural 500ml (Abacaxi c/ hortelã)", desc:"Suco natural 500ml.", preco: 13.00 },
 ];
 
 const qty = {};
@@ -671,9 +688,7 @@ function scrollToId(id){
   el.scrollIntoView({ behavior:"smooth", block:"start" });
 }
 
-/* ==========================
-   RENDER
-========================== */
+/* Render */
 function itemCard(i){
   const div = document.createElement("div");
   div.className = "item";
@@ -686,9 +701,9 @@ function itemCard(i){
       <div class="price">${money(i.preco)}</div>
     </div>
     <div class="qtyRow">
-      <button class="qtyBtn" aria-label="diminuir" onclick="decQty('${i.id}')">-</button>
+      <button class="qtyBtn" onclick="decQty('${i.id}')">-</button>
       <div class="qtyVal" id="q_${i.id}">0</div>
-      <button class="qtyBtn" aria-label="aumentar" onclick="incQty('${i.id}')">+</button>
+      <button class="qtyBtn" onclick="incQty('${i.id}')">+</button>
     </div>
   `;
   return div;
@@ -727,9 +742,7 @@ function decQty(id){
   updateTotals();
 }
 
-/* ==========================
-   TOTAIS
-========================== */
+/* Totais */
 function calcSubtotal(){
   let s = 0;
   itens.forEach(i => s += (qty[i.id] || 0) * i.preco);
@@ -743,12 +756,11 @@ function updateTotals(){
   document.getElementById("frete").textContent = money(freteValor || 0);
   document.getElementById("total").textContent = money(tot);
 
-  document.getElementById("payBtn").disabled = (sub <= 0);
+  const payBtn = document.getElementById("payBtn");
+  if(payBtn) payBtn.disabled = (sub <= 0);
 }
 
-/* ==========================
-   CEP + FRETE
-========================== */
+/* CEP + frete */
 function normalize(s){
   return (s || "").toLowerCase()
     .replaceAll("á","a").replaceAll("à","a").replaceAll("ã","a").replaceAll("â","a")
@@ -810,9 +822,7 @@ async function buscarCEP(){
   }
 }
 
-/* ==========================
-   VALIDAÇÃO
-========================== */
+/* Validação */
 function required(id, label){
   const el = document.getElementById(id);
   const v = (el.value || "").trim();
@@ -838,9 +848,7 @@ function validateForm(){
   return faltando;
 }
 
-/* ==========================
-   PAGAMENTO MP
-========================== */
+/* Pagamento Mercado Pago */
 async function payMercadoPago(){
   if(calcSubtotal() <= 0){
     toast("Selecione pelo menos 1 item.");
@@ -853,7 +861,6 @@ async function payMercadoPago(){
     return;
   }
 
-  // tenta buscar CEP se ainda não buscou
   const cep = (document.getElementById("cep").value || "").replace(/\D/g,"");
   if(cep.length === 8 && (!enderecoData || !enderecoData.cep)){
     await buscarCEP();
@@ -861,7 +868,7 @@ async function payMercadoPago(){
 
   const payload = {
     amount: Number((calcSubtotal() + (freteValor||0)).toFixed(2)),
-    description: "Pedido Espetinho dos Sousa",
+    description: "Pedido Espetinhos dos Sousa",
     customer: {
       name: document.getElementById("nome").value.trim(),
       phone: document.getElementById("telefone").value.trim(),
@@ -883,9 +890,9 @@ async function payMercadoPago(){
 
   try{
     toast("Gerando pagamento...");
-    document.getElementById("payBtn").disabled = true;
+    const btn = document.getElementById("payBtn");
+    if(btn) btn.disabled = true;
 
-    // tenta endpoints comuns
     const endpoints = ["/create-payment", "/create_preference", "/create-preference"];
     let lastErr = null;
 
@@ -919,17 +926,16 @@ async function payMercadoPago(){
     }
 
     alert("Não consegui abrir o pagamento.\n\nDetalhe:\n" + (lastErr || "sem detalhe"));
-    document.getElementById("payBtn").disabled = false;
+    if(btn) btn.disabled = false;
 
   }catch(e){
     alert("Erro ao iniciar pagamento: " + (e?.message || e));
-    document.getElementById("payBtn").disabled = false;
+    const btn = document.getElementById("payBtn");
+    if(btn) btn.disabled = false;
   }
 }
 
-/* ==========================
-   RESET
-========================== */
+/* Reset */
 function resetAll(){
   for(const k in qty){ qty[k] = 0; }
   itens.forEach(i=>{
@@ -953,32 +959,19 @@ function resetAll(){
   toast("Tudo limpo!");
 }
 
-/* ==========================
-   COMENTÁRIOS (localStorage)
-========================== */
-const COMMENTS_KEY = "espetinho_dos_sousa_comments_v1";
-
-function loadComments(){
-  try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); }
-  catch{ return []; }
-}
-function saveComments(list){
-  localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
-}
+/* Comentários (localStorage) */
+const COMMENTS_KEY = "espetinhos_dos_sousa_comments_v1";
+function loadComments(){ try{ return JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); } catch { return []; } }
+function saveComments(list){ localStorage.setItem(COMMENTS_KEY, JSON.stringify(list)); }
 function escapeHtml(str){
   return String(str)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;").replaceAll("'","&#039;");
 }
-
 function renderComments(){
   const list = loadComments();
   const box = document.getElementById("commentsList");
   box.innerHTML = "";
-
   if(list.length === 0){
     const p = document.createElement("p");
     p.className = "smallHint";
@@ -986,7 +979,6 @@ function renderComments(){
     box.appendChild(p);
     return;
   }
-
   list.slice().reverse().forEach(c=>{
     const div = document.createElement("div");
     div.className = "item";
@@ -1004,29 +996,20 @@ function renderComments(){
     box.appendChild(div);
   });
 }
-
 function addComment(){
   const nome = document.getElementById("cNome").value.trim();
   const nota = document.getElementById("cNota").value;
   const texto = document.getElementById("cTexto").value.trim();
-
-  if(!texto){
-    toast("Escreva um comentário.");
-    return;
-  }
-
+  if(!texto){ toast("Escreva um comentário."); return; }
   const list = loadComments();
   list.push({ nome, nota, texto, ts: Date.now() });
   saveComments(list);
-
   document.getElementById("cNome").value = "";
   document.getElementById("cTexto").value = "";
   document.getElementById("cNota").value = "5";
-
   renderComments();
   toast("Comentário enviado!");
 }
-
 function clearComments(){
   if(!confirm("Apagar todas as avaliações salvas neste celular/navegador?")) return;
   localStorage.removeItem(COMMENTS_KEY);
